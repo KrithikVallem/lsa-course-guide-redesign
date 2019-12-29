@@ -55,3 +55,10 @@
         }
     }
 </script>
+
+
+<style>
+    /* 
+    this works!, just use npm run dev and an incognito window to test
+    */
+</style>
