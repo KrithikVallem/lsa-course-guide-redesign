@@ -1906,12 +1906,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    //onSubmit(evt) { //this is the onSubmit that came with the example form code on the bootstrap website
-    //  evt.preventDefault()
-    //  alert(JSON.stringify(this.form))
-    //},
     onSubmit: function onSubmit(evt) {
-      //this is the onSubmit that I'm using to send data to the backend
       evt.preventDefault();
       alert(JSON.stringify(this.form));
     }
