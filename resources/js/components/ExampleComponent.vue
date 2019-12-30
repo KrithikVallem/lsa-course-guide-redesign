@@ -47,6 +47,8 @@
                 })
                 .then(function (response) {
                     currentObj.output = response.data;
+                    // data gets sent to backend using axios.post, which sends back a response
+                    // then the output spot on the frontend above has its value set to the response sent from backend
                 })
                 .catch(function (error) {
                     currentObj.output = error;

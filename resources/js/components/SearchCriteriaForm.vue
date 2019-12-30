@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+  <div id="form-box">
+    <b-form @submit="onSubmit" v-if="show">
       <b-form-group
         id="input-group-1"
         label="Email address:"
@@ -42,7 +42,6 @@
       </b-form-group>
 
       <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
     <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
@@ -65,23 +64,22 @@
       }
     },
     methods: {
-      onSubmit(evt) {
+      //onSubmit(evt) { //this is the onSubmit that came with the example form code on the bootstrap website
+      //  evt.preventDefault()
+      //  alert(JSON.stringify(this.form))
+      //},
+
+      onSubmit(evt) { //this is the onSubmit that I'm using to send data to the backend
         evt.preventDefault()
         alert(JSON.stringify(this.form))
       },
-      onReset(evt) {
-        evt.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-      }
     }
   }
 </script>
+
+<style scoped>
+    #form-box {
+        width: 50%;
+        margin: 0 auto;
+    }
+</style>
