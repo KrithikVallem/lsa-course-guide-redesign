@@ -3,10 +3,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Laravel Vue Axios Post - ItSolutionStuff.com</div>
+                    <div class="card-header">card header testing - please work</div>
  
                     <div class="card-body">
                         <form @submit="formSubmit">
+                        <p>card body testing - please work</p>
                         <strong>Name:</strong>
                         <input type="text" class="form-control" v-model="name">
                         <strong>Description:</strong>
@@ -59,7 +60,7 @@
 </script>
 
 
-<style>
+<style scoped>
     /* 
     this works!, just use npm run dev and an incognito window to test
     */
