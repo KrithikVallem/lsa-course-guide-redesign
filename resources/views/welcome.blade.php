@@ -10,8 +10,12 @@
     </head>
     <body>
         <div id="app">
+            <!--
             <example-component></example-component>
             <bootstrap-sample-form></bootstrap-sample-form>
+            -->
+
+            <search-criteria-form></search-criteria-form>
         </div>
         <script src="{{asset('js/app.js')}}" ></script>
     </body>
