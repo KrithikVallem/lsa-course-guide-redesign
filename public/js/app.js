@@ -2063,6 +2063,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
  // register globally
 
 Vue.component('multiselect', vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default.a);
@@ -52602,120 +52609,175 @@ var render = function() {
         "b-card",
         { attrs: { title: "Card title", "sub-title": "Card subtitle" } },
         [
-          _vm.show
-            ? _c(
-                "b-form",
+          _c(
+            "b-form",
+            { on: { submit: _vm.onSCFormSubmit, reset: _vm.onSCFormReset } },
+            [
+              _c("b-form-group", {
+                attrs: { id: "term-group", label: "Term:", "label-for": "" }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "credit-type-group",
+                  label: "Credit Type:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: { id: "course-group", label: "Course:", "label-for": "" }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "instructor-group",
+                  label: "Instructor:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "keyword-group",
+                  label: "Keyword:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "subject-group",
+                  label: "Subject:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "course-level-group",
+                  label: "Course Level:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
                 {
-                  on: { submit: _vm.onSCFormSubmit, reset: _vm.onSCFormReset }
+                  attrs: {
+                    id: "credit-hours-group",
+                    label: "Credit Hours:",
+                    "label-for": ""
+                  }
                 },
                 [
-                  _c("b-form-group", {
-                    attrs: { id: "term-group", label: "Term:", "label-for": "" }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "credit-type-group",
-                      label: "Credit Type:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "course-group",
-                      label: "Course:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "instructor-group",
-                      label: "Instructor:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "keyword-group",
-                      label: "Keyword:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "subject-group",
-                      label: "Subject:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "course-level-group",
-                      label: "Course Level:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "credit-hours-group",
-                      label: "Credit Hours:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "distribution-req-group",
-                      label: "Distribution Req:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "skills-req-group",
-                      label: "Skills Req:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "special-offerings-group",
-                      label: "Special Offerings:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "meeting-time-group",
-                      label: "Meeting Time:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: {
-                      id: "meeting-days-group",
-                      label: "Meeting Days:",
-                      "label-for": ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("b-form-group", {
-                    attrs: { id: "-group", label: "", "label-for": "" }
-                  })
-                ],
-                1
-              )
-            : _vm._e()
+                  _c(
+                    "div",
+                    [
+                      _c("label", { staticClass: "typo__label" }, [
+                        _vm._v("Simple select / dropdown")
+                      ]),
+                      _vm._v(" "),
+                      _c("multiselect", {
+                        attrs: {
+                          options: _vm.options,
+                          multiple: true,
+                          "close-on-select": false,
+                          "clear-on-select": false,
+                          "preserve-search": true,
+                          placeholder: "Pick some",
+                          label: "name",
+                          "track-by": "name",
+                          "preselect-first": true
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "selection",
+                            fn: function(ref) {
+                              var values = ref.values
+                              var search = ref.search
+                              var isOpen = ref.isOpen
+                              return [
+                                values.length && !isOpen
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "multiselect__single" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(values.length) +
+                                            " options selected"
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ]
+                            }
+                          }
+                        ]),
+                        model: {
+                          value: _vm.value,
+                          callback: function($$v) {
+                            _vm.value = $$v
+                          },
+                          expression: "value"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("pre", { staticClass: "language-json" }, [
+                        _c("code", [_vm._v(_vm._s(_vm.value))])
+                      ])
+                    ],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "distribution-req-group",
+                  label: "Distribution Req:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "skills-req-group",
+                  label: "Skills Req:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "special-offerings-group",
+                  label: "Special Offerings:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "meeting-time-group",
+                  label: "Meeting Time:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: {
+                  id: "meeting-days-group",
+                  label: "Meeting Days:",
+                  "label-for": ""
+                }
+              }),
+              _vm._v(" "),
+              _c("b-form-group", {
+                attrs: { id: "-group", label: "", "label-for": "" }
+              })
+            ],
+            1
+          )
         ],
         1
       )
