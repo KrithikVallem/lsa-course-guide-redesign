@@ -27,6 +27,8 @@ Vue.component('bootstrap-sample-form', require('./components/BootstrapVueFormSam
 
 Vue.component('search-criteria-form', require('./components/SearchCriteriaForm.vue').default);
 
+Vue.component('multiselect-demo', require('./components/VueMultiselectDemo.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

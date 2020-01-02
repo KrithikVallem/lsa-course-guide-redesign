@@ -1,3 +1,5 @@
+<!-- I got this example vue template from a guide on https://www.itsolutionstuff.com/ -->
+
 <template>
     <div class="container">
         <div class="row justify-content-center">
