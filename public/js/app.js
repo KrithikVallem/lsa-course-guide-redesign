@@ -2128,6 +2128,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2136,7 +2173,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       selected: null,
-      options: ['Laravel', 'Laravel 5', 'Vue JS', 'ItSolutionStuff.com', 'HDTuto.com']
+      options: []
     };
   }
 });
@@ -52707,37 +52744,137 @@ var render = function() {
             "b-form",
             { on: { submit: _vm.onSCFormSubmit, reset: _vm.onSCFormReset } },
             [
-              _c("b-form-group", {
-                attrs: { id: "term-group", label: "Term:", "label-for": "" }
-              }),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    id: "term-group",
+                    label: "Term:",
+                    "label-for": "term-input"
+                  }
+                },
+                [
+                  _c("multiselect", {
+                    attrs: {
+                      id: "term-input",
+                      placeholder: "Term: (none)",
+                      options: _vm.termOptions,
+                      multiple: true,
+                      searchable: false
+                    },
+                    model: {
+                      value: _vm.termValue,
+                      callback: function($$v) {
+                        _vm.termValue = $$v
+                      },
+                      expression: "termValue"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("b-form-group", {
-                attrs: {
-                  id: "credit-type-group",
-                  label: "Credit Type:",
-                  "label-for": ""
-                }
-              }),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    id: "credit-type-group",
+                    label: "Credit Type:",
+                    "label-for": "credit-type-input"
+                  }
+                },
+                [
+                  _c("multiselect", {
+                    attrs: {
+                      id: "credit-type-input",
+                      placeholder: "Credit Type: (none)",
+                      options: _vm.creditTypeOptions,
+                      multiple: true,
+                      searchable: false
+                    },
+                    model: {
+                      value: _vm.creditTypeValue,
+                      callback: function($$v) {
+                        _vm.creditTypeValue = $$v
+                      },
+                      expression: "creditTypeValue"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("b-form-group", {
-                attrs: { id: "course-group", label: "Course:", "label-for": "" }
-              }),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    id: "course-group",
+                    label: "Course:",
+                    "label-for": "course-input"
+                  }
+                },
+                [
+                  _c("b-form-input", {
+                    attrs: { id: "course-input", placeholder: "" },
+                    model: {
+                      value: _vm.courseValue,
+                      callback: function($$v) {
+                        _vm.courseValue = $$v
+                      },
+                      expression: "courseValue"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("b-form-group", {
-                attrs: {
-                  id: "instructor-group",
-                  label: "Instructor:",
-                  "label-for": ""
-                }
-              }),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    id: "instructor-group",
+                    label: "Instructor:",
+                    "label-for": "instructor-input"
+                  }
+                },
+                [
+                  _c("b-form-input", {
+                    attrs: { id: "instructor-input", placeholder: "" },
+                    model: {
+                      value: _vm.instructorValue,
+                      callback: function($$v) {
+                        _vm.instructorValue = $$v
+                      },
+                      expression: "instructorValue"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("b-form-group", {
-                attrs: {
-                  id: "keyword-group",
-                  label: "Keyword:",
-                  "label-for": ""
-                }
-              }),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    id: "keyword-group",
+                    label: "Keyword:",
+                    "label-for": "keyword-input"
+                  }
+                },
+                [
+                  _c("b-form-input", {
+                    attrs: { id: "keyword-input", placeholder: "" },
+                    model: {
+                      value: _vm.keywordValue,
+                      callback: function($$v) {
+                        _vm.keywordValue = $$v
+                      },
+                      expression: "keywordValue"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "b-form-group",
@@ -52745,32 +52882,28 @@ var render = function() {
                   attrs: {
                     id: "subject-group",
                     label: "Subject:",
-                    "label-for": ""
+                    "label-for": "subject-input"
                   }
                 },
                 [
-                  _c(
-                    "div",
-                    [
-                      _c("multiselect", {
-                        attrs: {
-                          placeholder: "Subject: (all)",
-                          options: _vm.subjectOptions,
-                          multiple: true,
-                          searchable: true
-                        },
-                        model: {
-                          value: _vm.subjectValue,
-                          callback: function($$v) {
-                            _vm.subjectValue = $$v
-                          },
-                          expression: "subjectValue"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]
+                  _c("multiselect", {
+                    attrs: {
+                      id: "subject-input",
+                      placeholder: "Subject: (all)",
+                      options: _vm.subjectOptions,
+                      multiple: true,
+                      searchable: true
+                    },
+                    model: {
+                      value: _vm.subjectValue,
+                      callback: function($$v) {
+                        _vm.subjectValue = $$v
+                      },
+                      expression: "subjectValue"
+                    }
+                  })
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -52779,32 +52912,28 @@ var render = function() {
                   attrs: {
                     id: "course-level-group",
                     label: "Course Level:",
-                    "label-for": ""
+                    "label-for": "course-level-input"
                   }
                 },
                 [
-                  _c(
-                    "div",
-                    [
-                      _c("multiselect", {
-                        attrs: {
-                          placeholder: "Course Level: (all)",
-                          options: _vm.courseLevelOptions,
-                          multiple: true,
-                          searchable: false
-                        },
-                        model: {
-                          value: _vm.courseLevelValue,
-                          callback: function($$v) {
-                            _vm.courseLevelValue = $$v
-                          },
-                          expression: "courseLevelValue"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]
+                  _c("multiselect", {
+                    attrs: {
+                      id: "course-level-input",
+                      placeholder: "Course Level: (all)",
+                      options: _vm.courseLevelOptions,
+                      multiple: true,
+                      searchable: false
+                    },
+                    model: {
+                      value: _vm.courseLevelValue,
+                      callback: function($$v) {
+                        _vm.courseLevelValue = $$v
+                      },
+                      expression: "courseLevelValue"
+                    }
+                  })
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -52813,32 +52942,28 @@ var render = function() {
                   attrs: {
                     id: "credit-hours-group",
                     label: "Credit Hours:",
-                    "label-for": ""
+                    "label-for": "credit-hours-input"
                   }
                 },
                 [
-                  _c(
-                    "div",
-                    [
-                      _c("multiselect", {
-                        attrs: {
-                          placeholder: "Credit Hours: (all)",
-                          options: _vm.creditHoursOptions,
-                          multiple: true,
-                          searchable: false
-                        },
-                        model: {
-                          value: _vm.creditHoursValue,
-                          callback: function($$v) {
-                            _vm.creditHoursValue = $$v
-                          },
-                          expression: "creditHoursValue"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]
+                  _c("multiselect", {
+                    attrs: {
+                      id: "credit-hours-input",
+                      placeholder: "Credit Hours: (all)",
+                      options: _vm.creditHoursOptions,
+                      multiple: true,
+                      searchable: false
+                    },
+                    model: {
+                      value: _vm.creditHoursValue,
+                      callback: function($$v) {
+                        _vm.creditHoursValue = $$v
+                      },
+                      expression: "creditHoursValue"
+                    }
+                  })
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -52847,32 +52972,28 @@ var render = function() {
                   attrs: {
                     id: "distribution-req-group",
                     label: "Distribution Req:",
-                    "label-for": ""
+                    "label-for": "distribution-req-input"
                   }
                 },
                 [
-                  _c(
-                    "div",
-                    [
-                      _c("multiselect", {
-                        attrs: {
-                          placeholder: "Distribution Req: (none selected)",
-                          options: _vm.distributionReqOptions,
-                          multiple: true,
-                          searchable: false
-                        },
-                        model: {
-                          value: _vm.distributionReqValue,
-                          callback: function($$v) {
-                            _vm.distributionReqValue = $$v
-                          },
-                          expression: "distributionReqValue"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]
+                  _c("multiselect", {
+                    attrs: {
+                      id: "distribution-req-input",
+                      placeholder: "Distribution Req: (none selected)",
+                      options: _vm.distributionReqOptions,
+                      multiple: true,
+                      searchable: false
+                    },
+                    model: {
+                      value: _vm.distributionReqValue,
+                      callback: function($$v) {
+                        _vm.distributionReqValue = $$v
+                      },
+                      expression: "distributionReqValue"
+                    }
+                  })
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -52881,32 +53002,28 @@ var render = function() {
                   attrs: {
                     id: "skills-req-group",
                     label: "Skills Req:",
-                    "label-for": ""
+                    "label-for": "skills-req-input"
                   }
                 },
                 [
-                  _c(
-                    "div",
-                    [
-                      _c("multiselect", {
-                        attrs: {
-                          placeholder: "Skills Req: (none selected)",
-                          options: _vm.skillsReqOptions,
-                          multiple: true,
-                          searchable: false
-                        },
-                        model: {
-                          value: _vm.skillsReqValue,
-                          callback: function($$v) {
-                            _vm.skillsReqValue = $$v
-                          },
-                          expression: "skillsReqValue"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]
+                  _c("multiselect", {
+                    attrs: {
+                      id: "skills-req-input",
+                      placeholder: "Skills Req: (none selected)",
+                      options: _vm.skillsReqOptions,
+                      multiple: true,
+                      searchable: false
+                    },
+                    model: {
+                      value: _vm.skillsReqValue,
+                      callback: function($$v) {
+                        _vm.skillsReqValue = $$v
+                      },
+                      expression: "skillsReqValue"
+                    }
+                  })
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -52915,32 +53032,28 @@ var render = function() {
                   attrs: {
                     id: "special-offerings-group",
                     label: "Special Offerings:",
-                    "label-for": ""
+                    "label-for": "special-offerings-input"
                   }
                 },
                 [
-                  _c(
-                    "div",
-                    [
-                      _c("multiselect", {
-                        attrs: {
-                          placeholder: "Special Offerings: (none selected)",
-                          options: _vm.specialOfferingsOptions,
-                          multiple: true,
-                          searchable: false
-                        },
-                        model: {
-                          value: _vm.specialOfferingsValue,
-                          callback: function($$v) {
-                            _vm.specialOfferingsValue = $$v
-                          },
-                          expression: "specialOfferingsValue"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]
+                  _c("multiselect", {
+                    attrs: {
+                      id: "special-offerings-input",
+                      placeholder: "Special Offerings: (none selected)",
+                      options: _vm.specialOfferingsOptions,
+                      multiple: true,
+                      searchable: false
+                    },
+                    model: {
+                      value: _vm.specialOfferingsValue,
+                      callback: function($$v) {
+                        _vm.specialOfferingsValue = $$v
+                      },
+                      expression: "specialOfferingsValue"
+                    }
+                  })
+                ],
+                1
               ),
               _vm._v(" "),
               _c("b-form-group", {
@@ -52951,13 +53064,62 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("b-form-group", {
-                attrs: {
-                  id: "meeting-days-group",
-                  label: "Meeting Days:",
-                  "label-for": ""
-                }
-              }),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    id: "meeting-days-group",
+                    label: "Meeting Days:",
+                    "label-for": "meeting-days-checkbox-group"
+                  }
+                },
+                [
+                  _c(
+                    "b-form-checkbox-group",
+                    {
+                      attrs: { id: "meeting-days-checkbox-group" },
+                      model: {
+                        value: _vm.meetingDaysValue,
+                        callback: function($$v) {
+                          _vm.meetingDaysValue = $$v
+                        },
+                        expression: "meetingDaysValue"
+                      }
+                    },
+                    [
+                      _c("b-form-checkbox", { attrs: { value: "Mon" } }, [
+                        _vm._v("Mon")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-form-checkbox", { attrs: { value: "Tues" } }, [
+                        _vm._v("Tue")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-form-checkbox", { attrs: { value: "Wed" } }, [
+                        _vm._v("Wed")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-form-checkbox", { attrs: { value: "Thurs" } }, [
+                        _vm._v("Thu")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-form-checkbox", { attrs: { value: "Fri" } }, [
+                        _vm._v("Fri")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-form-checkbox", { attrs: { value: "Sat" } }, [
+                        _vm._v("Sat")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-form-checkbox", { attrs: { value: "Sun" } }, [
+                        _vm._v("Sun")
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("b-form-group", {
                 attrs: { id: "-group", label: "", "label-for": "" }
@@ -65247,14 +65409,7 @@ Vue.component('multiselect-demo', __webpack_require__(/*! ./components/VueMultis
  */
 
 var app = new Vue({
-  el: '#app',
-  data: {
-    value: null,
-    value2: null,
-    value3: null,
-    options: ['list', 'of', 'options'],
-    options2: ['peter', 'dieter', 'Seppi']
-  }
+  el: '#app'
 });
 
 /***/ }),
