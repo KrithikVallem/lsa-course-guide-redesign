@@ -2217,11 +2217,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2494,6 +2489,9 @@ __webpack_require__.r(__webpack_exports__);
         option: "Graduate",
         value: "gr"
       }],
+      courseValue: null,
+      instructorValue: null,
+      keywordValue: null,
       subjectValue: null,
       subjectOptions: [{
         value: "AAS",
@@ -3189,8 +3187,19 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         option: "World Literature and Culture",
         value: "WLIT"
-      }]
+      }],
+      startTimeValue: null,
+      endTimeValue: null,
+      meetingDaysValue: []
     };
+  },
+  methods: {
+    searchFunction: function searchFunction() {
+      alert('search works');
+    },
+    clearFunction: function clearFunction() {
+      alert('clear works');
+    }
   }
 });
 
@@ -31922,7 +31931,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n", ""]);
 
 // exports
 
@@ -54252,11 +54261,6 @@ var render = function() {
                     ])
                   ],
                   1
-                ),
-                _vm._v(
-                  "\n                  " +
-                    _vm._s(_vm.meetingDaysValue) +
-                    "\n                "
                 )
               ],
               1
@@ -54266,24 +54270,29 @@ var render = function() {
               attrs: { id: "-group", label: "", "label-for": "" }
             }),
             _vm._v(" "),
-            _c("b-button", { attrs: { type: "submit", variant: "primary" } }, [
-              _vm._v("Submit")
-            ]),
+            _c(
+              "b-button",
+              {
+                attrs: {
+                  type: "submit",
+                  variant: "primary",
+                  id: "searchButton"
+                },
+                on: { click: _vm.searchFunction }
+              },
+              [_vm._v("Search")]
+            ),
             _vm._v(" "),
-            _c("b-button", { attrs: { type: "reset", variant: "danger" } }, [
-              _vm._v("Reset")
-            ])
+            _c(
+              "b-button",
+              {
+                attrs: { type: "reset", variant: "danger", id: "clearButton" },
+                on: { click: _vm.clearFunction }
+              },
+              [_vm._v("Clear")]
+            )
           ],
           1
-        ),
-        _vm._v("\n        " + _vm._s(_vm.subjectValue) + "\n        "),
-        _c("br"),
-        _vm._v(
-          "\n        " +
-            _vm._s(_vm.startTimeValue) +
-            "\n        " +
-            _vm._s(_vm.keywordValue) +
-            "\n  "
         )
       ],
       1
@@ -66565,7 +66574,8 @@ Vue.component('multiselect-demo', __webpack_require__(/*! ./components/VueMultis
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  methods: {}
 });
 
 /***/ }),

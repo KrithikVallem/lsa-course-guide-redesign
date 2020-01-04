@@ -36,5 +36,6 @@ Vue.component('multiselect-demo', require('./components/VueMultiselectDemo.vue')
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app', 
+    methods: {}
 });
