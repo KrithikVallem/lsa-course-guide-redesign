@@ -160,23 +160,33 @@
                   </b-form-group>
 
                   <b-form-group id="meeting-time-group" label="Meeting Time:" label-for="">
-                    <b-form-input
+                    <multiselect
                       id="start-time-input"
-                      v-model="startTimeValue"
                       placeholder="Start Time"
-                      type="time"
-                      min="8:00"
-                      step="1800"
-                    ></b-form-input>
+                      v-model="startTimeValue"
+                      :options="startTimeOptions"
+                      :multiple="false"
+                      :searchable="false"
+                      :close-on-select="true"
+                      track-by="option"
+                      label="option"
+                      open-direction="bottom"
+                      >
+                    </multiselect>
 
-                    <b-form-input
+                    <multiselect
                       id="end-time-input"
-                      v-model="endTimeValue"
                       placeholder="End Time"
-                      type="time"
-                      min="9:00"
-                      step="1800"
-                    ></b-form-input>
+                      v-model="endTimeValue"
+                      :options="endTimeOptions"
+                      :multiple="false"
+                      :searchable="false"
+                      :close-on-select="true"
+                      track-by="option"
+                      label="option"
+                      open-direction="bottom"
+                      >
+                    </multiselect>
                   </b-form-group>
 
                   <b-form-group id="meeting-days-group" label="Meeting Days:" label-for="meeting-days-checkbox-group">
@@ -241,7 +251,9 @@
         specialOfferingsOptions: [{option: "Bachelor of Science Eligibility", value: "BS"}, {option: "Community Based Learning", value: "CBL"}, {option: "Extended Course", value: "Extended"}, {option: "First-Year Seminar", value: "First_Year_Sem"}, {option: "Graduate Interdisciplinary Humanities", value: "IHG"}, {option: "Honors", value: "HNRS"}, {option: "Minicourse", value: "MINI"}, {option: "Sustainability", value: "Sustain"}, {option: "Theme Semester", value: "Theme_Sem"}, {option: "World Literature and Culture", value: "WLIT"}],
         
         startTimeValue: null,
+        startTimeOptions: [{option: "8:00 AM", value: "8:00%20AM"}, {option: "8:30 AM", value: "8:30%20AM"}, {option: "9:00 AM", value: "9:00%20AM"}, {option: "9:30 AM", value: "9:30%20AM"}, {option: "10:00 AM", value: "10:00%20AM"}, {option: "10:30 AM", value: "10:30%20AM"}, {option: "11:00 AM", value: "11:00%20AM"}, {option: "11:30 AM", value: "11:30%20AM"}, {option: "12:00 PM", value: "12:00%20PM"}, {option: "12:30 PM", value: "12:30%20PM"}, {option: "1:00 PM", value: "1:00%20PM"}, {option: "1:30 PM", value: "1:30%20PM"}, {option: "2:00 PM", value: "2:00%20PM"}, {option: "2:30 PM", value: "2:30%20PM"}, {option: "3:00 PM", value: "3:00%20PM"}, {option: "3:30 PM", value: "3:30%20PM"}, {option: "4:00 PM", value: "4:00%20PM"}, {option: "4:30 PM", value: "4:30%20PM"}, {option: "5:00 PM", value: "5:00%20PM"}, {option: "5:30 PM", value: "5:30%20PM"}, {option: "6:00 PM", value: "6:00%20PM"}, {option: "6:30 PM", value: "6:30%20PM"}, {option: "7:00 PM", value: "7:00%20PM"}, {option: "7:30 PM", value: "7:30%20PM"}, {option: "8:00 PM", value: "8:00%20PM"}, {option: "8:30 PM", value: "8:30%20PM"}, {option: "9:00 PM", value: "9:00%20PM"}, {option: "9:30 PM", value: "9:30%20PM"}, {option: "10:00 PM", value: "10:00%20PM"}, {option: "10:30 PM", value: "10:30%20PM"}, {option: "11:00 PM", value: "11:00%20PM"}, {option: "11:30 PM", value: "11:30%20PM"}],
         endTimeValue: null,
+        endTimeOptions: [{option: "9:00 AM", value: "9:00%20AM"}, {option: "9:30 AM", value: "9:30%20AM"}, {option: "10:00 AM", value: "10:00%20AM"}, {option: "10:30 AM", value: "10:30%20AM"}, {option: "11:00 AM", value: "11:00%20AM"}, {option: "11:30 AM", value: "11:30%20AM"}, {option: "12:00 PM", value: "12:00%20PM"}, {option: "12:30 PM", value: "12:30%20PM"}, {option: "1:00 PM", value: "1:00%20PM"}, {option: "1:30 PM", value: "1:30%20PM"}, {option: "2:00 PM", value: "2:00%20PM"}, {option: "2:30 PM", value: "2:30%20PM"}, {option: "3:00 PM", value: "3:00%20PM"}, {option: "3:30 PM", value: "3:30%20PM"}, {option: "4:00 PM", value: "4:00%20PM"}, {option: "4:30 PM", value: "4:30%20PM"}, {option: "5:00 PM", value: "5:00%20PM"}, {option: "5:30 PM", value: "5:30%20PM"}, {option: "6:00 PM", value: "6:00%20PM"}, {option: "6:30 PM", value: "6:30%20PM"}, {option: "7:00 PM", value: "7:00%20PM"}, {option: "7:30 PM", value: "7:30%20PM"}, {option: "8:00 PM", value: "8:00%20PM"}, {option: "8:30 PM", value: "8:30%20PM"}, {option: "9:00 PM", value: "9:00%20PM"}, {option: "9:30 PM", value: "9:30%20PM"}, {option: "10:00 PM", value: "10:00%20PM"}, {option: "10:30 PM", value: "10:30%20PM"}, {option: "11:00 PM", value: "11:00%20PM"}, {option: "11:30 PM", value: "11:30%20PM"}],
         
         meetingDaysValue: [],
       }

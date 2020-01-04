@@ -11,6 +11,11 @@ window.Vue = require('vue');
 import BootstrapVue from 'bootstrap-vue';
 Vue.use(BootstrapVue);
 
+// Main JS (in UMD format)
+import VueTimepicker from 'vue2-timepicker'
+// CSS
+import 'vue2-timepicker/dist/VueTimepicker.css'
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
