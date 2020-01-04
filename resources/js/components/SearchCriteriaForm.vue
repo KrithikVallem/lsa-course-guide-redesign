@@ -12,9 +12,12 @@
                       id="term-input"
                       placeholder="Term: (none)"
                       v-model="termValue"
-                      :options="termOptions"
+                      :options="termOptions" 
                       :multiple="true"
                       :searchable="false"
+                      :close-on-select="false"
+                      track-by="option"
+                      label="option"
                       >
                     </multiselect>
                   </b-form-group>
@@ -27,6 +30,9 @@
                       :options="creditTypeOptions"
                       :multiple="true"
                       :searchable="false"
+                      :close-on-select="false"
+                      track-by="option"
+                      label="option"
                       >
                     </multiselect>
                   </b-form-group>
@@ -63,6 +69,9 @@
                       :options="subjectOptions"
                       :multiple="true"
                       :searchable="true"
+                      :close-on-select="false"
+                      track-by="option"
+                      label="option"
                       >
                     </multiselect>
                   </b-form-group>
@@ -75,6 +84,9 @@
                       :options="courseLevelOptions"
                       :multiple="true"
                       :searchable="false"
+                      :close-on-select="false"
+                      track-by="option"
+                      label="option"
                       >
                     </multiselect>
                   </b-form-group>
@@ -88,6 +100,8 @@
                       :multiple="true"
                       :searchable="false"
                       :close-on-select="false"
+                      track-by="option"
+                      label="option"
                       >
                     </multiselect>
                   </b-form-group>
@@ -100,6 +114,9 @@
                       :options="distributionReqOptions"
                       :multiple="true"
                       :searchable="false"
+                      :close-on-select="false"
+                      track-by="option"
+                      label="option"
                       >
                     </multiselect>
                   </b-form-group>
@@ -112,6 +129,9 @@
                       :options="skillsReqOptions"
                       :multiple="true"
                       :searchable="false"
+                      :close-on-select="false"
+                      track-by="option"
+                      label="option"
                       >
                     </multiselect>
                   </b-form-group>
@@ -124,6 +144,9 @@
                       :options="specialOfferingsOptions"
                       :multiple="true"
                       :searchable="false"
+                      :close-on-select="false"
+                      track-by="option"
+                      label="option"
                       >
                     </multiselect>
                   </b-form-group>
@@ -167,9 +190,12 @@
                   <b-button type="reset" variant="danger">Reset</b-button>
               
           </b-card>
+          {{ creditHoursValue }}
+          {{ meetingDaysValue }}
     </div>
   </div>
 </template>
+
 
 
 <script>
@@ -178,8 +204,22 @@
     components: { Multiselect },
     data () {
       return {
+        //termValue:,
+        //termOptions:,
+        //creditTypeValue:,
+        //creditTypeOptions:,
+        subjectValue: null,
+        subjectOptions: ["a", "b"],
+        courseLevelValue: null,
+        courseLevelOptions: [{option: "100", value: "100"}, {option: "200", value: "200"}, {option: "300", value: "300"}, {option: "400", value: "400"}, {option: "500+", value: "500,600,700,800,900"}],
         creditHoursValue: null,
-        creditHoursOptions: ["1", "2", "3", "4", "5+"]
+        creditHoursOptions: [{option: "1", value: "1"}, {option: "2", value: "2"}, {option: "3", value: "3"}, {option: "4", value: "4"}, {option: "5+", value: "5,6,7,8,9,10,11,12,13,14,15,16,17,18"}],
+        distributionReqValue: null,
+        distributionReqOptions: [{option: "Creative Expression (CE)", value: "CE"}, {option: "Humanities (HU)", value: "HU"}, {option: "Interdisciplinary Course (ID)", value: "ID"}, {option: "Math and Symbolic Analysis (MSA)", value: "MSA"}, {option: "Natural Sciences (NS)", value: "NS"}, {option: "Social Sciences (SS)", value: "SS"}],
+        skillsReqValue: null,
+        skillsReqOptions: [{option: "First Year Writing (FYWR)", value: "IC"}, {option: "Upper Level Writing (ULWR)", value: "ULWR"}, {option: "Race & Ethnicity (RE)", value: "RE"}, {option: "Quantitative Reasoning 1 (QR/1)", value: "QR/1"}, {option: "Quantitative Reasoning 2 (QR/2)", value: "QR/2"}, {option: "Language Requirement (LANG_REQ)", value: "Lang_Req"}],
+        specialOfferingsValue: null,
+        specialOfferingsOptions: [{option: "Bachelor of Science Eligibility", value: "BS"}, {option: "Community Based Learning", value: "CBL"}, {option: "Extended Course", value: "Extended"}, {option: "First-Year Seminar", value: "First_Year_Sem"}, {option: "Graduate Interdisciplinary Humanities", value: "IHG"}, {option: "Honors", value: "HNRS"}, {option: "Minicourse", value: "MINI"}, {option: "Sustainability", value: "Sustain"}, {option: "Theme Semester", value: "Theme_Sem"}, {option: "World Literature and Culture", value: "WLIT"}],
       }
     }
   }

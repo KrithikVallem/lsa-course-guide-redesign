@@ -2185,6 +2185,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2192,8 +2218,118 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      //termValue:,
+      //termOptions:,
+      //creditTypeValue:,
+      //creditTypeOptions:,
+      subjectValue: null,
+      subjectOptions: ["a", "b"],
+      courseLevelValue: null,
+      courseLevelOptions: [{
+        option: "100",
+        value: "100"
+      }, {
+        option: "200",
+        value: "200"
+      }, {
+        option: "300",
+        value: "300"
+      }, {
+        option: "400",
+        value: "400"
+      }, {
+        option: "500+",
+        value: "500,600,700,800,900"
+      }],
       creditHoursValue: null,
-      creditHoursOptions: ["1", "2", "3", "4", "5+"]
+      creditHoursOptions: [{
+        option: "1",
+        value: "1"
+      }, {
+        option: "2",
+        value: "2"
+      }, {
+        option: "3",
+        value: "3"
+      }, {
+        option: "4",
+        value: "4"
+      }, {
+        option: "5+",
+        value: "5,6,7,8,9,10,11,12,13,14,15,16,17,18"
+      }],
+      distributionReqValue: null,
+      distributionReqOptions: [{
+        option: "Creative Expression (CE)",
+        value: "CE"
+      }, {
+        option: "Humanities (HU)",
+        value: "HU"
+      }, {
+        option: "Interdisciplinary Course (ID)",
+        value: "ID"
+      }, {
+        option: "Math and Symbolic Analysis (MSA)",
+        value: "MSA"
+      }, {
+        option: "Natural Sciences (NS)",
+        value: "NS"
+      }, {
+        option: "Social Sciences (SS)",
+        value: "SS"
+      }],
+      skillsReqValue: null,
+      skillsReqOptions: [{
+        option: "First Year Writing (FYWR)",
+        value: "IC"
+      }, {
+        option: "Upper Level Writing (ULWR)",
+        value: "ULWR"
+      }, {
+        option: "Race & Ethnicity (RE)",
+        value: "RE"
+      }, {
+        option: "Quantitative Reasoning 1 (QR/1)",
+        value: "QR/1"
+      }, {
+        option: "Quantitative Reasoning 2 (QR/2)",
+        value: "QR/2"
+      }, {
+        option: "Language Requirement (LANG_REQ)",
+        value: "Lang_Req"
+      }],
+      specialOfferingsValue: null,
+      specialOfferingsOptions: [{
+        option: "Bachelor of Science Eligibility",
+        value: "BS"
+      }, {
+        option: "Community Based Learning",
+        value: "CBL"
+      }, {
+        option: "Extended Course",
+        value: "Extended"
+      }, {
+        option: "First-Year Seminar",
+        value: "First_Year_Sem"
+      }, {
+        option: "Graduate Interdisciplinary Humanities",
+        value: "IHG"
+      }, {
+        option: "Honors",
+        value: "HNRS"
+      }, {
+        option: "Minicourse",
+        value: "MINI"
+      }, {
+        option: "Sustainability",
+        value: "Sustain"
+      }, {
+        option: "Theme Semester",
+        value: "Theme_Sem"
+      }, {
+        option: "World Literature and Culture",
+        value: "WLIT"
+      }]
     };
   }
 });
@@ -52780,7 +52916,10 @@ var render = function() {
                     placeholder: "Term: (none)",
                     options: _vm.termOptions,
                     multiple: true,
-                    searchable: false
+                    searchable: false,
+                    "close-on-select": false,
+                    "track-by": "option",
+                    label: "option"
                   },
                   model: {
                     value: _vm.termValue,
@@ -52810,7 +52949,10 @@ var render = function() {
                     placeholder: "Credit Type: (none)",
                     options: _vm.creditTypeOptions,
                     multiple: true,
-                    searchable: false
+                    searchable: false,
+                    "close-on-select": false,
+                    "track-by": "option",
+                    label: "option"
                   },
                   model: {
                     value: _vm.creditTypeValue,
@@ -52912,7 +53054,10 @@ var render = function() {
                     placeholder: "Subject: (all)",
                     options: _vm.subjectOptions,
                     multiple: true,
-                    searchable: true
+                    searchable: true,
+                    "close-on-select": false,
+                    "track-by": "option",
+                    label: "option"
                   },
                   model: {
                     value: _vm.subjectValue,
@@ -52942,7 +53087,10 @@ var render = function() {
                     placeholder: "Course Level: (all)",
                     options: _vm.courseLevelOptions,
                     multiple: true,
-                    searchable: false
+                    searchable: false,
+                    "close-on-select": false,
+                    "track-by": "option",
+                    label: "option"
                   },
                   model: {
                     value: _vm.courseLevelValue,
@@ -52973,7 +53121,9 @@ var render = function() {
                     options: _vm.creditHoursOptions,
                     multiple: true,
                     searchable: false,
-                    "close-on-select": false
+                    "close-on-select": false,
+                    "track-by": "option",
+                    label: "option"
                   },
                   model: {
                     value: _vm.creditHoursValue,
@@ -53003,7 +53153,10 @@ var render = function() {
                     placeholder: "Distribution Req: (none selected)",
                     options: _vm.distributionReqOptions,
                     multiple: true,
-                    searchable: false
+                    searchable: false,
+                    "close-on-select": false,
+                    "track-by": "option",
+                    label: "option"
                   },
                   model: {
                     value: _vm.distributionReqValue,
@@ -53033,7 +53186,10 @@ var render = function() {
                     placeholder: "Skills Req: (none selected)",
                     options: _vm.skillsReqOptions,
                     multiple: true,
-                    searchable: false
+                    searchable: false,
+                    "close-on-select": false,
+                    "track-by": "option",
+                    label: "option"
                   },
                   model: {
                     value: _vm.skillsReqValue,
@@ -53063,7 +53219,10 @@ var render = function() {
                     placeholder: "Special Offerings: (none selected)",
                     options: _vm.specialOfferingsOptions,
                     multiple: true,
-                    searchable: false
+                    searchable: false,
+                    "close-on-select": false,
+                    "track-by": "option",
+                    label: "option"
                   },
                   model: {
                     value: _vm.specialOfferingsValue,
@@ -53194,6 +53353,13 @@ var render = function() {
             ])
           ],
           1
+        ),
+        _vm._v(
+          "\n        " +
+            _vm._s(_vm.creditHoursValue) +
+            "\n        " +
+            _vm._s(_vm.meetingDaysValue) +
+            "\n  "
         )
       ],
       1
