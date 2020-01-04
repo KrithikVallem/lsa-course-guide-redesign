@@ -2211,6 +2211,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2223,7 +2233,595 @@ __webpack_require__.r(__webpack_exports__);
       //creditTypeValue:,
       //creditTypeOptions:,
       subjectValue: null,
-      subjectOptions: ["a", "b"],
+      subjectOptions: [{
+        value: "AAS",
+        option: "LSA: Afroamerican & African Studies"
+      }, {
+        value: "AMCULT",
+        option: "LSA: American Culture"
+      }, {
+        value: "ANTHRARC",
+        option: "LSA: Anthropological Archaeology"
+      }, {
+        value: "ANTHRBIO",
+        option: "LSA: Anthropology,Biological"
+      }, {
+        value: "ANTHRCUL",
+        option: "LSA: Anthropology,Cultural"
+      }, {
+        value: "ALA",
+        option: "LSA: Applied Liberal Arts"
+      }, {
+        value: "APPPHYS",
+        option: "LSA: Applied Physics"
+      }, {
+        value: "ARABAM",
+        option: "LSA: Arab American Studies"
+      }, {
+        value: "ARABIC",
+        option: "LSA: Arabic Language"
+      }, {
+        value: "ARMENIAN",
+        option: "LSA: Armenian Language"
+      }, {
+        value: "ASIANLAN",
+        option: "LSA: Asian Languages"
+      }, {
+        value: "ASIAN",
+        option: "LSA: Asian Studies"
+      }, {
+        value: "ASIANPAM",
+        option: "LSA: Asian/Pacific Island Amer Std"
+      }, {
+        value: "ASTRO",
+        option: "LSA: Astronomy"
+      }, {
+        value: "BIOLOGY",
+        option: "LSA: Biology"
+      }, {
+        value: "BIOPHYS",
+        option: "LSA: Biophysics"
+      }, {
+        value: "BCS",
+        option: "LSA: Bosnian/Croatian/Serbian"
+      }, {
+        value: "BUDDHST",
+        option: "LSA: Buddhist Studies"
+      }, {
+        value: "CATALAN",
+        option: "LSA: Catalan"
+      }, {
+        value: "CHEM",
+        option: "LSA: Chemistry"
+      }, {
+        value: "CCS",
+        option: "LSA: Chinese Studies"
+      }, {
+        value: "CLARCH",
+        option: "LSA: Classical Archaeology"
+      }, {
+        value: "CLCIV",
+        option: "LSA: Classical Civilization"
+      }, {
+        value: "CLLING",
+        option: "LSA: Classical Linguistics"
+      }, {
+        value: "COGSCI",
+        option: "LSA: Cognitive Science"
+      }, {
+        value: "HONORS",
+        option: "LSA: College Honors"
+      }, {
+        value: "COMM",
+        option: "LSA: Communication and Media"
+      }, {
+        value: "COMPLIT",
+        option: "LSA: Comparative Literature"
+      }, {
+        value: "CMPLXSYS",
+        option: "LSA: Complex Systems"
+      }, {
+        value: "CSP",
+        option: "LSA: Comprehensive Studies Program"
+      }, {
+        value: "CZECH",
+        option: "LSA: Czech"
+      }, {
+        value: "DATASCI",
+        option: "LSA: Data Science"
+      }, {
+        value: "DIGITAL",
+        option: "LSA: Digital Studies"
+      }, {
+        value: "DUTCH",
+        option: "LSA: Dutch"
+      }, {
+        value: "EARTH",
+        option: "LSA: Earth & Environmental Sciences"
+      }, {
+        value: "EEB",
+        option: "LSA: Ecology & Evolutionary Biology"
+      }, {
+        value: "ECON",
+        option: "LSA: Economics"
+      }, {
+        value: "ENGLISH",
+        option: "LSA: English Lang & Literature"
+      }, {
+        value: "ELI",
+        option: "LSA: English Language Institute"
+      }, {
+        value: "EURO",
+        option: "LSA: European Studies"
+      }, {
+        value: "FTVM",
+        option: "LSA: Film, Television, and Media"
+      }, {
+        value: "FRENCH",
+        option: "LSA: French"
+      }, {
+        value: "GEOG",
+        option: "LSA: Geography"
+      }, {
+        value: "GERMAN",
+        option: "LSA: German"
+      }, {
+        value: "GTBOOKS",
+        option: "LSA: Great Books"
+      }, {
+        value: "GREEK",
+        option: "LSA: Greek"
+      }, {
+        value: "HEBREW",
+        option: "LSA: Hebrew Language"
+      }, {
+        value: "HISTORY",
+        option: "LSA: History"
+      }, {
+        value: "HISTART",
+        option: "LSA: History of Art"
+      }, {
+        value: "INSTHUM",
+        option: "LSA: Institute For The Humanities"
+      }, {
+        value: "INTLRGN",
+        option: "LSA: International & Regional Sts"
+      }, {
+        value: "INTLSTD",
+        option: "LSA: International Studies"
+      }, {
+        value: "ISLAM",
+        option: "LSA: Islamic Studies"
+      }, {
+        value: "ITALIAN",
+        option: "LSA: Italian"
+      }, {
+        value: "CJS",
+        option: "LSA: Japanese Studies"
+      }, {
+        value: "JUDAIC",
+        option: "LSA: Judaic Studies"
+      }, {
+        value: "KRSTD",
+        option: "LSA: Korean Studies"
+      }, {
+        value: "LATIN",
+        option: "LSA: Latin"
+      }, {
+        value: "LACS",
+        option: "LSA: Latin Amer & Caribbean Stu"
+      }, {
+        value: "LATINOAM",
+        option: "LSA: Latina/o American Studies"
+      }, {
+        value: "LING",
+        option: "LSA: Linguistics"
+      }, {
+        value: "LHSP",
+        option: "LSA: Lloyd Hall Scholars Program"
+      }, {
+        value: "MACROMOL",
+        option: "LSA: Macromolecular Science"
+      }, {
+        value: "MATH",
+        option: "LSA: Mathematics"
+      }, {
+        value: "MEMS",
+        option: "LSA: Medieval & Early Modern Std"
+      }, {
+        value: "MELANG",
+        option: "LSA: Middle East Languages"
+      }, {
+        value: "MIDEAST",
+        option: "LSA: Middle East Studies"
+      }, {
+        value: "MENAS",
+        option: "LSA: Middle Eastern & N African Stu"
+      }, {
+        value: "GREEKMOD",
+        option: "LSA: Modern Greek"
+      }, {
+        value: "MCDB",
+        option: "LSA: Molec, Cell & Develop Biology"
+      }, {
+        value: "MUSMETH",
+        option: "LSA: Museum Methods"
+      }, {
+        value: "MUSEUMS",
+        option: "LSA: Museums"
+      }, {
+        value: "NATIVEAM",
+        option: "LSA: Native American Studies"
+      }, {
+        value: "ORGSTUDY",
+        option: "LSA: Organizational Studies"
+      }, {
+        value: "PERSIAN",
+        option: "LSA: Persian Language"
+      }, {
+        value: "PPE",
+        option: "LSA: Philos, Politics & Economics"
+      }, {
+        value: "PHIL",
+        option: "LSA: Philosophy"
+      }, {
+        value: "PHYSICS",
+        option: "LSA: Physics"
+      }, {
+        value: "POLISH",
+        option: "LSA: Polish"
+      }, {
+        value: "POLSCI",
+        option: "LSA: Political Science"
+      }, {
+        value: "PORTUG",
+        option: "LSA: Portuguese"
+      }, {
+        value: "PSYCH",
+        option: "LSA: Psychology"
+      }, {
+        value: "RCASL",
+        option: "LSA: RC American Sign Language"
+      }, {
+        value: "RCCORE",
+        option: "LSA: RC Core Courses"
+      }, {
+        value: "RCARTS",
+        option: "LSA: RC Fine Arts"
+      }, {
+        value: "RCHUMS",
+        option: "LSA: RC Humanities"
+      }, {
+        value: "RCIDIV",
+        option: "LSA: RC Interdivisional"
+      }, {
+        value: "RCLANG",
+        option: "LSA: RC Languages"
+      }, {
+        value: "RCNSCI",
+        option: "LSA: RC Natural Sciences"
+      }, {
+        value: "RCSSCI",
+        option: "LSA: RC Social Sciences"
+      }, {
+        value: "RELIGION",
+        option: "LSA: Religion"
+      }, {
+        value: "ROMLANG",
+        option: "LSA: Romance Languages&amp;Literatures"
+      }, {
+        value: "ROMLING",
+        option: "LSA: Romance Linguistics"
+      }, {
+        value: "RUSSIAN",
+        option: "LSA: Russian"
+      }, {
+        value: "REEES",
+        option: "LSA: Russian, E Europe & Euras Stu"
+      }, {
+        value: "SCAND",
+        option: "LSA: Scandinavian"
+      }, {
+        value: "SLAVIC",
+        option: "LSA: Slavic"
+      }, {
+        value: "SOC",
+        option: "LSA: Sociology"
+      }, {
+        value: "SAS",
+        option: "LSA: South Asian Studies"
+      }, {
+        value: "SEAS",
+        option: "LSA: Southeast Asian Studies"
+      }, {
+        value: "SPANISH",
+        option: "LSA: Spanish"
+      }, {
+        value: "STATS",
+        option: "LSA: Statistics"
+      }, {
+        value: "STDABRD",
+        option: "LSA: Study Abroad"
+      }, {
+        value: "SURVMETH",
+        option: "LSA: Survey Methodology"
+      }, {
+        value: "WRITING",
+        option: "LSA: Sweetland Center for Writing"
+      }, {
+        value: "TCS",
+        option: "LSA: Transcultural Studies"
+      }, {
+        value: "TURKISH",
+        option: "LSA: Turkish Language"
+      }, {
+        value: "UKR",
+        option: "LSA: Ukrainian"
+      }, {
+        value: "UC",
+        option: "LSA: University Courses"
+      }, {
+        value: "WOMENSTD",
+        option: "LSA: Womens Studies"
+      }, {
+        value: "YIDDISH",
+        option: "LSA: Yiddish"
+      }, {
+        value: "ARTDES",
+        option: "ART: Art and Design"
+      }, {
+        value: "ARCH",
+        option: "AUP: Architecture"
+      }, {
+        value: "URP",
+        option: "AUP: Urban and Regional Planning"
+      }, {
+        value: "BA",
+        option: "BA: Business Administration"
+      }, {
+        value: "ES",
+        option: "BA: Entrepreneurial Studies"
+      }, {
+        value: "MO",
+        option: "BA: Management & Organizations"
+      }, {
+        value: "MKT",
+        option: "BA: Marketing"
+      }, {
+        value: "TO",
+        option: "BA: Technology & Operations"
+      }, {
+        value: "BIOMATLS",
+        option: "DEN: Biomaterials"
+      }, {
+        value: "ENVIRON",
+        option: "EAS: Environment"
+      }, {
+        value: "EDBEHAVR",
+        option: "EDU: Educ C Behavior Sci In Educ"
+      }, {
+        value: "EDUC",
+        option: "EDU: Education"
+      }, {
+        value: "EDCURINS",
+        option: "EDU: Education D Curriculum & Instr"
+      }, {
+        value: "AEROSP",
+        option: "ENG: Aerospace Engineering"
+      }, {
+        value: "AUTO",
+        option: "ENG: Automotive Engineering Program"
+      }, {
+        value: "BIOMEDE",
+        option: "ENG: Biomedical Engineering"
+      }, {
+        value: "CHE",
+        option: "ENG: Chemical Engineering"
+      }, {
+        value: "CEE",
+        option: "ENG: Civil & Environmental Engin"
+      }, {
+        value: "CLIMATE",
+        option: "ENG: Climate & Meteorology"
+      }, {
+        value: "EECS",
+        option: "ENG: Elec Engin & Computer Sci"
+      }, {
+        value: "ESENG",
+        option: "ENG: Energy Systems Engineering"
+      }, {
+        value: "ENGR",
+        option: "ENG: Engineering"
+      }, {
+        value: "ENSCEN",
+        option: "ENG: Environmental Sciences & Engin"
+      }, {
+        value: "IOE",
+        option: "ENG: Industrial & Operations Engin"
+      }, {
+        value: "ISD",
+        option: "ENG: Integrative Systems & Design"
+      }, {
+        value: "MFG",
+        option: "ENG: Manufacturing"
+      }, {
+        value: "MATSCIE",
+        option: "ENG: Materials Science Engineering"
+      }, {
+        value: "MECHENG",
+        option: "ENG: Mechanical Engineering"
+      }, {
+        value: "NAVARCH",
+        option: "ENG: Naval Arch & Marine Engin"
+      }, {
+        value: "NERS",
+        option: "ENG: Nuclear Engin & Radiolog Sci"
+      }, {
+        value: "ROB",
+        option: "ENG: Robotics"
+      }, {
+        value: "SPACE",
+        option: "ENG: Space Science & Engineering"
+      }, {
+        value: "TCHNCLCM",
+        option: "ENG: Technical Communication"
+      }, {
+        value: "UARTS",
+        option: "ENG: University Arts"
+      }, {
+        value: "SI",
+        option: "INF: Information"
+      }, {
+        value: "PUBPOL",
+        option: "IPP: Public Policy"
+      }, {
+        value: "AES",
+        option: "KIN: Applied Exercise Science"
+      }, {
+        value: "KINESLGY",
+        option: "KIN: Kinesiology"
+      }, {
+        value: "MOVESCI",
+        option: "KIN: Movement Science"
+      }, {
+        value: "LAW",
+        option: "LAW: Law"
+      }, {
+        value: "ANATOMY",
+        option: "MED: Anatomy"
+      }, {
+        value: "BIOINF",
+        option: "MED: Bioinformatics"
+      }, {
+        value: "BIOLCHEM",
+        option: "MED: Biological Chemistry"
+      }, {
+        value: "PIBS",
+        option: "MED: Biomedical Sciences"
+      }, {
+        value: "CDB",
+        option: "MED: Cell and Developmental Biology"
+      }, {
+        value: "CMBIOL",
+        option: "MED: Cellular And Molecular Biology"
+      }, {
+        value: "HUMGEN",
+        option: "MED: Human Genetics"
+      }, {
+        value: "IMMUNO",
+        option: "MED: Immunology"
+      }, {
+        value: "INTMED",
+        option: "MED: Internal Medicine"
+      }, {
+        value: "MICRBIOL",
+        option: "MED: Microbiology"
+      }, {
+        value: "NEUROSCI",
+        option: "MED: Neuroscience"
+      }, {
+        value: "PATH",
+        option: "MED: Pathology"
+      }, {
+        value: "PHRMACOL",
+        option: "MED: Pharmacology"
+      }, {
+        value: "PMR",
+        option: "MED: Physical Medicine & Rehab"
+      }, {
+        value: "PHYSIOL",
+        option: "MED: Physiology"
+      }, {
+        value: "ARTSADMN",
+        option: "MUS: Arts Administration"
+      }, {
+        value: "COMP",
+        option: "MUS: Composition"
+      }, {
+        value: "DANCE",
+        option: "MUS: Dance"
+      }, {
+        value: "ENS",
+        option: "MUS: Ensemble"
+      }, {
+        value: "JAZZ",
+        option: "MUS: Jazz & Improvisational Studies"
+      }, {
+        value: "MUSPERF",
+        option: "MUS: Music Performance"
+      }, {
+        value: "MUSTHTRE",
+        option: "MUS: Musical Theatre"
+      }, {
+        value: "MUSICOL",
+        option: "MUS: Musicology"
+      }, {
+        value: "PAT",
+        option: "MUS: Performing Arts & Technology"
+      }, {
+        value: "THTREMUS",
+        option: "MUS: Theatre & Drama"
+      }, {
+        value: "THEORY",
+        option: "MUS: Theory"
+      }, {
+        value: "VOICELIT",
+        option: "MUS: Voice Literature"
+      }, {
+        value: "EAS",
+        option: "NRE: Environment and Sustainability"
+      }, {
+        value: "HS",
+        option: "NUR: Health Sciences"
+      }, {
+        value: "NURS",
+        option: "NUR: Nursing"
+      }, {
+        value: "AERO",
+        option: "OEP: Air Force Officer Education"
+      }, {
+        value: "MILSCI",
+        option: "OEP: Military Science"
+      }, {
+        value: "NAVSCI",
+        option: "OEP: Naval Science"
+      }, {
+        value: "BIOSTAT",
+        option: "PH: Biostatistics"
+      }, {
+        value: "EHS",
+        option: "PH: Environmental Health Sciences"
+      }, {
+        value: "EPID",
+        option: "PH: Epidemiology"
+      }, {
+        value: "HMP",
+        option: "PH: Health Management And Policy"
+      }, {
+        value: "NUTR",
+        option: "PH: Nutritional Sciences"
+      }, {
+        value: "PUBHLTH",
+        option: "PH: Public Health"
+      }, {
+        value: "MEDCHEM",
+        option: "PHR: Medicinal Chemistry"
+      }, {
+        value: "PHARMSCI",
+        option: "PHR: Pharmaceutical Sciences"
+      }, {
+        value: "PHARMACY",
+        option: "PHR: Pharmacy"
+      }, {
+        value: "CHEMBIO",
+        option: "RAC: Chemical Biology"
+      }, {
+        value: "RACKHAM",
+        option: "RAC: Rackham Graduate School"
+      }, {
+        value: "SW",
+        option: "SW: Social Work"
+      }],
       courseLevelValue: null,
       courseLevelOptions: [{
         option: "100",
@@ -31050,6 +31648,25 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchCriteriaForm.vue?vue&type=style&index=1&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchCriteriaForm.vue?vue&type=style&index=1&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css& ***!
@@ -51975,6 +52592,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchCriteriaForm.vue?vue&type=style&index=1&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchCriteriaForm.vue?vue&type=style&index=1&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchCriteriaForm.vue?vue&type=style&index=1&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchCriteriaForm.vue?vue&type=style&index=1&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css& ***!
@@ -52919,7 +53566,8 @@ var render = function() {
                     searchable: false,
                     "close-on-select": false,
                     "track-by": "option",
-                    label: "option"
+                    label: "option",
+                    "open-direction": "bottom"
                   },
                   model: {
                     value: _vm.termValue,
@@ -52952,7 +53600,8 @@ var render = function() {
                     searchable: false,
                     "close-on-select": false,
                     "track-by": "option",
-                    label: "option"
+                    label: "option",
+                    "open-direction": "bottom"
                   },
                   model: {
                     value: _vm.creditTypeValue,
@@ -53057,7 +53706,8 @@ var render = function() {
                     searchable: true,
                     "close-on-select": false,
                     "track-by": "option",
-                    label: "option"
+                    label: "option",
+                    "open-direction": "bottom"
                   },
                   model: {
                     value: _vm.subjectValue,
@@ -53090,7 +53740,8 @@ var render = function() {
                     searchable: false,
                     "close-on-select": false,
                     "track-by": "option",
-                    label: "option"
+                    label: "option",
+                    "open-direction": "bottom"
                   },
                   model: {
                     value: _vm.courseLevelValue,
@@ -53123,7 +53774,8 @@ var render = function() {
                     searchable: false,
                     "close-on-select": false,
                     "track-by": "option",
-                    label: "option"
+                    label: "option",
+                    "open-direction": "bottom"
                   },
                   model: {
                     value: _vm.creditHoursValue,
@@ -53156,7 +53808,8 @@ var render = function() {
                     searchable: false,
                     "close-on-select": false,
                     "track-by": "option",
-                    label: "option"
+                    label: "option",
+                    "open-direction": "bottom"
                   },
                   model: {
                     value: _vm.distributionReqValue,
@@ -53189,7 +53842,8 @@ var render = function() {
                     searchable: false,
                     "close-on-select": false,
                     "track-by": "option",
-                    label: "option"
+                    label: "option",
+                    "open-direction": "bottom"
                   },
                   model: {
                     value: _vm.skillsReqValue,
@@ -53222,7 +53876,8 @@ var render = function() {
                     searchable: false,
                     "close-on-select": false,
                     "track-by": "option",
-                    label: "option"
+                    label: "option",
+                    "open-direction": "bottom"
                   },
                   model: {
                     value: _vm.specialOfferingsValue,
@@ -53354,11 +54009,13 @@ var render = function() {
           ],
           1
         ),
+        _vm._v("\n        " + _vm._s(_vm.subjectValue) + "\n        "),
+        _c("br"),
         _vm._v(
           "\n        " +
-            _vm._s(_vm.creditHoursValue) +
+            _vm._s(_vm.startTimeValue) +
             "\n        " +
-            _vm._s(_vm.meetingDaysValue) +
+            _vm._s(_vm.distributionReqValue) +
             "\n  "
         )
       ],
@@ -65846,7 +66503,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SearchCriteriaForm_vue_vue_type_template_id_971e7a94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchCriteriaForm.vue?vue&type=template&id=971e7a94& */ "./resources/js/components/SearchCriteriaForm.vue?vue&type=template&id=971e7a94&");
 /* harmony import */ var _SearchCriteriaForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchCriteriaForm.vue?vue&type=script&lang=js& */ "./resources/js/components/SearchCriteriaForm.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css& */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _SearchCriteriaForm_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SearchCriteriaForm.vue?vue&type=style&index=1&lang=css& */ "./resources/js/components/SearchCriteriaForm.vue?vue&type=style&index=1&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -65855,7 +66514,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(
   _SearchCriteriaForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _SearchCriteriaForm_vue_vue_type_template_id_971e7a94___WEBPACK_IMPORTED_MODULE_0__["render"],
   _SearchCriteriaForm_vue_vue_type_template_id_971e7a94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -65884,6 +66543,22 @@ component.options.__file = "resources/js/components/SearchCriteriaForm.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchCriteriaForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchCriteriaForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchCriteriaForm.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchCriteriaForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SearchCriteriaForm.vue?vue&type=style&index=1&lang=css&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/SearchCriteriaForm.vue?vue&type=style&index=1&lang=css& ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchCriteriaForm_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchCriteriaForm.vue?vue&type=style&index=1&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchCriteriaForm.vue?vue&type=style&index=1&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchCriteriaForm_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchCriteriaForm_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchCriteriaForm_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchCriteriaForm_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchCriteriaForm_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
