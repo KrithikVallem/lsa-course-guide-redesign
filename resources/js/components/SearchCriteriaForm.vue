@@ -5,17 +5,21 @@
 <template>
     <div class="container-fluid">
       <div class="row">
-          <b-card title="Card title" sub-title="Card subtitle" class="col-sm-12">
+          <b-card title="LSA Course Guide Redesign" class="col-3">
               <!-- Don't put a form tag around everything - the multiselects won't work correctly inside them -->
                   <b-form-group id="term-group" label="Term:" label-for="term-input">
                     <multiselect
                       id="term-input"
                       placeholder="Term: (none)"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="termValue"
                       :options="termOptions" 
                       :multiple="true"
                       :searchable="false"
                       :close-on-select="false"
+                      :allow-empty="false"
                       track-by="option"
                       label="option"
                       open-direction="bottom"
@@ -27,11 +31,15 @@
                     <multiselect
                       id="credit-type-input"
                       placeholder="Credit Type: (none)"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="creditTypeValue"
                       :options="creditTypeOptions"
                       :multiple="true"
                       :searchable="false"
                       :close-on-select="false"
+                      :allow-empty="false"
                       track-by="option"
                       label="option"
                       open-direction="bottom"
@@ -67,6 +75,9 @@
                     <multiselect
                       id="subject-input"
                       placeholder="Subject: (all)"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="subjectValue"
                       :options="subjectOptions"
                       :multiple="true"
@@ -83,6 +94,9 @@
                     <multiselect
                       id="course-level-input"
                       placeholder="Course Level: (all)"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="courseLevelValue"
                       :options="courseLevelOptions"
                       :multiple="true"
@@ -99,6 +113,9 @@
                     <multiselect
                       id="credit-hours-input"
                       placeholder="Credit Hours: (all)"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="creditHoursValue"
                       :options="creditHoursOptions"
                       :multiple="true"
@@ -115,6 +132,9 @@
                     <multiselect
                       id="distribution-req-input"
                       placeholder="Distribution Req: (none selected)"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="distributionReqValue"
                       :options="distributionReqOptions"
                       :multiple="true"
@@ -131,6 +151,9 @@
                     <multiselect
                       id="skills-req-input"
                       placeholder="Skills Req: (none selected)"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="skillsReqValue"
                       :options="skillsReqOptions"
                       :multiple="true"
@@ -147,6 +170,9 @@
                     <multiselect
                       id="special-offerings-input"
                       placeholder="Special Offerings: (none selected)"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="specialOfferingsValue"
                       :options="specialOfferingsOptions"
                       :multiple="true"
@@ -163,6 +189,9 @@
                     <multiselect
                       id="start-time-input"
                       placeholder="Start Time"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="startTimeValue"
                       :options="startTimeOptions"
                       :multiple="false"
@@ -177,6 +206,9 @@
                     <multiselect
                       id="end-time-input"
                       placeholder="End Time"
+                      select-label=""
+                      deselect-label=""
+                      selected-label=""
                       v-model="endTimeValue"
                       :options="endTimeOptions"
                       :multiple="false"
@@ -327,6 +359,19 @@
   background: #cc5454;
   color: #fff;
 }
+
+
+body {
+  background-color: #00274c;
+}
+
+/* font size of dropdown */
+.multiselect,
+.multiselect__input,
+.multiselect__single {
+  font-size: 10px;
+}
+
 </style>
 
 

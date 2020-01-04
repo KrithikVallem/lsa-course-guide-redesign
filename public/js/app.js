@@ -2227,6 +2227,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -32167,7 +32199,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 10px;\n}\n\n", ""]);
 
 // exports
 
@@ -54050,8 +54082,8 @@ var render = function() {
         _c(
           "b-card",
           {
-            staticClass: "col-sm-12",
-            attrs: { title: "Card title", "sub-title": "Card subtitle" }
+            staticClass: "col-3",
+            attrs: { title: "LSA Course Guide Redesign" }
           },
           [
             _c(
@@ -54068,10 +54100,14 @@ var render = function() {
                   attrs: {
                     id: "term-input",
                     placeholder: "Term: (none)",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.termOptions,
                     multiple: true,
                     searchable: false,
                     "close-on-select": false,
+                    "allow-empty": false,
                     "track-by": "option",
                     label: "option",
                     "open-direction": "bottom"
@@ -54102,10 +54138,14 @@ var render = function() {
                   attrs: {
                     id: "credit-type-input",
                     placeholder: "Credit Type: (none)",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.creditTypeOptions,
                     multiple: true,
                     searchable: false,
                     "close-on-select": false,
+                    "allow-empty": false,
                     "track-by": "option",
                     label: "option",
                     "open-direction": "bottom"
@@ -54208,6 +54248,9 @@ var render = function() {
                   attrs: {
                     id: "subject-input",
                     placeholder: "Subject: (all)",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.subjectOptions,
                     multiple: true,
                     searchable: true,
@@ -54242,6 +54285,9 @@ var render = function() {
                   attrs: {
                     id: "course-level-input",
                     placeholder: "Course Level: (all)",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.courseLevelOptions,
                     multiple: true,
                     searchable: false,
@@ -54276,6 +54322,9 @@ var render = function() {
                   attrs: {
                     id: "credit-hours-input",
                     placeholder: "Credit Hours: (all)",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.creditHoursOptions,
                     multiple: true,
                     searchable: false,
@@ -54310,6 +54359,9 @@ var render = function() {
                   attrs: {
                     id: "distribution-req-input",
                     placeholder: "Distribution Req: (none selected)",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.distributionReqOptions,
                     multiple: true,
                     searchable: false,
@@ -54344,6 +54396,9 @@ var render = function() {
                   attrs: {
                     id: "skills-req-input",
                     placeholder: "Skills Req: (none selected)",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.skillsReqOptions,
                     multiple: true,
                     searchable: false,
@@ -54378,6 +54433,9 @@ var render = function() {
                   attrs: {
                     id: "special-offerings-input",
                     placeholder: "Special Offerings: (none selected)",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.specialOfferingsOptions,
                     multiple: true,
                     searchable: false,
@@ -54412,6 +54470,9 @@ var render = function() {
                   attrs: {
                     id: "start-time-input",
                     placeholder: "Start Time",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.startTimeOptions,
                     multiple: false,
                     searchable: false,
@@ -54433,6 +54494,9 @@ var render = function() {
                   attrs: {
                     id: "end-time-input",
                     placeholder: "End Time",
+                    "select-label": "",
+                    "deselect-label": "",
+                    "selected-label": "",
                     options: _vm.endTimeOptions,
                     multiple: false,
                     searchable: false,
