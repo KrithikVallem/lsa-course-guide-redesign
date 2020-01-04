@@ -2489,9 +2489,9 @@ __webpack_require__.r(__webpack_exports__);
         option: "Graduate",
         value: "gr"
       }],
-      courseValue: null,
-      instructorValue: null,
-      keywordValue: null,
+      courseValue: "",
+      instructorValue: "",
+      keywordValue: "",
       subjectValue: null,
       subjectOptions: [{
         value: "AAS",
@@ -3195,10 +3195,29 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     searchFunction: function searchFunction() {
-      alert('search works');
+      alert(this.meetingDaysValue);
     },
     clearFunction: function clearFunction() {
-      alert('clear works');
+      this.termValue = {
+        value: "2270",
+        option: "Winter 2020"
+      };
+      this.creditTypeValue = {
+        option: "Undergraduate",
+        value: "ug"
+      };
+      this.courseValue = "";
+      this.instructorValue = "";
+      this.keywordValue = "";
+      this.subjectValue = null;
+      this.courseLevelValue = null;
+      this.creditHoursValue = null;
+      this.distributionReqValue = null;
+      this.skillsReqValue = null;
+      this.specialOfferingsValue = null;
+      this.startTimeValue = null;
+      this.endTimeValue = null;
+      this.meetingDaysValue = [];
     }
   }
 });
@@ -31931,7 +31950,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n", ""]);
 
 // exports
 
