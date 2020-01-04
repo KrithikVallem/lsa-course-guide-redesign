@@ -2221,6 +2221,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2228,10 +2229,271 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      //termValue:,
-      //termOptions:,
-      //creditTypeValue:,
-      //creditTypeOptions:,
+      termValue: {
+        value: "2270",
+        option: "Winter 2020"
+      },
+      termOptions: [{
+        value: "2300",
+        option: "Summer 2020"
+      }, {
+        value: "2290",
+        option: "Sp/Su 2020"
+      }, {
+        value: "2280",
+        option: "Spring 2020"
+      }, {
+        value: "2270",
+        option: "Winter 2020"
+      }, {
+        value: "2260",
+        option: "Fall 2019"
+      }, {
+        value: "2250",
+        option: "Summer 2019"
+      }, {
+        value: "2240",
+        option: "Sp/Su 2019"
+      }, {
+        value: "2230",
+        option: "Spring 2019"
+      }, {
+        value: "2220",
+        option: "Winter 2019"
+      }, {
+        value: "2210",
+        option: "Fall 2018"
+      }, {
+        value: "2200",
+        option: "Summer 2018"
+      }, {
+        value: "2190",
+        option: "Sp/Su 2018"
+      }, {
+        value: "2180",
+        option: "Spring 2018"
+      }, {
+        value: "2170",
+        option: "Winter 2018"
+      }, {
+        value: "2160",
+        option: "Fall 2017"
+      }, {
+        value: "2150",
+        option: "Summer 2017"
+      }, {
+        value: "2140",
+        option: "Sp/Su 2017"
+      }, {
+        value: "2130",
+        option: "Spring 2017"
+      }, {
+        value: "2120",
+        option: "Winter 2017"
+      }, {
+        value: "2110",
+        option: "Fall 2016"
+      }, {
+        value: "2100",
+        option: "Summer 2016"
+      }, {
+        value: "2090",
+        option: "Sp/Su 2016"
+      }, {
+        value: "2080",
+        option: "Spring 2016"
+      }, {
+        value: "2070",
+        option: "Winter 2016"
+      }, {
+        value: "2060",
+        option: "Fall 2015"
+      }, {
+        value: "2050",
+        option: "Summer 2015"
+      }, {
+        value: "2040",
+        option: "Sp/Su 2015"
+      }, {
+        value: "2030",
+        option: "Spring 2015"
+      }, {
+        value: "2020",
+        option: "Winter 2015"
+      }, {
+        value: "2010",
+        option: "Fall 2014"
+      }, {
+        value: "2000",
+        option: "Summer 2014"
+      }, {
+        value: "1990",
+        option: "Sp/Su 2014"
+      }, {
+        value: "1980",
+        option: "Spring 2014"
+      }, {
+        value: "1970",
+        option: "Winter 2014"
+      }, {
+        value: "1960",
+        option: "Fall 2013"
+      }, {
+        value: "1950",
+        option: "Summer 2013"
+      }, {
+        value: "1940",
+        option: "Sp/Su 2013"
+      }, {
+        value: "1930",
+        option: "Spring 2013"
+      }, {
+        value: "1920",
+        option: "Winter 2013"
+      }, {
+        value: "1910",
+        option: "Fall 2012"
+      }, {
+        value: "1900",
+        option: "Summer 2012"
+      }, {
+        value: "1890",
+        option: "Sp/Su 2012"
+      }, {
+        value: "1880",
+        option: "Spring 2012"
+      }, {
+        value: "1870",
+        option: "Winter 2012"
+      }, {
+        value: "1860",
+        option: "Fall 2011"
+      }, {
+        value: "1850",
+        option: "Summer 2011"
+      }, {
+        value: "1840",
+        option: "Sp/Su 2011"
+      }, {
+        value: "1830",
+        option: "Spring 2011"
+      }, {
+        value: "1820",
+        option: "Winter 2011"
+      }, {
+        value: "1810",
+        option: "Fall 2010"
+      }, {
+        value: "1800",
+        option: "Summer 2010"
+      }, {
+        value: "1790",
+        option: "Sp/Su 2010"
+      }, {
+        value: "1780",
+        option: "Spring 2010"
+      }, {
+        value: "1770",
+        option: "Winter 2010"
+      }, {
+        value: "1760",
+        option: "Fall 2009"
+      }, {
+        value: "1750",
+        option: "Summer 2009"
+      }, {
+        value: "1740",
+        option: "Sp/Su 2009"
+      }, {
+        value: "1730",
+        option: "Spring 2009"
+      }, {
+        value: "1720",
+        option: "Winter 2009"
+      }, {
+        value: "1710",
+        option: "Fall 2008"
+      }, {
+        value: "1700",
+        option: "Summer 2008"
+      }, {
+        value: "1690",
+        option: "Sp/Su 2008"
+      }, {
+        value: "1680",
+        option: "Spring 2008"
+      }, {
+        value: "1670",
+        option: "Winter 2008"
+      }, {
+        value: "1660",
+        option: "Fall 2007"
+      }, {
+        value: "1650",
+        option: "Summer 2007"
+      }, {
+        value: "1640",
+        option: "Sp/Su 2007"
+      }, {
+        value: "1630",
+        option: "Spring 2007"
+      }, {
+        value: "1620",
+        option: "Winter 2007"
+      }, {
+        value: "1610",
+        option: "Fall 2006"
+      }, {
+        value: "1600",
+        option: "Summer 2006"
+      }, {
+        value: "1590",
+        option: "Sp/Su 2006"
+      }, {
+        value: "1580",
+        option: "Spring 2006"
+      }, {
+        value: "1570",
+        option: "Winter 2006"
+      }, {
+        value: "1560",
+        option: "Fall 2005"
+      }, {
+        value: "1550",
+        option: "Summer 2005"
+      }, {
+        value: "1540",
+        option: "Sp/Su 2005"
+      }, {
+        value: "1530",
+        option: "Spring 2005"
+      }, {
+        value: "1520",
+        option: "Winter 2005"
+      }, {
+        value: "1510",
+        option: "Fall 2004"
+      }, {
+        value: "1500",
+        option: "Summer 2004"
+      }, {
+        value: "1490",
+        option: "Sp/Su 2004"
+      }, {
+        value: "1480",
+        option: "Spring 2004"
+      }],
+      creditTypeValue: {
+        option: "Undergraduate",
+        value: "ug"
+      },
+      creditTypeOptions: [{
+        option: "Undergraduate",
+        value: "ug"
+      }, {
+        option: "Graduate",
+        value: "gr"
+      }],
       subjectValue: null,
       subjectOptions: [{
         value: "AAS",
@@ -31660,7 +31922,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n", ""]);
 
 // exports
 
@@ -53990,6 +54252,11 @@ var render = function() {
                     ])
                   ],
                   1
+                ),
+                _vm._v(
+                  "\n                  " +
+                    _vm._s(_vm.meetingDaysValue) +
+                    "\n                "
                 )
               ],
               1
@@ -54015,7 +54282,7 @@ var render = function() {
           "\n        " +
             _vm._s(_vm.startTimeValue) +
             "\n        " +
-            _vm._s(_vm.distributionReqValue) +
+            _vm._s(_vm.keywordValue) +
             "\n  "
         )
       ],
