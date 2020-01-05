@@ -325,7 +325,15 @@
 
     methods: {
       searchFunction() {
-        alert(this.meetingDaysValue);
+        let queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr/";
+
+        for (let item of this.creditTypeValue) {
+          queryUrl += item.value;
+        }
+
+        alert(queryUrl);
+        
+        //"{CLASSTYPE}/{AUDIENCE}/{PAGENO}/{ROWSPERPAGE}/search?term={TERM}&subject={SUBJECT}&catalog={CATALOGNBR}&crseid={CRSEID}&keyword={KEYWORD}&instructor={INSTRNAME}&credit={CREDIT}&distr={DISTR}&other={OTHER}&numlvl={NUMLVL}&other_anyall={OTHERANYALL}&mp_day={MP_DAY}&mp_starttime={MP_STARTTIME}&mp_endtime={MP_ENDTIME}"
       },
 
       clearFunction() {
