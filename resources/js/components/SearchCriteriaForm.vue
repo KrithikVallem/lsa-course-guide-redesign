@@ -6,7 +6,7 @@
     <b-container>
       <b-row>
         <b-col id="search-criteria-form-col">
-          <b-card title="LSA Course Guide Redesign" id="search-criteria-form">
+          <b-card title="LSA Course Guide Redesign" id="search-criteria-form-card">
               <!-- Don't put a form tag around everything - the multiselects won't work correctly inside them -->
                 <b-form-row>
                   <b-col>
@@ -402,6 +402,10 @@ body {
 .multiselect__input,
 .multiselect__single {
   font-size: 1vw;
+}
+
+#search-criteria-form-card {
+  background-color: #eee;
 }
 
 </style>
