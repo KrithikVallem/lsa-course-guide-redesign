@@ -3488,35 +3488,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    searchFunction: function searchFunction() {
-      var queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr/";
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = this.termValue[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var item = _step.value;
-          queryUrl += item.value;
-        } // make sure to automatically make CLASSTYPE ug if theres no selected option in the classtype field
-
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-            _iterator["return"]();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      alert(queryUrl); //"{CLASSTYPE}/{AUDIENCE}/{PAGENO}/{ROWSPERPAGE}/search?term={TERM}&subject={SUBJECT}&catalog={CATALOGNBR}&crseid={CRSEID}&keyword={KEYWORD}&instructor={INSTRNAME}&credit={CREDIT}&distr={DISTR}&other={OTHER}&numlvl={NUMLVL}&other_anyall={OTHERANYALL}&mp_day={MP_DAY}&mp_starttime={MP_STARTTIME}&mp_endtime={MP_ENDTIME}"
-    },
     clearFunction: function clearFunction() {
       var confirmResponse = confirm("Do you want to clear your search criteria?");
 
@@ -3543,10 +3514,10 @@ __webpack_require__.r(__webpack_exports__);
         this.meetingDaysValue = null;
       }
     },
-    formSubmit: function formSubmit(e) {
-      e.preventDefault();
+    searchFunction: function searchFunction(event) {
+      event.preventDefault();
       var currentObj = this;
-      axios.post('/formSubmit', {
+      axios.post('/searchFunction', {
         skillsReqValue: this.skillsReqValue,
         startTimeValue: this.startTimeValue
       }).then(function (response) {
@@ -3555,6 +3526,17 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         currentObj.output = error;
       });
+      /*
+      let queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr/";
+       for (let item of this.termValue) {
+        queryUrl += item.value;
+      }
+       // make sure to automatically make CLASSTYPE ug if theres no selected option in the classtype field
+       alert(queryUrl);
+      
+      //"{CLASSTYPE}/{AUDIENCE}/{PAGENO}/{ROWSPERPAGE}/search?term={TERM}&subject={SUBJECT}&catalog={CATALOGNBR}&crseid={CRSEID}&keyword={KEYWORD}&instructor={INSTRNAME}&credit={CREDIT}&distr={DISTR}&other={OTHER}&numlvl={NUMLVL}&other_anyall={OTHERANYALL}&mp_day={MP_DAY}&mp_starttime={MP_STARTTIME}&mp_endtime={MP_ENDTIME}"
+      },
+      */
     }
   }
 });
@@ -32306,7 +32288,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
 
 // exports
 
@@ -54792,7 +54774,7 @@ var render = function() {
                         variant: "primary",
                         id: "searchButton"
                       },
-                      on: { click: _vm.formSubmit }
+                      on: { click: _vm.searchFunction }
                     },
                     [_vm._v("Search")]
                   ),
@@ -54825,7 +54807,6 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticClass: "cols-1",
               staticStyle: { color: "white" },
               attrs: { id: "search-results-col" }
             },

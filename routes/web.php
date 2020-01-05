@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('formSubmit','PostController@formSubmit');
+Route::post('searchFunction','PostController@searchFunction');

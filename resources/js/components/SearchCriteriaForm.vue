@@ -266,7 +266,7 @@
                   </b-col>
                 </b-form-row>
 
-                  <b-button type="submit" variant="primary" id="searchButton" @click="formSubmit" >Search</b-button>
+                  <b-button type="submit" variant="primary" id="searchButton" @click="searchFunction" >Search</b-button>
                   <b-button type="reset" variant="danger" id="clearButton" @click="clearFunction" >Clear</b-button>
               
           </b-card>
@@ -336,20 +336,6 @@
     },
 
     methods: {
-      searchFunction() {
-        let queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr/";
-
-        for (let item of this.termValue) {
-          queryUrl += item.value;
-        }
-
-        // make sure to automatically make CLASSTYPE ug if theres no selected option in the classtype field
-
-        alert(queryUrl);
-        
-        //"{CLASSTYPE}/{AUDIENCE}/{PAGENO}/{ROWSPERPAGE}/search?term={TERM}&subject={SUBJECT}&catalog={CATALOGNBR}&crseid={CRSEID}&keyword={KEYWORD}&instructor={INSTRNAME}&credit={CREDIT}&distr={DISTR}&other={OTHER}&numlvl={NUMLVL}&other_anyall={OTHERANYALL}&mp_day={MP_DAY}&mp_starttime={MP_STARTTIME}&mp_endtime={MP_ENDTIME}"
-      },
-
       clearFunction() {
         const confirmResponse = confirm("Do you want to clear your search criteria?")
 
@@ -371,12 +357,42 @@
         }
       },
 
-      formSubmit(e) {
-        e.preventDefault();
+      constructQueryUrl() {
+        const AUDIENCE = "public";
+        const PAGENO = "1";
+        const ROWSPERPAGE = "30";
+        
+        let queryUrl = `http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr/`;
+
+        // {CLASSTYPE}
+        if (this.creditTypeValue.value === "gr") {
+          const CLASSTYPE = "gr";
+          queryUrl += `/${CLASSTYPE}/${AUDIENCE}/${PAGENO}/${ROWSPERPAGE}/search?`;
+        }
+        else {
+          const CLASSTYPE = "ug";
+          queryUrl += `/${CLASSTYPE}/${AUDIENCE}/${PAGENO}/${ROWSPERPAGE}/search?`;
+        }
+
+
+        for (let TERM of this.termValue) {
+          queryUrl += `term=${TERM.value}&`;
+        }
+
+
+        alert(queryUrl);
+        
+        //"/{PAGENO}/{ROWSPERPAGE}/search?term={TERM}&subject={SUBJECT}&catalog={CATALOGNBR}&crseid={CRSEID}&keyword={KEYWORD}&instructor={INSTRNAME}&credit={CREDIT}&distr={DISTR}&other={OTHER}&numlvl={NUMLVL}&other_anyall={OTHERANYALL}&mp_day={MP_DAY}&mp_starttime={MP_STARTTIME}&mp_endtime={MP_ENDTIME}"
+        
+      },
+
+      searchFunction(event) {
+        event.preventDefault();
         let currentObj = this;
-        axios.post('/formSubmit', {
-            skillsReqValue: this.skillsReqValue,
-            startTimeValue: this.startTimeValue
+        axios.post('/searchFunction', {
+            //skillsReqValue: this.skillsReqValue,
+            //startTimeValue: this.startTimeValue
+            
         })
         .then(function (response) {
             currentObj.output = response.data;
