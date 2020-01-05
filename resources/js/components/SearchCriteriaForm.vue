@@ -39,7 +39,7 @@
                         :multiple="true"
                         :searchable="false"
                         :close-on-select="false"
-                        :allow-empty="false"
+                        :allow-empty="true"
                         :show-labels="false"
                         :max="1"
                         track-by="option"
@@ -333,6 +333,8 @@
         for (let item of this.termValue) {
           queryUrl += item.value;
         }
+
+        // make sure to automatically make CLASSTYPE ug if theres no selected option in the classtype field
 
         alert(queryUrl);
         
