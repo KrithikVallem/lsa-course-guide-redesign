@@ -36,7 +36,7 @@
                         placeholder="Credit Type: (none)"
                         v-model="creditTypeValue"
                         :options="creditTypeOptions"
-                        :multiple="true"
+                        :multiple="false"
                         :searchable="false"
                         :close-on-select="false"
                         :allow-empty="false"
@@ -327,7 +327,7 @@
       searchFunction() {
         let queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr/";
 
-        for (let item of this.creditTypeValue) {
+        for (let item of this.termValue) {
           queryUrl += item.value;
         }
 
@@ -403,6 +403,15 @@
 
 body {
   background-color: #00274c;
+}
+
+#searchButton {
+  background-color: #00274c;
+  border-color: #00274c;
+}
+#clearButton {
+  background-color: #cc5454;
+  border-color: #cc5454;
 }
 
 /* font size of dropdown */
