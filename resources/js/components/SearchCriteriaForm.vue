@@ -33,7 +33,7 @@
                     <b-form-group id="credit-type-group" label="Credit Type:" label-for="credit-type-input">
                       <multiselect
                         id="credit-type-input"
-                        placeholder="Credit Type: (none)"
+                        placeholder="Credit Type: (Undergraduate)"
                         v-model="creditTypeValue"
                         :options="creditTypeOptions"
                         :multiple="true"
