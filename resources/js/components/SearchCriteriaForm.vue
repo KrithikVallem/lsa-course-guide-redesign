@@ -210,7 +210,7 @@
                     <b-form-group id="start-time-group" label="Start Time:" label-for="start-time-input">
                       <multiselect
                         id="start-time-input"
-                        placeholder="Start Time"
+                        placeholder="Start Time: (all)"
                         v-model="startTimeValue"
                         :options="startTimeOptions"
                         :multiple="true"
@@ -230,7 +230,7 @@
                     <b-form-group id="end-time-group" label="End Time:" label-for="end-time-input">
                       <multiselect
                         id="end-time-input"
-                        placeholder="End Time"
+                        placeholder="End Time: (all)"
                         v-model="endTimeValue"
                         :options="endTimeOptions"
                         :multiple="true"
@@ -247,21 +247,26 @@
                   </b-col>
 
                   <b-col>
-                    <b-form-group id="meeting-days-group" label="Meeting Days:" label-for="meeting-days-checkbox-group">
-                      <b-form-checkbox-group v-model="meetingDaysValue" id="meeting-days-checkbox-group">
-                        <b-form-checkbox value="Mon">Mon</b-form-checkbox>
-                        <b-form-checkbox value="Tues">Tue</b-form-checkbox>
-                        <b-form-checkbox value="Wed">Wed</b-form-checkbox>
-                        <b-form-checkbox value="Thurs">Thu</b-form-checkbox>
-                        <b-form-checkbox value="Fri">Fri</b-form-checkbox>
-                        <b-form-checkbox value="Sat">Sat</b-form-checkbox>
-                        <b-form-checkbox value="Sun">Sun</b-form-checkbox>
-                      </b-form-checkbox-group>
+                    <b-form-group id="meeting-days-group" label="Meeting Days:" label-for="meeting-days-input">
+                      <multiselect
+                        id="meeting-days-input"
+                        placeholder="Meeting Days: (all)"
+                        v-model="meetingDaysValue"
+                        :options="meetingDaysOptions"
+                        :multiple="true"
+                        :searchable="false"
+                        :close-on-select="false"
+                        :show-labels="false"
+                        track-by="option"
+                        label="option"
+                        open-direction="bottom"
+                        >
+                      </multiselect>
                     </b-form-group>
                   </b-col>
                 </b-form-row>
 
-                  <b-button type="submit" variant="primary" id="searchButton" @click="searchFunction" >Search</b-button>
+                  <b-button type="submit" variant="primary" id="searchButton" @click="formSubmit" >Search</b-button>
                   <b-button type="reset" variant="danger" id="clearButton" @click="clearFunction" >Clear</b-button>
               
           </b-card>
@@ -269,7 +274,8 @@
       </b-row>
 
       <b-row>
-        <b-col id="search-results-col">
+        <b-col id="search-results-col" style="color: white;">
+          {{output}}
         </b-col>
 
         <b-col id="class-details-col">
@@ -322,7 +328,10 @@
         endTimeValue: null,
         endTimeOptions: [{option: "9:00 AM", value: "9:00%20AM"}, {option: "9:30 AM", value: "9:30%20AM"}, {option: "10:00 AM", value: "10:00%20AM"}, {option: "10:30 AM", value: "10:30%20AM"}, {option: "11:00 AM", value: "11:00%20AM"}, {option: "11:30 AM", value: "11:30%20AM"}, {option: "12:00 PM", value: "12:00%20PM"}, {option: "12:30 PM", value: "12:30%20PM"}, {option: "1:00 PM", value: "1:00%20PM"}, {option: "1:30 PM", value: "1:30%20PM"}, {option: "2:00 PM", value: "2:00%20PM"}, {option: "2:30 PM", value: "2:30%20PM"}, {option: "3:00 PM", value: "3:00%20PM"}, {option: "3:30 PM", value: "3:30%20PM"}, {option: "4:00 PM", value: "4:00%20PM"}, {option: "4:30 PM", value: "4:30%20PM"}, {option: "5:00 PM", value: "5:00%20PM"}, {option: "5:30 PM", value: "5:30%20PM"}, {option: "6:00 PM", value: "6:00%20PM"}, {option: "6:30 PM", value: "6:30%20PM"}, {option: "7:00 PM", value: "7:00%20PM"}, {option: "7:30 PM", value: "7:30%20PM"}, {option: "8:00 PM", value: "8:00%20PM"}, {option: "8:30 PM", value: "8:30%20PM"}, {option: "9:00 PM", value: "9:00%20PM"}, {option: "9:30 PM", value: "9:30%20PM"}, {option: "10:00 PM", value: "10:00%20PM"}, {option: "10:30 PM", value: "10:30%20PM"}, {option: "11:00 PM", value: "11:00%20PM"}, {option: "11:30 PM", value: "11:30%20PM"}],
         
-        meetingDaysValue: [],
+        meetingDaysValue: null,
+        meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
+        
+        output: "",
       }
     },
 
@@ -358,8 +367,25 @@
           this.specialOfferingsValue = null;
           this.startTimeValue = null;
           this.endTimeValue = null;
-          this.meetingDaysValue = [];
+          this.meetingDaysValue = null;
         }
+      },
+
+      formSubmit(e) {
+        e.preventDefault();
+        let currentObj = this;
+        axios.post('/formSubmit', {
+            skillsReqValue: this.skillsReqValue,
+            startTimeValue: this.startTimeValue
+        })
+        .then(function (response) {
+            currentObj.output = response.data;
+            // data gets sent to backend using axios.post, which sends back a response
+            // then the output spot on the frontend above has its value set to the response sent from backend
+        })
+        .catch(function (error) {
+            currentObj.output = error;
+        });
       }
     }
   }

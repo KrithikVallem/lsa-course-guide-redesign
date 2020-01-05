@@ -2294,6 +2294,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3455,7 +3461,30 @@ __webpack_require__.r(__webpack_exports__);
         option: "11:30 PM",
         value: "11:30%20PM"
       }],
-      meetingDaysValue: []
+      meetingDaysValue: null,
+      meetingDaysOptions: [{
+        option: "Monday",
+        value: "Mon"
+      }, {
+        option: "Tuesday",
+        value: "Tues"
+      }, {
+        option: "Wednesday",
+        value: "Wed"
+      }, {
+        option: "Thursday",
+        value: "Thurs"
+      }, {
+        option: "Friday",
+        value: "Fri"
+      }, {
+        option: "Saturday",
+        value: "Sat"
+      }, {
+        option: "Sunday",
+        value: "Sun"
+      }],
+      output: ""
     };
   },
   methods: {
@@ -3511,8 +3540,21 @@ __webpack_require__.r(__webpack_exports__);
         this.specialOfferingsValue = null;
         this.startTimeValue = null;
         this.endTimeValue = null;
-        this.meetingDaysValue = [];
+        this.meetingDaysValue = null;
       }
+    },
+    formSubmit: function formSubmit(e) {
+      e.preventDefault();
+      var currentObj = this;
+      axios.post('/formSubmit', {
+        skillsReqValue: this.skillsReqValue,
+        startTimeValue: this.startTimeValue
+      }).then(function (response) {
+        currentObj.output = response.data; // data gets sent to backend using axios.post, which sends back a response
+        // then the output spot on the frontend above has its value set to the response sent from backend
+      })["catch"](function (error) {
+        currentObj.output = error;
+      });
     }
   }
 });
@@ -32264,7 +32306,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
 
 // exports
 
@@ -54630,7 +54672,7 @@ var render = function() {
                               _c("multiselect", {
                                 attrs: {
                                   id: "start-time-input",
-                                  placeholder: "Start Time",
+                                  placeholder: "Start Time: (all)",
                                   options: _vm.startTimeOptions,
                                   multiple: true,
                                   searchable: false,
@@ -54672,7 +54714,7 @@ var render = function() {
                               _c("multiselect", {
                                 attrs: {
                                   id: "end-time-input",
-                                  placeholder: "End Time",
+                                  placeholder: "End Time: (all)",
                                   options: _vm.endTimeOptions,
                                   multiple: true,
                                   searchable: false,
@@ -54707,67 +54749,31 @@ var render = function() {
                               attrs: {
                                 id: "meeting-days-group",
                                 label: "Meeting Days:",
-                                "label-for": "meeting-days-checkbox-group"
+                                "label-for": "meeting-days-input"
                               }
                             },
                             [
-                              _c(
-                                "b-form-checkbox-group",
-                                {
-                                  attrs: { id: "meeting-days-checkbox-group" },
-                                  model: {
-                                    value: _vm.meetingDaysValue,
-                                    callback: function($$v) {
-                                      _vm.meetingDaysValue = $$v
-                                    },
-                                    expression: "meetingDaysValue"
-                                  }
+                              _c("multiselect", {
+                                attrs: {
+                                  id: "meeting-days-input",
+                                  placeholder: "Meeting Days: (all)",
+                                  options: _vm.meetingDaysOptions,
+                                  multiple: true,
+                                  searchable: false,
+                                  "close-on-select": false,
+                                  "show-labels": false,
+                                  "track-by": "option",
+                                  label: "option",
+                                  "open-direction": "bottom"
                                 },
-                                [
-                                  _c(
-                                    "b-form-checkbox",
-                                    { attrs: { value: "Mon" } },
-                                    [_vm._v("Mon")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "b-form-checkbox",
-                                    { attrs: { value: "Tues" } },
-                                    [_vm._v("Tue")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "b-form-checkbox",
-                                    { attrs: { value: "Wed" } },
-                                    [_vm._v("Wed")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "b-form-checkbox",
-                                    { attrs: { value: "Thurs" } },
-                                    [_vm._v("Thu")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "b-form-checkbox",
-                                    { attrs: { value: "Fri" } },
-                                    [_vm._v("Fri")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "b-form-checkbox",
-                                    { attrs: { value: "Sat" } },
-                                    [_vm._v("Sat")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "b-form-checkbox",
-                                    { attrs: { value: "Sun" } },
-                                    [_vm._v("Sun")]
-                                  )
-                                ],
-                                1
-                              )
+                                model: {
+                                  value: _vm.meetingDaysValue,
+                                  callback: function($$v) {
+                                    _vm.meetingDaysValue = $$v
+                                  },
+                                  expression: "meetingDaysValue"
+                                }
+                              })
                             ],
                             1
                           )
@@ -54786,7 +54792,7 @@ var render = function() {
                         variant: "primary",
                         id: "searchButton"
                       },
-                      on: { click: _vm.searchFunction }
+                      on: { click: _vm.formSubmit }
                     },
                     [_vm._v("Search")]
                   ),
@@ -54816,7 +54822,15 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c("b-col", { attrs: { id: "search-results-col" } }),
+          _c(
+            "b-col",
+            {
+              staticClass: "cols-1",
+              staticStyle: { color: "white" },
+              attrs: { id: "search-results-col" }
+            },
+            [_vm._v("\n      " + _vm._s(_vm.output) + "\n    ")]
+          ),
           _vm._v(" "),
           _c("b-col", { attrs: { id: "class-details-col" } })
         ],
