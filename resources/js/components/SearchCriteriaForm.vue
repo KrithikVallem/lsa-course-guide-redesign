@@ -57,7 +57,7 @@
 
                 <b-form-row>
                   <b-col>
-                    <b-form-group id="course-group" label="Course:" label-for="course-input">
+                    <b-form-group id="course-group" label="Course (eg CHEM or CHEM 120):" label-for="course-input">
                       <b-form-input
                         id="course-input"
                         v-model="courseValue"
@@ -67,7 +67,7 @@
                   </b-col>
 
                   <b-col>
-                    <b-form-group id="instructor-group" label="Instructor:" label-for="instructor-input">
+                    <b-form-group id="instructor-group" label="Instructor Uniqname:" label-for="instructor-input">
                       <b-form-input
                         id="instructor-input"
                         v-model="instructorValue"
@@ -77,7 +77,7 @@
                   </b-col>
 
                   <b-col>
-                    <b-form-group id="keyword-group" label="Keyword:" label-for="keyword-input">
+                    <b-form-group id="keyword-group" label="Please enter uniqname:" label-for="keyword-input">
                       <b-form-input
                         id="keyword-input"
                         v-model="keywordValue"
@@ -358,6 +358,8 @@
       },
 
       constructQueryUrl() {
+        // url is constructed in the order presented in the docs: http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/help
+
         const AUDIENCE = "public";
         const PAGENO = "1";
         const ROWSPERPAGE = "30";
@@ -379,11 +381,91 @@
           queryUrl += `term=${TERM.value}&`;
         }
 
+        for (let SUBJECT of this.subjectValue) {
+          queryUrl += `subject=${SUBJECT.value}&`;
+        }
 
-        alert(queryUrl);
+
+        // moved COURSE input stuff to end due to formatting difficulties
+
+
+        if (keywordValue !== "") {
+          const KEYWORD = keywordValue.trim().replace(" ", "+");
+          queryUrl += `keyword=${KEYWORD}&`;
+        }
+      
+        if (instructorValue !== "") {
+          // replacing the spaces with '+' doesn't make the search work, but keeps the url valid
+          // I should replace the instructor text box with a multisearch once I get a list of all faculty
+          const INSTRNAME = instructorValue.trim().replace(" ", "+");
+          queryUrl += `instructor=${INSTRNAME}&`;
+        }
+
+        // Credit Hours
+        for (let CREDIT of this.creditHoursValue) {
+          queryUrl += `credit=${CREDIT.value}&`;
+        }
+
+        for (let DISTR of this.distributionReqValue) {
+          queryUrl += `term=${DISTR.value}&`;
+        }
+
+        // Skills Reqs
+        for (let OTHER_SKILLS_REQ of this.skillsReqValue) {
+          queryUrl += `other=${OTHER_SKILLS_REQ.value}&`;
+        }
+
+        // Special Offerings
+        for (let OTHER_SPECIAL_OFFERINGS of this.specialOfferingsValue) {
+          queryUrl += `other=${OTHER_SPECIAL_OFFERINGS.value}&`;
+        }
+
+        // Course Level
+        for (let NUMLVL of this.courseLevelValue) {
+          queryUrl += `numlvl=${NUMLVL.value}&`;
+        }
+
+        // Meeting Days
+        for (let MP_DAY of this.meetingDaysValue) {
+          queryUrl += `mp_day=${MP_DAY.value}&`;
+        }
+
+        // Meeting Start & End Times
+        if (startTimeValue !== null) {
+          const MP_STARTTIME = this.startTimeValue;
+          queryUrl += `mp_starttime=${MP_STARTTIME}&`;
+        }
         
-        //"/{PAGENO}/{ROWSPERPAGE}/search?term={TERM}&subject={SUBJECT}&catalog={CATALOGNBR}&crseid={CRSEID}&keyword={KEYWORD}&instructor={INSTRNAME}&credit={CREDIT}&distr={DISTR}&other={OTHER}&numlvl={NUMLVL}&other_anyall={OTHERANYALL}&mp_day={MP_DAY}&mp_starttime={MP_STARTTIME}&mp_endtime={MP_ENDTIME}"
-        
+        if (endTimeValue !== null) {
+          const MP_ENDTIME = this.endTimeValue;
+          queryUrl += `mp_endtime=${MP_ENDTIME}&`
+        }
+
+        // Course Text Input - eg CHEM or CHEM 120
+        if (courseValue !== "") {
+          // user entered class number - eg CHEM 120
+          // regex searches for a number in input string
+          if (/\d/.test(courseValue)) {
+            // regex removes whitespace, the slice gets the last three characters which should be the class number
+            const tempStr = courseValue.trim().replace(/\s/g, '');
+            
+            const CATALOGNBR = tempStr.slice(newStr.length - 3);
+            const SUBJECT = tempStr.substring(0, tempStr.length - 3);
+
+            queryUrl += `subject=${SUBJECT}&catalog=${CATALOGNBR}&`;
+          }
+          
+          // user did not enter class number - eg CHEM
+          else {
+            // to make an invalid input with spaces into a valid (though useless) query with no spaces
+            const SUBJECT = courseValue.trim().replace(/\s/g, '');
+
+            queryUrl += `subject=${SUBJECT}&`;
+          }
+        }
+
+
+        alert(queryUrl);        
       },
 
       searchFunction(event) {
