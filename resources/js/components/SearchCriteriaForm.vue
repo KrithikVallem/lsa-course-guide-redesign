@@ -3,7 +3,7 @@
 
 
 <template>
-    <b-container>
+    <b-container fluid>
       <b-row>
         <b-col id="search-criteria-form-col">
           <b-card title="LSA Course Guide Redesign" id="search-criteria-form-card">
@@ -342,20 +342,24 @@
       },
 
       clearFunction() {
-        this.termValue = {value: "2270", option: "Winter 2020"};
-        this.creditTypeValue = {option: "Undergraduate", value: "ug"};
-        this.courseValue = "";
-        this.instructorValue = "";
-        this.keywordValue = "";
-        this.subjectValue = null;
-        this.courseLevelValue = null;
-        this.creditHoursValue = null;
-        this.distributionReqValue = null;
-        this.skillsReqValue = null;
-        this.specialOfferingsValue = null;
-        this.startTimeValue = null;
-        this.endTimeValue = null;
-        this.meetingDaysValue = [];
+        const confirmResponse = confirm("Do you want to clear your search criteria?")
+
+        if (confirmResponse === true) {
+          this.termValue = {value: "2270", option: "Winter 2020"};
+          this.creditTypeValue = {option: "Undergraduate", value: "ug"};
+          this.courseValue = "";
+          this.instructorValue = "";
+          this.keywordValue = "";
+          this.subjectValue = null;
+          this.courseLevelValue = null;
+          this.creditHoursValue = null;
+          this.distributionReqValue = null;
+          this.skillsReqValue = null;
+          this.specialOfferingsValue = null;
+          this.startTimeValue = null;
+          this.endTimeValue = null;
+          this.meetingDaysValue = [];
+        }
       }
     }
   }
@@ -423,7 +427,7 @@ body {
 .multiselect,
 .multiselect__input,
 .multiselect__single {
-  font-size: 1vw;
+  font-size: 1vmax;
 }
 
 #search-criteria-form-card {

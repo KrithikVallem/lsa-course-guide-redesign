@@ -3489,26 +3489,30 @@ __webpack_require__.r(__webpack_exports__);
       alert(queryUrl); //"{CLASSTYPE}/{AUDIENCE}/{PAGENO}/{ROWSPERPAGE}/search?term={TERM}&subject={SUBJECT}&catalog={CATALOGNBR}&crseid={CRSEID}&keyword={KEYWORD}&instructor={INSTRNAME}&credit={CREDIT}&distr={DISTR}&other={OTHER}&numlvl={NUMLVL}&other_anyall={OTHERANYALL}&mp_day={MP_DAY}&mp_starttime={MP_STARTTIME}&mp_endtime={MP_ENDTIME}"
     },
     clearFunction: function clearFunction() {
-      this.termValue = {
-        value: "2270",
-        option: "Winter 2020"
-      };
-      this.creditTypeValue = {
-        option: "Undergraduate",
-        value: "ug"
-      };
-      this.courseValue = "";
-      this.instructorValue = "";
-      this.keywordValue = "";
-      this.subjectValue = null;
-      this.courseLevelValue = null;
-      this.creditHoursValue = null;
-      this.distributionReqValue = null;
-      this.skillsReqValue = null;
-      this.specialOfferingsValue = null;
-      this.startTimeValue = null;
-      this.endTimeValue = null;
-      this.meetingDaysValue = [];
+      var confirmResponse = confirm("Do you want to clear your search criteria?");
+
+      if (confirmResponse === true) {
+        this.termValue = {
+          value: "2270",
+          option: "Winter 2020"
+        };
+        this.creditTypeValue = {
+          option: "Undergraduate",
+          value: "ug"
+        };
+        this.courseValue = "";
+        this.instructorValue = "";
+        this.keywordValue = "";
+        this.subjectValue = null;
+        this.courseLevelValue = null;
+        this.creditHoursValue = null;
+        this.distributionReqValue = null;
+        this.skillsReqValue = null;
+        this.specialOfferingsValue = null;
+        this.startTimeValue = null;
+        this.endTimeValue = null;
+        this.meetingDaysValue = [];
+      }
     }
   }
 });
@@ -32260,7 +32264,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vw;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
 
 // exports
 
@@ -54137,6 +54141,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
+    { attrs: { fluid: "" } },
     [
       _c(
         "b-row",
@@ -54215,7 +54220,7 @@ var render = function() {
                               _c("multiselect", {
                                 attrs: {
                                   id: "credit-type-input",
-                                  placeholder: "Credit Type: (none)",
+                                  placeholder: "Credit Type: (Undergraduate)",
                                   options: _vm.creditTypeOptions,
                                   multiple: true,
                                   searchable: false,
