@@ -2298,7 +2298,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3480,9 +3479,10 @@ __webpack_require__.r(__webpack_exports__);
         option: "Sunday",
         value: "Sun"
       }],
-      output: ""
+      searchResultsJSON: []
     };
   },
+  // stuff that happens more or less on page load
   mounted: function mounted() {},
   methods: {
     clearFunction: function clearFunction() {
@@ -3506,19 +3506,19 @@ __webpack_require__.r(__webpack_exports__);
         this.startTimeValue = null;
         this.endTimeValue = null;
         this.meetingDaysValue = null;
-        this.output = "";
+        this.searchResultsJSON = "";
       }
     },
     searchFunction: function searchFunction(event) {
       event.preventDefault();
-      this.output = "";
+      this.searchResultsJSON = "";
       var currentObject = this;
       axios.post('/searchFunction', {
         queryUrl: this.constructQueryUrl()
       }).then(function (response) {
-        currentObject.output = response.data;
+        currentObject.searchResultsJSON = response.data;
       })["catch"](function (error) {
-        currentObj.output = error;
+        currentObj.searchResultsJSON = error;
       });
     },
     constructQueryUrl: function constructQueryUrl() {
@@ -3833,8 +3833,7 @@ __webpack_require__.r(__webpack_exports__);
 
             queryUrl += "subject=".concat(_SUBJECT, "&");
           }
-      } //this.searchQueryUrl = queryUrl;
-
+      }
 
       return queryUrl;
     }
@@ -32588,7 +32587,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
 
 // exports
 
@@ -54488,6 +54487,7 @@ var render = function() {
                     [
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54530,6 +54530,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54570,7 +54571,7 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("b-col")
+                      _c("b-col", { staticClass: "col-md-4 col-12" })
                     ],
                     1
                   ),
@@ -54580,6 +54581,7 @@ var render = function() {
                     [
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54610,6 +54612,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54643,6 +54646,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54679,6 +54683,7 @@ var render = function() {
                     [
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54720,6 +54725,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54761,6 +54767,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54808,6 +54815,7 @@ var render = function() {
                     [
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54850,6 +54858,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54891,6 +54900,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54939,6 +54949,7 @@ var render = function() {
                     [
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -54981,6 +54992,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -55023,6 +55035,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-col",
+                        { staticClass: "col-md-4 col-12" },
                         [
                           _c(
                             "b-form-group",
@@ -55109,7 +55122,7 @@ var render = function() {
               staticStyle: { color: "white" },
               attrs: { id: "search-results-col" }
             },
-            [_vm._v("\n      " + _vm._s(_vm.output) + "\n    ")]
+            [_vm._v("\n      " + _vm._s(_vm.searchResultsJSON) + "\n    ")]
           ),
           _vm._v(" "),
           _c("b-col", { attrs: { id: "class-details-col" } })

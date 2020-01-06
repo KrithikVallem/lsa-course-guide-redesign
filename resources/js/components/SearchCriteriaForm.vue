@@ -9,7 +9,7 @@
           <b-card title="LSA Course Guide Redesign" id="search-criteria-form-card">
               <!-- Don't put a form tag around everything - the multiselects won't work correctly inside them -->
                 <b-form-row>
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="term-group" label="Term:" label-for="term-input">
                       <multiselect
                         id="term-input"
@@ -29,7 +29,7 @@
                     </b-form-group>
                   </b-col>
 
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="credit-type-group" label="Credit Type:" label-for="credit-type-input">
                       <multiselect
                         id="credit-type-input"
@@ -49,13 +49,13 @@
                     </b-form-group>
                   </b-col>
                   
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                   </b-col>
 
                 </b-form-row>
 
                 <b-form-row>
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="course-group" label="Course (eg CHEM or CHEM 120):" label-for="course-input">
                       <b-form-input
                         id="course-input"
@@ -65,7 +65,7 @@
                     </b-form-group>
                   </b-col>
 
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="instructor-group" label="Instructor Uniqname:" label-for="instructor-input">
                       <b-form-input
                         id="instructor-input"
@@ -75,7 +75,7 @@
                     </b-form-group>
                   </b-col>
 
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="keyword-group" label="Keyword:" label-for="keyword-input">
                       <b-form-input
                         id="keyword-input"
@@ -87,7 +87,7 @@
                 </b-form-row>
                   
                 <b-form-row>
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="subject-group" label="Subject:" label-for="subject-input">
                       <multiselect
                         id="subject-input"
@@ -106,7 +106,7 @@
                     </b-form-group>
                   </b-col>
 
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="course-level-group" label="Course Level:" label-for="course-level-input">
                       <multiselect
                         id="course-level-input"
@@ -125,7 +125,7 @@
                     </b-form-group>
                   </b-col>
 
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="credit-hours-group" label="Credit Hours:" label-for="credit-hours-input">
                       <multiselect
                         id="credit-hours-input"
@@ -146,7 +146,7 @@
                 </b-form-row>
 
                 <b-form-row>
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="distribution-req-group" label="Distribution Req:" label-for="distribution-req-input">
                       <multiselect
                         id="distribution-req-input"
@@ -165,7 +165,7 @@
                     </b-form-group>
                   </b-col>
 
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="skills-req-group" label="Skills Req:" label-for="skills-req-input">
                       <multiselect
                         id="skills-req-input"
@@ -184,7 +184,7 @@
                     </b-form-group>
                   </b-col>
 
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="special-offerings-group" label="Special Offerings:" label-for="special-offerings-input">
                       <multiselect
                         id="special-offerings-input"
@@ -205,7 +205,7 @@
                 </b-form-row>
 
                 <b-form-row>
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="start-time-group" label="Start Time:" label-for="start-time-input">
                       <multiselect
                         id="start-time-input"
@@ -225,7 +225,7 @@
                     </b-form-group>
                   </b-col>
 
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="end-time-group" label="End Time:" label-for="end-time-input">
                       <multiselect
                         id="end-time-input"
@@ -245,7 +245,7 @@
                     </b-form-group>
                   </b-col>
 
-                  <b-col>
+                  <b-col class="col-md-4 col-12">
                     <b-form-group id="meeting-days-group" label="Meeting Days:" label-for="meeting-days-input">
                       <multiselect
                         id="meeting-days-input"
@@ -274,7 +274,7 @@
 
       <b-row>
         <b-col id="search-results-col" style="color: white;">
-          {{output}}
+          {{ searchResultsJSON }}
         </b-col>
 
         <b-col id="class-details-col">
@@ -329,10 +329,11 @@
         meetingDaysValue: null,
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
 
-        output: "",
+        searchResultsJSON: [],
       }
     },
 
+    // stuff that happens more or less on page load
     mounted () {
       
     },
@@ -357,24 +358,24 @@
           this.endTimeValue = null;
           this.meetingDaysValue = null;
           
-          this.output = "";
+          this.searchResultsJSON = "";
         }
       },
 
 
       searchFunction(event) {
         event.preventDefault();
-        this.output = ""
+        this.searchResultsJSON = ""
         let currentObject = this;
 
         axios.post('/searchFunction', {
           queryUrl: this.constructQueryUrl()
         })
         .then(function (response) {
-          currentObject.output = response.data;
+          currentObject.searchResultsJSON = response.data;
         })
         .catch(function (error) {
-          currentObj.output = error;
+          currentObj.searchResultsJSON = error;
         });
       },
 
@@ -577,7 +578,7 @@ body {
 .multiselect,
 .multiselect__input,
 .multiselect__single {
-  font-size: 1vmax;
+  font-size: 12px;
 }
 
 #search-criteria-form-card {
