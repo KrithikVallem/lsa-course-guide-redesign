@@ -265,7 +265,7 @@
                   </b-col>
                 </b-form-row>
 
-                  <b-button type="submit" variant="primary" id="searchButton" @click="constructQueryUrl" >Search</b-button>
+                  <b-button type="submit" variant="primary" id="searchButton" @click="searchFunction" >Search</b-button>
                   <b-button type="reset" variant="danger" id="clearButton" @click="clearFunction" >Clear</b-button>
               
           </b-card>
@@ -330,7 +330,7 @@
         meetingDaysValue: null,
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
         
-        searchUrl: "",
+        searchQueryUrl: "",
 
         output: "",
       }
@@ -359,7 +359,7 @@
           this.startTimeValue = null;
           this.endTimeValue = null;
           this.meetingDaysValue = null;
-          this.searchUrl = "";
+          this.searchQueryUrl = "";
         }
       },
 
@@ -490,25 +490,22 @@
           }
         }
 
-        this.output = queryUrl;
-        this.searchUrl = queryUrl;
-
-        alert(this.searchUrl);
-        //return queryUrl;
+        this.searchQueryUrl = queryUrl;
       },
 
 
 
       searchFunction(event) {
         event.preventDefault();
+        this.constructQueryUrl();
+        this.output = ""
         let currentObject = this;
-        //currentObject.searchUrl = constructQueryUrl();
 
         axios.post('/searchFunction', {
-          searchUrl: this.searchUrl
+          searchQueryUrl: this.searchQueryUrl
         })
         .then(function (response) {
-            alert(response.data + "hello world 7890");
+            currentObject.output = response.data;
         })
         .catch(function (error) {
             currentObj.output = error;

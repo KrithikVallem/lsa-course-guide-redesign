@@ -13,11 +13,15 @@ class PostController extends Controller
      */
     public function searchFunction(Request $request)
     {
-        // make xml api string here from form data recieved
-        // then call xml file
-        // then use a return statement to return and simultaneously json_encode the xml
+        // Use the posted searchQueryUrl to retrieve the xml from the actual lsa course guide
+        $searchResultsXML = simplexml_load_file($request->searchQueryUrl);
+
+        // convert the xml to json, and then into a php array so it can be returned by laravel
+        $searchResultsJSON = json_encode($searchResultsXML);
+        $searchResultsArray = json_decode($searchResultsJSON);
         
-        return response()->json([$request->all()]);
+        // then use a return statement to return and simultaneously convert the array back to json
+        return response()->json($searchResultsArray);
     }
     // add an onPageLoad function here also, in case user enters specific url
     // for this function, just use the posted information directly, no need to make the xml api string
