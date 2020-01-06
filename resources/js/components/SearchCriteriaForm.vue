@@ -285,7 +285,6 @@
 </template>
 
 
-
 <script>
   import Multiselect from 'vue-multiselect'
   export default {
@@ -329,8 +328,6 @@
         
         meetingDaysValue: null,
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
-        
-        searchQueryUrl: "",
 
         output: "",
       }
@@ -359,9 +356,29 @@
           this.startTimeValue = null;
           this.endTimeValue = null;
           this.meetingDaysValue = null;
-          this.searchQueryUrl = "";
+          
+          this.output = "";
         }
       },
+
+
+      searchFunction(event) {
+        event.preventDefault();
+        this.output = ""
+        let currentObject = this;
+
+        axios.post('/searchFunction', {
+          queryUrl: this.constructQueryUrl()
+        })
+        .then(function (response) {
+          currentObject.output = response.data;
+        })
+        .catch(function (error) {
+          currentObj.output = error;
+        });
+      },
+
+
 
       constructQueryUrl() {
         // url is constructed in the order presented in the docs: http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/help
@@ -490,27 +507,10 @@
           }
         }
 
-        this.searchQueryUrl = queryUrl;
+        return queryUrl;
       },
 
 
-
-      searchFunction(event) {
-        event.preventDefault();
-        this.constructQueryUrl();
-        this.output = ""
-        let currentObject = this;
-
-        axios.post('/searchFunction', {
-          searchQueryUrl: this.searchQueryUrl
-        })
-        .then(function (response) {
-            currentObject.output = response.data;
-        })
-        .catch(function (error) {
-            currentObj.output = error;
-        });
-      }
     }
   }
 </script>

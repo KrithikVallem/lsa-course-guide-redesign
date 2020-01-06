@@ -14,7 +14,7 @@ class PostController extends Controller
     public function searchFunction(Request $request)
     {
         // Use the posted searchQueryUrl to retrieve the xml from the actual lsa course guide
-        $searchResultsXML = simplexml_load_file($request->searchQueryUrl);
+        $searchResultsXML = simplexml_load_file($request->queryUrl);
 
         // convert the xml to json, and then into a php array so it can be returned by laravel
         $searchResultsJSON = json_encode($searchResultsXML);
