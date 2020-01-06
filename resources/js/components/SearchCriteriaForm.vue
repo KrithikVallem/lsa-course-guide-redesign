@@ -268,8 +268,8 @@
                 <b-form-row>
                   <!-- class="col text-center" inside the div will center buttons if needed -->
                   <div id="form-buttons-container">
-                    <b-button type="submit" variant="primary" id="searchButton" @click="searchFunction" >Search</b-button>
-                    <b-button type="reset" variant="danger" id="clearButton" @click="clearFunction" >Clear</b-button>
+                    <b-button type="submit" id="searchButton" @click="searchFunction" >Search</b-button>
+                    <b-button type="reset" id="clearButton" @click="clearFunction" >Clear</b-button>
                   </div>
                 </b-form-row>
           </b-card>
@@ -278,10 +278,13 @@
 
       <b-row>
         <b-col id="search-results-col" style="color: white;">
-          {{ searchResultsJSON }}
+            <div>
+              <b-table striped hover :items="[searchResultsJson]"></b-table>
+            </div>
         </b-col>
 
-        <b-col id="class-details-col">
+        <b-col id="class-details-col" style="color: white;">
+          {{ searchResultsJSON }}
         </b-col>
       </b-row>
 
@@ -373,7 +376,7 @@
         let currentObject = this;
 
         axios.post('/searchFunction', {
-          queryUrl: this.constructQueryUrl()
+          queryUrl: this.constructQueryUrl(1)
         })
         .then(function (response) {
           currentObject.searchResultsJSON = response.data;
@@ -385,11 +388,11 @@
 
 
 
-      constructQueryUrl() {
+      constructQueryUrl(pageNumberIn) {
         // url is constructed in the order presented in the docs: http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/help
 
         const AUDIENCE = "public";
-        const PAGENO = "1";
+        const PAGENO = pageNumberIn.toString();
         const ROWSPERPAGE = "30";
         
         let queryUrl = `http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr`;
@@ -516,9 +519,11 @@
       },
 
 
+
     }
   }
 </script>
+
 
 
 
