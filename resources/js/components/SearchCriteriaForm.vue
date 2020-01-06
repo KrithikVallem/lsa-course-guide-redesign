@@ -10,7 +10,7 @@
               <!-- Don't put a form tag around everything - the multiselects won't work correctly inside them -->
                 <b-form-row>
                   <b-col>
-                    <b-form-group id="term-group" label="Term:" label-for="term-input">
+                    <b-form-group id="term-group" label="Term: (Winter 2020)" label-for="term-input">
                       <multiselect
                         id="term-input"
                         placeholder="Term: (none)"
@@ -19,7 +19,7 @@
                         :multiple="true"
                         :searchable="false"
                         :close-on-select="false"
-                        :allow-empty="false"
+                        :allow-empty="true"
                         :show-labels="false"
                         track-by="option"
                         label="option"
@@ -36,12 +36,11 @@
                         placeholder="Credit Type: (Undergraduate)"
                         v-model="creditTypeValue"
                         :options="creditTypeOptions"
-                        :multiple="true"
+                        :multiple="false"
                         :searchable="false"
                         :close-on-select="false"
-                        :allow-empty="true"
+                        :allow-empty="false"
                         :show-labels="false"
-                        :max="1"
                         track-by="option"
                         label="option"
                         open-direction="bottom"
@@ -77,7 +76,7 @@
                   </b-col>
 
                   <b-col>
-                    <b-form-group id="keyword-group" label="Please enter uniqname:" label-for="keyword-input">
+                    <b-form-group id="keyword-group" label="Keyword:" label-for="keyword-input">
                       <b-form-input
                         id="keyword-input"
                         v-model="keywordValue"
@@ -266,7 +265,7 @@
                   </b-col>
                 </b-form-row>
 
-                  <b-button type="submit" variant="primary" id="searchButton" @click="searchFunction" >Search</b-button>
+                  <b-button type="submit" variant="primary" id="searchButton" @click="constructQueryUrl" >Search</b-button>
                   <b-button type="reset" variant="danger" id="clearButton" @click="clearFunction" >Clear</b-button>
               
           </b-card>
@@ -293,7 +292,7 @@
     components: { Multiselect },
     data () {
       return {
-        termValue: {value: "2270", option: "Winter 2020"},
+        termValue: null,
         termOptions: [{value: "2300", option: "Summer 2020"}, {value: "2290", option: "Sp/Su 2020"}, {value: "2280", option: "Spring 2020"}, {value: "2270", option: "Winter 2020"}, {value: "2260", option: "Fall 2019"}, {value: "2250", option: "Summer 2019"}, {value: "2240", option: "Sp/Su 2019"}, {value: "2230", option: "Spring 2019"}, {value: "2220", option: "Winter 2019"}, {value: "2210", option: "Fall 2018"}, {value: "2200", option: "Summer 2018"}, {value: "2190", option: "Sp/Su 2018"}, {value: "2180", option: "Spring 2018"}, {value: "2170", option: "Winter 2018"}, {value: "2160", option: "Fall 2017"}, {value: "2150", option: "Summer 2017"}, {value: "2140", option: "Sp/Su 2017"}, {value: "2130", option: "Spring 2017"}, {value: "2120", option: "Winter 2017"}, {value: "2110", option: "Fall 2016"}, {value: "2100", option: "Summer 2016"}, {value: "2090", option: "Sp/Su 2016"}, {value: "2080", option: "Spring 2016"}, {value: "2070", option: "Winter 2016"}, {value: "2060", option: "Fall 2015"}, {value: "2050", option: "Summer 2015"}, {value: "2040", option: "Sp/Su 2015"}, {value: "2030", option: "Spring 2015"}, {value: "2020", option: "Winter 2015"}, {value: "2010", option: "Fall 2014"}, {value: "2000", option: "Summer 2014"}, {value: "1990", option: "Sp/Su 2014"}, {value: "1980", option: "Spring 2014"}, {value: "1970", option: "Winter 2014"}, {value: "1960", option: "Fall 2013"}, {value: "1950", option: "Summer 2013"}, {value: "1940", option: "Sp/Su 2013"}, {value: "1930", option: "Spring 2013"}, {value: "1920", option: "Winter 2013"}, {value: "1910", option: "Fall 2012"}, {value: "1900", option: "Summer 2012"}, {value: "1890", option: "Sp/Su 2012"}, {value: "1880", option: "Spring 2012"}, {value: "1870", option: "Winter 2012"}, {value: "1860", option: "Fall 2011"}, {value: "1850", option: "Summer 2011"}, {value: "1840", option: "Sp/Su 2011"}, {value: "1830", option: "Spring 2011"}, {value: "1820", option: "Winter 2011"}, {value: "1810", option: "Fall 2010"}, {value: "1800", option: "Summer 2010"}, {value: "1790", option: "Sp/Su 2010"}, {value: "1780", option: "Spring 2010"}, {value: "1770", option: "Winter 2010"}, {value: "1760", option: "Fall 2009"}, {value: "1750", option: "Summer 2009"}, {value: "1740", option: "Sp/Su 2009"}, {value: "1730", option: "Spring 2009"}, {value: "1720", option: "Winter 2009"}, {value: "1710", option: "Fall 2008"}, {value: "1700", option: "Summer 2008"}, {value: "1690", option: "Sp/Su 2008"}, {value: "1680", option: "Spring 2008"}, {value: "1670", option: "Winter 2008"}, {value: "1660", option: "Fall 2007"}, {value: "1650", option: "Summer 2007"}, {value: "1640", option: "Sp/Su 2007"}, {value: "1630", option: "Spring 2007"}, {value: "1620", option: "Winter 2007"}, {value: "1610", option: "Fall 2006"}, {value: "1600", option: "Summer 2006"}, {value: "1590", option: "Sp/Su 2006"}, {value: "1580", option: "Spring 2006"}, {value: "1570", option: "Winter 2006"}, {value: "1560", option: "Fall 2005"}, {value: "1550", option: "Summer 2005"}, {value: "1540", option: "Sp/Su 2005"}, {value: "1530", option: "Spring 2005"}, {value: "1520", option: "Winter 2005"}, {value: "1510", option: "Fall 2004"}, {value: "1500", option: "Summer 2004"}, {value: "1490", option: "Sp/Su 2004"}, {value: "1480", option: "Spring 2004"}],
         
         creditTypeValue: {option: "Undergraduate", value: "ug"},
@@ -335,12 +334,16 @@
       }
     },
 
+    mounted () {
+      
+    },
+
     methods: {
       clearFunction() {
         const confirmResponse = confirm("Do you want to clear your search criteria?")
 
         if (confirmResponse === true) {
-          this.termValue = {value: "2270", option: "Winter 2020"};
+          this.termValue = null;
           this.creditTypeValue = {option: "Undergraduate", value: "ug"};
           this.courseValue = "";
           this.instructorValue = "";
@@ -364,90 +367,109 @@
         const PAGENO = "1";
         const ROWSPERPAGE = "30";
         
-        let queryUrl = `http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr/`;
+        let queryUrl = `http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr`;
 
-        // {CLASSTYPE}
-        if (this.creditTypeValue.value === "gr") {
-          const CLASSTYPE = "gr";
-          queryUrl += `/${CLASSTYPE}/${AUDIENCE}/${PAGENO}/${ROWSPERPAGE}/search?`;
+        // CLASSTYPE
+        const CLASSTYPE = this.creditTypeValue.value;
+        queryUrl += `/${CLASSTYPE}/${AUDIENCE}/${PAGENO}/${ROWSPERPAGE}/search?`;
+
+        // TERM
+        if (this.termValue !== null) {
+          for (let item of this.termValue) {
+            queryUrl += `term=${item.value}&`;
+          }
         }
-        else {
-          const CLASSTYPE = "ug";
-          queryUrl += `/${CLASSTYPE}/${AUDIENCE}/${PAGENO}/${ROWSPERPAGE}/search?`;
+        // if user didn't select a term, the term is set to Winter 2020
+        // this complex stuff is needed because the url won't form properly when I set a default term on page load
+        else if (this.termValue === null){
+          this.termValue = {value: "2270", option: "Winter 2020"}
+          queryUrl += `term=${this.termValue.value}&`;
         }
 
 
-        for (let TERM of this.termValue) {
-          queryUrl += `term=${TERM.value}&`;
-        }
-
-        for (let SUBJECT of this.subjectValue) {
-          queryUrl += `subject=${SUBJECT.value}&`;
+        // SUBJECT
+        if (this.subjectValue !== null) {
+          for (let item of this.subjectValue) {
+            queryUrl += `subject=${item.value}&`;
+          }
         }
 
 
         // moved COURSE input stuff to end due to formatting difficulties
 
 
-        if (keywordValue !== "") {
-          const KEYWORD = keywordValue.trim().replace(" ", "+");
-          queryUrl += `keyword=${KEYWORD}&`;
+        if (this.keywordValue !== "") {
+          let keyword = (this.keywordValue).trim().replace(" ", "+");
+          queryUrl += `keyword=${keyword}&`;
         }
-      
-        if (instructorValue !== "") {
+     
+        if (this.instructorValue !== "") {
           // replacing the spaces with '+' doesn't make the search work, but keeps the url valid
           // I should replace the instructor text box with a multisearch once I get a list of all faculty
-          const INSTRNAME = instructorValue.trim().replace(" ", "+");
-          queryUrl += `instructor=${INSTRNAME}&`;
+          let instrname = (this.instructorValue).trim().replace(" ", "+");
+          queryUrl += `instructor=${instrname}&`;
         }
 
         // Credit Hours
-        for (let CREDIT of this.creditHoursValue) {
-          queryUrl += `credit=${CREDIT.value}&`;
+        if (this.creditHoursValue !== null) {
+          for (let item of this.creditHoursValue) {
+            queryUrl += `credit=${item.value}&`;
+          }
         }
 
-        for (let DISTR of this.distributionReqValue) {
-          queryUrl += `term=${DISTR.value}&`;
+        // DISTRIBUTION REQ
+        if (this.distributionReqValue !== null) {  
+          for (let item of this.distributionReqValue) {
+            queryUrl += `term=${item.value}&`;
+          }
         }
 
-        // Skills Reqs
-        for (let OTHER_SKILLS_REQ of this.skillsReqValue) {
-          queryUrl += `other=${OTHER_SKILLS_REQ.value}&`;
+        // Skills Reqs - categorized as 'other'
+        if (this.skillsReqValue !== null) {
+          for (let item of this.skillsReqValue) {
+            queryUrl += `other=${item.value}&`;
+          }
         }
 
-        // Special Offerings
-        for (let OTHER_SPECIAL_OFFERINGS of this.specialOfferingsValue) {
-          queryUrl += `other=${OTHER_SPECIAL_OFFERINGS.value}&`;
+        // Special Offerings - categorized as 'other'
+        if (this.specialOfferingsValue !== null) {
+          for (let item of this.specialOfferingsValue) {
+            queryUrl += `other=${item.value}&`;
+          }
         }
 
         // Course Level
-        for (let NUMLVL of this.courseLevelValue) {
-          queryUrl += `numlvl=${NUMLVL.value}&`;
+        if (this.courseLevelValue !== null) {
+          for (let item of this.courseLevelValue) {
+            queryUrl += `numlvl=${item.value}&`;
+          }
         }
 
         // Meeting Days
-        for (let MP_DAY of this.meetingDaysValue) {
-          queryUrl += `mp_day=${MP_DAY.value}&`;
+        if (this.meetingDaysValue !== null) {
+          for (let item of this.meetingDaysValue) {
+            queryUrl += `mp_day=${item.value}&`;
+          }
         }
 
         // Meeting Start & End Times
-        if (startTimeValue !== null) {
-          const MP_STARTTIME = this.startTimeValue;
-          queryUrl += `mp_starttime=${MP_STARTTIME}&`;
+        if (this.startTimeValue !== null) {
+          const startTime = this.startTimeValue;
+          queryUrl += `mp_starttime=${startTime}&`;
         }
         
-        if (endTimeValue !== null) {
-          const MP_ENDTIME = this.endTimeValue;
-          queryUrl += `mp_endtime=${MP_ENDTIME}&`
+        if (this.endTimeValue !== null) {
+          const endTime = this.endTimeValue;
+          queryUrl += `mp_endtime=${endTime}&`
         }
 
         // Course Text Input - eg CHEM or CHEM 120
-        if (courseValue !== "") {
+        if (this.courseValue !== "") {
           // user entered class number - eg CHEM 120
           // regex searches for a number in input string
-          if (/\d/.test(courseValue)) {
+          if (/\d/.test(this.courseValue)) {
             // regex removes whitespace, the slice gets the last three characters which should be the class number
-            const tempStr = courseValue.trim().replace(/\s/g, '');
+            const tempStr = (this.courseValue).trim().replace(/\s/g, '');
             
             const CATALOGNBR = tempStr.slice(newStr.length - 3);
             const SUBJECT = tempStr.substring(0, tempStr.length - 3);
@@ -458,14 +480,14 @@
           // user did not enter class number - eg CHEM
           else {
             // to make an invalid input with spaces into a valid (though useless) query with no spaces
-            const SUBJECT = courseValue.trim().replace(/\s/g, '');
+            const SUBJECT = (this.courseValue).trim().replace(/\s/g, '');
 
             queryUrl += `subject=${SUBJECT}&`;
           }
         }
 
-
-        alert(queryUrl);        
+        this.output = queryUrl;
+        //alert(queryUrl);        
       },
 
       searchFunction(event) {

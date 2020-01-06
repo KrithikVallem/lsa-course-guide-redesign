@@ -2299,7 +2299,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2307,10 +2306,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      termValue: {
-        value: "2270",
-        option: "Winter 2020"
-      },
+      termValue: null,
       termOptions: [{
         value: "2300",
         option: "Summer 2020"
@@ -3487,15 +3483,13 @@ __webpack_require__.r(__webpack_exports__);
       output: ""
     };
   },
+  mounted: function mounted() {},
   methods: {
     clearFunction: function clearFunction() {
       var confirmResponse = confirm("Do you want to clear your search criteria?");
 
       if (confirmResponse === true) {
-        this.termValue = {
-          value: "2270",
-          option: "Winter 2020"
-        };
+        this.termValue = null;
         this.creditTypeValue = {
           option: "Undergraduate",
           value: "ug"
@@ -3519,91 +3513,276 @@ __webpack_require__.r(__webpack_exports__);
       var AUDIENCE = "public";
       var PAGENO = "1";
       var ROWSPERPAGE = "30";
-      var queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr/"; // {CLASSTYPE}
+      var queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr"; // CLASSTYPE
 
-      if (this.creditTypeValue.value === "gr") {
-        var CLASSTYPE = "gr";
-        queryUrl += "/".concat(CLASSTYPE, "/").concat(AUDIENCE, "/").concat(PAGENO, "/").concat(ROWSPERPAGE, "/search?");
-      } else {
-        var _CLASSTYPE = "ug";
-        queryUrl += "/".concat(_CLASSTYPE, "/").concat(AUDIENCE, "/").concat(PAGENO, "/").concat(ROWSPERPAGE, "/search?");
-      }
+      var CLASSTYPE = this.creditTypeValue.value;
+      queryUrl += "/".concat(CLASSTYPE, "/").concat(AUDIENCE, "/").concat(PAGENO, "/").concat(ROWSPERPAGE, "/search?"); // TERM - complex stuff is because the url won't form properly when I set a default term on page load
 
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+      if (this.termValue !== null) {
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
-      try {
-        for (var _iterator = this.termValue[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var TERM = _step.value;
-          queryUrl += "term=".concat(TERM.value, "&");
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
         try {
-          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-            _iterator["return"]();
+          for (var _iterator = this.termValue[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var item = _step.value;
+            queryUrl += "term=".concat(item.value, "&");
           }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
         } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
+          try {
+            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+              _iterator["return"]();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
           }
         }
-      }
+      } else if (this.termValue === null) {
+        this.termValue = {
+          value: "2270",
+          option: "Winter 2020"
+        };
+        queryUrl += "term=".concat(this.termValue.value, "&");
+      } // SUBJECT
 
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
 
-      try {
-        for (var _iterator2 = this.subjectValue[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var SUBJECT = _step2.value;
-          queryUrl += "subject=".concat(SUBJECT.value, "&");
-        } // moved COURSE input stuff to end due to formatting difficulties
+      if (this.subjectValue !== null) {
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
 
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
         try {
-          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-            _iterator2["return"]();
+          for (var _iterator2 = this.subjectValue[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var _item = _step2.value;
+            queryUrl += "subject=".concat(_item.value, "&");
           }
+        } catch (err) {
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
         } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
+          try {
+            if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+              _iterator2["return"]();
+            }
+          } finally {
+            if (_didIteratorError2) {
+              throw _iteratorError2;
+            }
           }
         }
+      } // moved COURSE input stuff to end due to formatting difficulties
+
+
+      if (this.keywordValue !== "") {
+        var keyword = this.keywordValue.trim().replace(" ", "+");
+        queryUrl += "keyword=".concat(keyword, "&");
       }
 
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+      if (this.instructorValue !== "") {
+        // replacing the spaces with '+' doesn't make the search work, but keeps the url valid
+        // I should replace the instructor text box with a multisearch once I get a list of all faculty
+        var instrname = this.instructorValue.trim().replace(" ", "+");
+        queryUrl += "instructor=".concat(instrname, "&");
+      } // Credit Hours
 
-      try {
-        for (var _iterator3 = this.keywordValue[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var KEYWORD = _step3.value;
-          queryUrl += "keyword=".concat(KEYWORD.trim().replace(" ", "+"), "&");
-        } // for the course field, use parse int and stuff to make the right search
 
-      } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-      } finally {
+      if (this.creditHoursValue !== null) {
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
+
         try {
-          if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-            _iterator3["return"]();
+          for (var _iterator3 = this.creditHoursValue[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var _item2 = _step3.value;
+            queryUrl += "credit=".concat(_item2.value, "&");
           }
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
         } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+              _iterator3["return"]();
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3;
+            }
           }
         }
+      } // DISTRIBUTION REQ
+
+
+      if (this.distributionReqValue !== null) {
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
+
+        try {
+          for (var _iterator4 = this.distributionReqValue[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var _item3 = _step4.value;
+            queryUrl += "term=".concat(_item3.value, "&");
+          }
+        } catch (err) {
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+              _iterator4["return"]();
+            }
+          } finally {
+            if (_didIteratorError4) {
+              throw _iteratorError4;
+            }
+          }
+        }
+      } // Skills Reqs - categorized as 'other'
+
+
+      if (this.skillsReqValue !== null) {
+        var _iteratorNormalCompletion5 = true;
+        var _didIteratorError5 = false;
+        var _iteratorError5 = undefined;
+
+        try {
+          for (var _iterator5 = this.skillsReqValue[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+            var _item4 = _step5.value;
+            queryUrl += "other=".concat(_item4.value, "&");
+          }
+        } catch (err) {
+          _didIteratorError5 = true;
+          _iteratorError5 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
+              _iterator5["return"]();
+            }
+          } finally {
+            if (_didIteratorError5) {
+              throw _iteratorError5;
+            }
+          }
+        }
+      } // Special Offerings - categorized as 'other'
+
+
+      if (this.specialOfferingsValue !== null) {
+        var _iteratorNormalCompletion6 = true;
+        var _didIteratorError6 = false;
+        var _iteratorError6 = undefined;
+
+        try {
+          for (var _iterator6 = this.specialOfferingsValue[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+            var _item5 = _step6.value;
+            queryUrl += "other=".concat(_item5.value, "&");
+          }
+        } catch (err) {
+          _didIteratorError6 = true;
+          _iteratorError6 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
+              _iterator6["return"]();
+            }
+          } finally {
+            if (_didIteratorError6) {
+              throw _iteratorError6;
+            }
+          }
+        }
+      } // Course Level
+
+
+      if (this.courseLevelValue !== null) {
+        var _iteratorNormalCompletion7 = true;
+        var _didIteratorError7 = false;
+        var _iteratorError7 = undefined;
+
+        try {
+          for (var _iterator7 = this.courseLevelValue[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+            var _item6 = _step7.value;
+            queryUrl += "numlvl=".concat(_item6.value, "&");
+          }
+        } catch (err) {
+          _didIteratorError7 = true;
+          _iteratorError7 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
+              _iterator7["return"]();
+            }
+          } finally {
+            if (_didIteratorError7) {
+              throw _iteratorError7;
+            }
+          }
+        }
+      } // Meeting Days
+
+
+      if (this.meetingDaysValue !== null) {
+        var _iteratorNormalCompletion8 = true;
+        var _didIteratorError8 = false;
+        var _iteratorError8 = undefined;
+
+        try {
+          for (var _iterator8 = this.meetingDaysValue[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+            var _item7 = _step8.value;
+            queryUrl += "mp_day=".concat(_item7.value, "&");
+          }
+        } catch (err) {
+          _didIteratorError8 = true;
+          _iteratorError8 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion8 && _iterator8["return"] != null) {
+              _iterator8["return"]();
+            }
+          } finally {
+            if (_didIteratorError8) {
+              throw _iteratorError8;
+            }
+          }
+        }
+      } // Meeting Start & End Times
+
+
+      if (this.startTimeValue !== null) {
+        var startTime = this.startTimeValue;
+        queryUrl += "mp_starttime=".concat(startTime, "&");
       }
 
-      alert(queryUrl); //"/{PAGENO}/{ROWSPERPAGE}/search?term={TERM}&subject={SUBJECT}&catalog={CATALOGNBR}&crseid={CRSEID}&keyword={KEYWORD}&instructor={INSTRNAME}&credit={CREDIT}&distr={DISTR}&other={OTHER}&numlvl={NUMLVL}&other_anyall={OTHERANYALL}&mp_day={MP_DAY}&mp_starttime={MP_STARTTIME}&mp_endtime={MP_ENDTIME}"
+      if (this.endTimeValue !== null) {
+        var endTime = this.endTimeValue;
+        queryUrl += "mp_endtime=".concat(endTime, "&");
+      } // Course Text Input - eg CHEM or CHEM 120
+
+
+      if (this.courseValue !== "") {
+        // user entered class number - eg CHEM 120
+        // regex searches for a number in input string
+        if (/\d/.test(this.courseValue)) {
+          // regex removes whitespace, the slice gets the last three characters which should be the class number
+          var tempStr = this.courseValue.trim().replace(/\s/g, '');
+          var CATALOGNBR = tempStr.slice(newStr.length - 3);
+          var SUBJECT = tempStr.substring(0, tempStr.length - 3);
+          queryUrl += "subject=".concat(SUBJECT, "&catalog=").concat(CATALOGNBR, "&");
+        } // user did not enter class number - eg CHEM
+        else {
+            // to make an invalid input with spaces into a valid (though useless) query with no spaces
+            var _SUBJECT = this.courseValue.trim().replace(/\s/g, '');
+
+            queryUrl += "subject=".concat(_SUBJECT, "&");
+          }
+      }
+
+      this.output = queryUrl; //alert(queryUrl);        
     },
     searchFunction: function searchFunction(event) {
       event.preventDefault();
@@ -32367,7 +32546,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
 
 // exports
 
@@ -54273,7 +54452,7 @@ var render = function() {
                             {
                               attrs: {
                                 id: "term-group",
-                                label: "Term:",
+                                label: "Term: (Winter 2020)",
                                 "label-for": "term-input"
                               }
                             },
@@ -54286,7 +54465,7 @@ var render = function() {
                                   multiple: true,
                                   searchable: false,
                                   "close-on-select": false,
-                                  "allow-empty": false,
+                                  "allow-empty": true,
                                   "show-labels": false,
                                   "track-by": "option",
                                   label: "option",
@@ -54325,12 +54504,11 @@ var render = function() {
                                   id: "credit-type-input",
                                   placeholder: "Credit Type: (Undergraduate)",
                                   options: _vm.creditTypeOptions,
-                                  multiple: true,
+                                  multiple: false,
                                   searchable: false,
                                   "close-on-select": false,
-                                  "allow-empty": true,
+                                  "allow-empty": false,
                                   "show-labels": false,
-                                  max: 1,
                                   "track-by": "option",
                                   label: "option",
                                   "open-direction": "bottom"
@@ -54429,8 +54607,7 @@ var render = function() {
                             {
                               attrs: {
                                 id: "keyword-group",
-                                label:
-                                  "<abbr title='Please enter uniqname'>Keyword:</abbr>",
+                                label: "Keyword:",
                                 "label-for": "keyword-input"
                               }
                             },
@@ -54854,7 +55031,7 @@ var render = function() {
                         variant: "primary",
                         id: "searchButton"
                       },
-                      on: { click: _vm.searchFunction }
+                      on: { click: _vm.constructQueryUrl }
                     },
                     [_vm._v("Search")]
                   ),
