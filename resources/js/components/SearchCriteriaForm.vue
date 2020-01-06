@@ -10,10 +10,10 @@
               <!-- Don't put a form tag around everything - the multiselects won't work correctly inside them -->
                 <b-form-row>
                   <b-col>
-                    <b-form-group id="term-group" label="Term: (Winter 2020)" label-for="term-input">
+                    <b-form-group id="term-group" label="Term:" label-for="term-input">
                       <multiselect
                         id="term-input"
-                        placeholder="Term: (none)"
+                        placeholder="Term: (Winter 2020)"
                         v-model="termValue"
                         :options="termOptions" 
                         :multiple="true"
@@ -265,7 +265,7 @@
                   </b-col>
                 </b-form-row>
 
-                  <b-button type="submit" variant="primary" id="searchButton" @click="constructQueryUrl" >Search</b-button>
+                  <b-button type="submit" variant="primary" id="searchButton" @click="searchFunction" >Search</b-button>
                   <b-button type="reset" variant="danger" id="clearButton" @click="clearFunction" >Clear</b-button>
               
           </b-card>
@@ -330,6 +330,8 @@
         meetingDaysValue: null,
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
         
+        searchUrl: "",
+
         output: "",
       }
     },
@@ -357,6 +359,7 @@
           this.startTimeValue = null;
           this.endTimeValue = null;
           this.meetingDaysValue = null;
+          this.searchUrl = "";
         }
       },
 
@@ -379,11 +382,10 @@
             queryUrl += `term=${item.value}&`;
           }
         }
-        // if user didn't select a term, the term is set to Winter 2020
+        // if user didn't select a term, the term is set to Winter 2020 (2270)
         // this complex stuff is needed because the url won't form properly when I set a default term on page load
         else if (this.termValue === null){
-          this.termValue = {value: "2270", option: "Winter 2020"}
-          queryUrl += `term=${this.termValue.value}&`;
+          queryUrl += `term=2270&`;
         }
 
 
@@ -420,7 +422,7 @@
         // DISTRIBUTION REQ
         if (this.distributionReqValue !== null) {  
           for (let item of this.distributionReqValue) {
-            queryUrl += `term=${item.value}&`;
+            queryUrl += `distr=${item.value}&`;
           }
         }
 
@@ -455,23 +457,23 @@
         // Meeting Start & End Times
         if (this.startTimeValue !== null) {
           const startTime = this.startTimeValue;
-          queryUrl += `mp_starttime=${startTime}&`;
+          queryUrl += `mp_starttime=${startTime.value}&`;
         }
         
         if (this.endTimeValue !== null) {
           const endTime = this.endTimeValue;
-          queryUrl += `mp_endtime=${endTime}&`
+          queryUrl += `mp_endtime=${endTime.value}&`
         }
 
         // Course Text Input - eg CHEM or CHEM 120
         if (this.courseValue !== "") {
           // user entered class number - eg CHEM 120
           // regex searches for a number in input string
-          if (/\d/.test(this.courseValue)) {
+          if (/\d/g.test(this.courseValue)) {
             // regex removes whitespace, the slice gets the last three characters which should be the class number
             const tempStr = (this.courseValue).trim().replace(/\s/g, '');
             
-            const CATALOGNBR = tempStr.slice(newStr.length - 3);
+            const CATALOGNBR = tempStr.slice(tempStr.length - 3);
             const SUBJECT = tempStr.substring(0, tempStr.length - 3);
 
             queryUrl += `subject=${SUBJECT}&catalog=${CATALOGNBR}&`;
@@ -487,21 +489,22 @@
         }
 
         this.output = queryUrl;
-        //alert(queryUrl);        
+        
+        return queryUrl;
       },
+
+
 
       searchFunction(event) {
         event.preventDefault();
-        let currentObj = this;
+        let currentObject = this;
+        //currentObject.searchUrl = constructQueryUrl();
+
         axios.post('/searchFunction', {
-            //skillsReqValue: this.skillsReqValue,
-            //startTimeValue: this.startTimeValue
-            
+          searchUrl: this.searchUrl
         })
         .then(function (response) {
-            currentObj.output = response.data;
-            // data gets sent to backend using axios.post, which sends back a response
-            // then the output spot on the frontend above has its value set to the response sent from backend
+            alert(response.data + "hello world 7890");
         })
         .catch(function (error) {
             currentObj.output = error;

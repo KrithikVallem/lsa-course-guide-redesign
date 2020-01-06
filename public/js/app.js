@@ -3480,6 +3480,7 @@ __webpack_require__.r(__webpack_exports__);
         option: "Sunday",
         value: "Sun"
       }],
+      searchUrl: "",
       output: ""
     };
   },
@@ -3506,6 +3507,7 @@ __webpack_require__.r(__webpack_exports__);
         this.startTimeValue = null;
         this.endTimeValue = null;
         this.meetingDaysValue = null;
+        this.searchUrl = "";
       }
     },
     constructQueryUrl: function constructQueryUrl() {
@@ -3516,7 +3518,7 @@ __webpack_require__.r(__webpack_exports__);
       var queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr"; // CLASSTYPE
 
       var CLASSTYPE = this.creditTypeValue.value;
-      queryUrl += "/".concat(CLASSTYPE, "/").concat(AUDIENCE, "/").concat(PAGENO, "/").concat(ROWSPERPAGE, "/search?"); // TERM - complex stuff is because the url won't form properly when I set a default term on page load
+      queryUrl += "/".concat(CLASSTYPE, "/").concat(AUDIENCE, "/").concat(PAGENO, "/").concat(ROWSPERPAGE, "/search?"); // TERM
 
       if (this.termValue !== null) {
         var _iteratorNormalCompletion = true;
@@ -3542,13 +3544,11 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } else if (this.termValue === null) {
-        this.termValue = {
-          value: "2270",
-          option: "Winter 2020"
-        };
-        queryUrl += "term=".concat(this.termValue.value, "&");
-      } // SUBJECT
+      } // if user didn't select a term, the term is set to Winter 2020 (2270)
+      // this complex stuff is needed because the url won't form properly when I set a default term on page load
+      else if (this.termValue === null) {
+          queryUrl += "term=2270&";
+        } // SUBJECT
 
 
       if (this.subjectValue !== null) {
@@ -3626,7 +3626,7 @@ __webpack_require__.r(__webpack_exports__);
         try {
           for (var _iterator4 = this.distributionReqValue[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
             var _item3 = _step4.value;
-            queryUrl += "term=".concat(_item3.value, "&");
+            queryUrl += "distr=".concat(_item3.value, "&");
           }
         } catch (err) {
           _didIteratorError4 = true;
@@ -3755,22 +3755,22 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.startTimeValue !== null) {
         var startTime = this.startTimeValue;
-        queryUrl += "mp_starttime=".concat(startTime, "&");
+        queryUrl += "mp_starttime=".concat(startTime.value, "&");
       }
 
       if (this.endTimeValue !== null) {
         var endTime = this.endTimeValue;
-        queryUrl += "mp_endtime=".concat(endTime, "&");
+        queryUrl += "mp_endtime=".concat(endTime.value, "&");
       } // Course Text Input - eg CHEM or CHEM 120
 
 
       if (this.courseValue !== "") {
         // user entered class number - eg CHEM 120
         // regex searches for a number in input string
-        if (/\d/.test(this.courseValue)) {
+        if (/\d/g.test(this.courseValue)) {
           // regex removes whitespace, the slice gets the last three characters which should be the class number
           var tempStr = this.courseValue.trim().replace(/\s/g, '');
-          var CATALOGNBR = tempStr.slice(newStr.length - 3);
+          var CATALOGNBR = tempStr.slice(tempStr.length - 3);
           var SUBJECT = tempStr.substring(0, tempStr.length - 3);
           queryUrl += "subject=".concat(SUBJECT, "&catalog=").concat(CATALOGNBR, "&");
         } // user did not enter class number - eg CHEM
@@ -3782,16 +3782,17 @@ __webpack_require__.r(__webpack_exports__);
           }
       }
 
-      this.output = queryUrl; //alert(queryUrl);        
+      this.output = queryUrl;
+      return queryUrl;
     },
     searchFunction: function searchFunction(event) {
       event.preventDefault();
-      var currentObj = this;
-      axios.post('/searchFunction', {//skillsReqValue: this.skillsReqValue,
-        //startTimeValue: this.startTimeValue
+      var currentObject = this; //currentObject.searchUrl = constructQueryUrl();
+
+      axios.post('/searchFunction', {
+        subject: this.subjectValue.value
       }).then(function (response) {
-        currentObj.output = response.data; // data gets sent to backend using axios.post, which sends back a response
-        // then the output spot on the frontend above has its value set to the response sent from backend
+        alert(response.data + "hello world 7890");
       })["catch"](function (error) {
         currentObj.output = error;
       });
@@ -32546,7 +32547,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 1vmax;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
 
 // exports
 
@@ -54452,7 +54453,7 @@ var render = function() {
                             {
                               attrs: {
                                 id: "term-group",
-                                label: "Term: (Winter 2020)",
+                                label: "Term:",
                                 "label-for": "term-input"
                               }
                             },
@@ -54460,7 +54461,7 @@ var render = function() {
                               _c("multiselect", {
                                 attrs: {
                                   id: "term-input",
-                                  placeholder: "Term: (none)",
+                                  placeholder: "Term: (Winter 2020)",
                                   options: _vm.termOptions,
                                   multiple: true,
                                   searchable: false,
@@ -55031,7 +55032,7 @@ var render = function() {
                         variant: "primary",
                         id: "searchButton"
                       },
-                      on: { click: _vm.constructQueryUrl }
+                      on: { click: _vm.searchFunction }
                     },
                     [_vm._v("Search")]
                   ),
