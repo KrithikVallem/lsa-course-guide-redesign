@@ -265,7 +265,7 @@
                   </b-col>
                 </b-form-row>
 
-                  <b-button type="submit" variant="primary" id="searchButton" @click="searchFunction" >Search</b-button>
+                  <b-button type="submit" variant="primary" id="searchButton" @click="constructQueryUrl" >Search</b-button>
                   <b-button type="reset" variant="danger" id="clearButton" @click="clearFunction" >Clear</b-button>
               
           </b-card>
@@ -456,13 +456,15 @@
 
         // Meeting Start & End Times
         if (this.startTimeValue !== null) {
-          const startTime = this.startTimeValue;
-          queryUrl += `mp_starttime=${startTime.value}&`;
+          for (let item of this.startTimeValue) {
+            queryUrl += `mp_starttime=${item.value}&`;
+          }
         }
         
         if (this.endTimeValue !== null) {
-          const endTime = this.endTimeValue;
-          queryUrl += `mp_endtime=${endTime.value}&`
+          for (let item of this.endTimeValue) {
+            queryUrl += `mp_endtime=${item.value}&`;
+          }
         }
 
         // Course Text Input - eg CHEM or CHEM 120
@@ -489,8 +491,10 @@
         }
 
         this.output = queryUrl;
-        
-        return queryUrl;
+        this.searchUrl = queryUrl;
+
+        alert(this.searchUrl);
+        //return queryUrl;
       },
 
 
