@@ -265,9 +265,13 @@
                   </b-col>
                 </b-form-row>
 
-                  <b-button type="submit" variant="primary" id="searchButton" @click="searchFunction" >Search</b-button>
-                  <b-button type="reset" variant="danger" id="clearButton" @click="clearFunction" >Clear</b-button>
-              
+                <b-form-row>
+                  <!-- class="col text-center" inside the div will center buttons if needed -->
+                  <div id="form-buttons-container">
+                    <b-button type="submit" variant="primary" id="searchButton" @click="searchFunction" >Search</b-button>
+                    <b-button type="reset" variant="danger" id="clearButton" @click="clearFunction" >Clear</b-button>
+                  </div>
+                </b-form-row>
           </b-card>
         </b-col>
       </b-row>
