@@ -280,33 +280,33 @@
         <b-col id="search-results-col" style="color: white;">
           <!-- <b-table striped hover :items="searchResultsJSON"></b-table> -->
           
-          <!--
-          <b-table striped hover >
+          
+          <table striped hover >
             
-            <b-thead>
-              <b-tr>
-                <b-th>Title/Section</b-th>
-                <b-th>Term</b-th>
-                <b-th>Credits</b-th>
-                <b-th>Instructor</b-th>
-                <b-th>Req</b-th>
-              </b-tr>
-            </b-thead>
+            <thead>
+              <tr>
+                <th>Title/Section</th>
+                <th>Term</th>
+                <th>Credits</th>
+                <th>Instructor</th>
+                <th>Req</th>
+              </tr>
+            </thead>
 
-            <b-tbody>
-              <b-tr v-for="course of searchResultsArray" :key="course.keyNum">
-                <b-td> Term - {{ course.keyNum }} </b-td>
-              </b-tr>
-            </b-tbody>
+            <tbody>
+              <tr v-for="course of searchResultsArray" :key="course.keyNum">
+                <td> Term - {{ course.keyNum }} </td>
+              </tr>
+            </tbody>
 
-          </b-table>
-          -->
-
+          </table>
+          
+<!--
           <ul>
             <li v-for="course of searchResultsArray" :key="course.keyNum">
               {{ course.Title }}
             </li>
-          </ul>
+          </ul> -->
         </b-col>
 
         <b-col id="class-details-col" style="color: white;">

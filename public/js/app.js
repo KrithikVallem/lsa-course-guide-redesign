@@ -55204,15 +55204,33 @@ var render = function() {
               attrs: { id: "search-results-col" }
             },
             [
-              _c(
-                "ul",
-                _vm._l(_vm.searchResultsArray, function(course) {
-                  return _c("li", { key: course.keyNum }, [
-                    _vm._v("\n          " + _vm._s(course.Title) + "\n        ")
+              _c("table", { attrs: { striped: "", hover: "" } }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("Title/Section")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Term")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Credits")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Instructor")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Req")])
                   ])
-                }),
-                0
-              )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.searchResultsArray, function(course) {
+                    return _c("tr", { key: course.keyNum }, [
+                      _c("td", [
+                        _vm._v(" Term - " + _vm._s(course.keyNum) + " ")
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ])
             ]
           ),
           _vm._v(" "),
@@ -55222,7 +55240,11 @@ var render = function() {
               staticStyle: { color: "white" },
               attrs: { id: "class-details-col" }
             },
-            [_vm._v("\n      " + _vm._s(this.searchResultsJSON) + "\n    ")]
+            [
+              _vm._v(
+                "\n          " + _vm._s(this.searchResultsJSON) + "\n        "
+              )
+            ]
           )
         ],
         1
