@@ -278,13 +278,30 @@
 
       <b-row>
         <b-col id="search-results-col" style="color: white;">
-            <div>
-              <b-table striped hover :items="[searchResultsJson]"></b-table>
-            </div>
+          <!-- <b-table striped hover :items="searchResultsJSON"></b-table> -->
+          <b-table striped hover >
+            
+            <b-thead>
+              <b-tr>
+                <b-th>Title/Section</b-th>
+                <b-th>Term</b-th>
+                <b-th>Credits</b-th>
+                <b-th>Instructor</b-th>
+                <b-th>Req</b-th>
+              </b-tr>
+            </b-thead>
+
+            <b-tbody>
+              <b-tr v-for="(course, index) in searchResultsJSON" v-bind:key="index">
+                <b-td> {{ course["@CatalogNbr"] }} </b-td>
+              </b-tr>
+            </b-tbody>
+
+          </b-table>
         </b-col>
 
         <b-col id="class-details-col" style="color: white;">
-          {{ searchResultsJSON }}
+          {{ searchResultsJSON[2] }}
         </b-col>
       </b-row>
 
@@ -337,6 +354,7 @@
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
 
         searchResultsJSON: [],
+        searchResultsTableFields: [""],
       }
     },
 
@@ -379,7 +397,8 @@
           queryUrl: this.constructQueryUrl(1)
         })
         .then(function (response) {
-          currentObject.searchResultsJSON = response.data;
+          // I parsed through the originally returned JSON and only returned the array of class data inside CGClassAbbr
+          currentObject.searchResultsJSON = (response.data).Classes.CGClassAbbr;
         })
         .catch(function (error) {
           currentObj.searchResultsJSON = error;
@@ -517,6 +536,8 @@
 
         return queryUrl;
       },
+
+
 
 
 
