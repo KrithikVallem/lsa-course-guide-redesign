@@ -280,26 +280,40 @@
         <b-col id="search-results-col" style="color: white;">
           <!-- <b-table striped hover :items="searchResultsJSON"></b-table> -->
           
+          <b-table
+           striped 
+           hover 
+           stacked 
+           outlined 
+           borderless  
+           small 
+           :items="searchResultsArray" 
+           id="searchResultsTable" 
+           style="background-color: #32526f; color: yellow; font-size: 12px;">
           
-          <table striped hover >
-            
-            <thead>
-              <tr>
-                <th>Title/Section</th>
-                <th>Term</th>
-                <th>Credits</th>
-                <th>Instructor</th>
-                <th>Req</th>
-              </tr>
-            </thead>
+          <!-- This works with a normal <table> tag,  not <b-table, but its not responsive like the b-table>
+            <b-thead>
+              <b-tr>
+                <b-th>Title/Section</b-th>
+                <b-th>Term</b-th>
+                <b-th>Credits</b-th>
+                <b-th>Instructor</b-th>
+                <b-th>Req</b-th>
+              </b-tr>
+            </b-thead>
 
-            <tbody>
-              <tr v-for="course of searchResultsArray" :key="course.keyNum">
-                <td> Term - {{ course.keyNum }} </td>
-              </tr>
-            </tbody>
+            <b-tbody>
+              <b-tr v-for="course of searchResultsArray" :key="course.keyNum">
+                <b-td> {{ course.Title }} </b-td>
+                <b-td> {{ course.Term }} </b-td>
+                <b-td> {{ course.Credits }} </b-td>
+                <b-td> {{ course.Instructor }} </b-td>
+                <b-td> {{ course.Req }} </b-td>
+              </b-tr>
+            </b-tbody>
+          -->
 
-          </table>
+          </b-table>
           
 <!--
           <ul>
@@ -418,15 +432,15 @@
           for (let course of (response.data).Classes.CGClassAbbr) {
             let tempObject = {
               "Title": `${course.Subject} ${course.CatalogNbr} - ${course.Title}`,
-              "SectionDetails": `Section ${course.ClassSection} (${course.Component})`,
-              "SectionTopic": course.Topic,
+              "Section": (`Section ${course.ClassSection} (${course.Component}) - ${course.Topic}`).replace(" - [object Object]", ""), // removes the error text for classes with no section topic,
               "Term": course.TermDescr,
               "Credits": course.Credit,
-              "Req": course.ReqMet,
-              "OtherReq": course.OtherGroupings,
+              "Reqs": course.ReqMet,
+              "Other": course.OtherGroupings,
               "Instructor": [],
               "keyNum": keyNum.toString()
             };
+
 
             keyNum += 1;
 /* will fix this later
