@@ -4,7 +4,7 @@
 
 <template>
     <b-container fluid>
-      <b-row>
+      <b-row id="search-criteria-form-row" class="pb-5">
         <b-col id="search-criteria-form-col">
           <b-card title="LSA Course Guide Redesign" id="search-criteria-form-card">
               <!-- Don't put a form tag around everything - the multiselects won't work correctly inside them -->
@@ -277,19 +277,20 @@
       </b-row>
 
       <b-row>
-        <b-col id="search-results-col" style="color: white;">
-          
+        <b-col id="search-results-col" style="color: white;" class="col-4">
           <b-table
            striped 
            hover 
            stacked 
-            
            borderless  
-           small 
+           small
+
            :items="searchResultsArray" 
+           :fields="searchResultsTableFields"
+
            id="searchResultsTable" 
            @row-clicked="showClassData"
-           style="background-color: #32526f; color: yellow; font-size: 12px;" 
+           style="background-color: #eee; font-size: 12px; overflow-y: scroll; height: 700px; overflow-x: hidden;" 
            >
           
           <!-- This works with a normal <table> tag,  not <b-table, but its not responsive like the b-table>
@@ -313,7 +314,6 @@
               </b-tr>
             </b-tbody>
           -->
-
           </b-table>
           
 <!--
@@ -324,7 +324,7 @@
           </ul> -->
         </b-col>
 
-        <b-col id="class-details-col" style="color: white;">
+        <b-col id="class-details-col" style="color: white;" class="col-8">
           {{ this.searchResultsJSON }}
         </b-col>
       </b-row>
@@ -378,7 +378,7 @@
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
 
         searchResultsJSON: [],
-        searchResultsTableFields: [],
+        searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
         searchResultsArray: [],
 
       }
@@ -407,10 +407,7 @@
           this.specialOfferingsValue = null;
           this.startTimeValue = null;
           this.endTimeValue = null;
-          this.meetingDaysValue = null;
-          
-          this.searchResultsJSON = [];
-          this.searchResultsArray = [];
+          this.meetingDaysValue = null;          
 
         }
       },
