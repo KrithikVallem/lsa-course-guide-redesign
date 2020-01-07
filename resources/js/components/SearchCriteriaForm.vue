@@ -278,18 +278,19 @@
 
       <b-row>
         <b-col id="search-results-col" style="color: white;">
-          <!-- <b-table striped hover :items="searchResultsJSON"></b-table> -->
           
           <b-table
            striped 
            hover 
            stacked 
-           outlined 
+            
            borderless  
            small 
            :items="searchResultsArray" 
            id="searchResultsTable" 
-           style="background-color: #32526f; color: yellow; font-size: 12px;">
+           @row-clicked="showClassData"
+           style="background-color: #32526f; color: yellow; font-size: 12px;" 
+           >
           
           <!-- This works with a normal <table> tag,  not <b-table, but its not responsive like the b-table>
             <b-thead>
@@ -587,6 +588,11 @@
 
         return queryUrl;
       },
+
+
+      showClassData(item) {
+        this.searchResultsJSON = item;
+      }
 
 
 
