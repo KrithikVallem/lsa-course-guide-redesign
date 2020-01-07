@@ -3504,7 +3504,8 @@ __webpack_require__.r(__webpack_exports__);
         value: "Sun"
       }],
       searchResultsJSON: [],
-      searchResultsTableFields: [""]
+      searchResultsTableFields: [""],
+      searchResultsArray: []
     };
   },
   // stuff that happens more or less on page load
@@ -3532,40 +3533,43 @@ __webpack_require__.r(__webpack_exports__);
         this.endTimeValue = null;
         this.meetingDaysValue = null;
         this.searchResultsJSON = "";
+        this.searchResultsArray = [];
       }
     },
     searchFunction: function searchFunction(event) {
       event.preventDefault();
       this.searchResultsJSON = "";
+      this.searchResultsArray = [];
       var currentObject = this;
       axios.post('/searchFunction', {
         queryUrl: this.constructQueryUrl(1)
       }).then(function (response) {
-        // I parsed through the originally returned JSON and only returned the array of class data inside CGClassAbbr
-        currentObject.searchResultsJSON = response.data.Classes.CGClassAbbr;
-      })["catch"](function (error) {
-        currentObj.searchResultsJSON = error;
-      });
-    },
-    constructQueryUrl: function constructQueryUrl(pageNumberIn) {
-      // url is constructed in the order presented in the docs: http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/help
-      var AUDIENCE = "public";
-      var PAGENO = pageNumberIn.toString();
-      var ROWSPERPAGE = "30";
-      var queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr"; // CLASSTYPE
-
-      var CLASSTYPE = this.creditTypeValue.value;
-      queryUrl += "/".concat(CLASSTYPE, "/").concat(AUDIENCE, "/").concat(PAGENO, "/").concat(ROWSPERPAGE, "/search?"); // TERM
-
-      if (this.termValue !== null) {
+        // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
+        currentObject.searchResultsJSON = response.data.Classes.CGClassAbbr[0].CatalogNbr;
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
         var _iteratorError = undefined;
 
         try {
-          for (var _iterator = this.termValue[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var item = _step.value;
-            queryUrl += "term=".concat(item.value, "&");
+          for (var _iterator = response.data.Classes.CGClassAbbr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var course = _step.value;
+            var tempObject = {
+              "Title": "".concat(course.Subject, " ").concat(course.CatalogNbr, " - ").concat(course.Title),
+              "SectionDetails": "Section ".concat(course.ClassSection, " (").concat(course.Component, ")"),
+              "SectionTopic": course.Topic,
+              "Term": course.TermDescr,
+              "Credits": course.Credit,
+              "Req": course.ReqMet,
+              "OtherReq": course.OtherGroupings,
+              "Instructor": []
+            };
+            /*
+                        for (let instr of course.Instructors.CGInstructor) {
+                          (tempObject.Instructor).push(instr.Name);
+                        }
+            */
+
+            currentObject.searchResultsArray.push(tempObject);
           }
         } catch (err) {
           _didIteratorError = true;
@@ -3581,22 +3585,31 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // if user didn't select a term, the term is set to Winter 2020 (2270)
-      // this complex stuff is needed because the url won't form properly when I set a default term on page load
-      else if (this.termValue === null) {
-          queryUrl += "term=2270&";
-        } // SUBJECT
 
+        console.log(currentObject.searchResultsArray);
+      })["catch"](function (error) {
+        currentObject.searchResultsJSON = error;
+      });
+    },
+    constructQueryUrl: function constructQueryUrl(pageNumberIn) {
+      // url is constructed in the order presented in the docs: http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/help
+      var AUDIENCE = "public";
+      var PAGENO = pageNumberIn.toString();
+      var ROWSPERPAGE = "30";
+      var queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr"; // CLASSTYPE
 
-      if (this.subjectValue !== null) {
+      var CLASSTYPE = this.creditTypeValue.value;
+      queryUrl += "/".concat(CLASSTYPE, "/").concat(AUDIENCE, "/").concat(PAGENO, "/").concat(ROWSPERPAGE, "/search?"); // TERM
+
+      if (this.termValue !== null) {
         var _iteratorNormalCompletion2 = true;
         var _didIteratorError2 = false;
         var _iteratorError2 = undefined;
 
         try {
-          for (var _iterator2 = this.subjectValue[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var _item = _step2.value;
-            queryUrl += "subject=".concat(_item.value, "&");
+          for (var _iterator2 = this.termValue[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var item = _step2.value;
+            queryUrl += "term=".concat(item.value, "&");
           }
         } catch (err) {
           _didIteratorError2 = true;
@@ -3609,6 +3622,37 @@ __webpack_require__.r(__webpack_exports__);
           } finally {
             if (_didIteratorError2) {
               throw _iteratorError2;
+            }
+          }
+        }
+      } // if user didn't select a term, the term is set to Winter 2020 (2270)
+      // this complex stuff is needed because the url won't form properly when I set a default term on page load
+      else if (this.termValue === null) {
+          queryUrl += "term=2270&";
+        } // SUBJECT
+
+
+      if (this.subjectValue !== null) {
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
+
+        try {
+          for (var _iterator3 = this.subjectValue[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var _item = _step3.value;
+            queryUrl += "subject=".concat(_item.value, "&");
+          }
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+              _iterator3["return"]();
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3;
             }
           }
         }
@@ -3629,41 +3673,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.creditHoursValue !== null) {
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
-
-        try {
-          for (var _iterator3 = this.creditHoursValue[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var _item2 = _step3.value;
-            queryUrl += "credit=".concat(_item2.value, "&");
-          }
-        } catch (err) {
-          _didIteratorError3 = true;
-          _iteratorError3 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-              _iterator3["return"]();
-            }
-          } finally {
-            if (_didIteratorError3) {
-              throw _iteratorError3;
-            }
-          }
-        }
-      } // DISTRIBUTION REQ
-
-
-      if (this.distributionReqValue !== null) {
         var _iteratorNormalCompletion4 = true;
         var _didIteratorError4 = false;
         var _iteratorError4 = undefined;
 
         try {
-          for (var _iterator4 = this.distributionReqValue[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-            var _item3 = _step4.value;
-            queryUrl += "distr=".concat(_item3.value, "&");
+          for (var _iterator4 = this.creditHoursValue[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var _item2 = _step4.value;
+            queryUrl += "credit=".concat(_item2.value, "&");
           }
         } catch (err) {
           _didIteratorError4 = true;
@@ -3679,18 +3696,18 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // Skills Reqs - categorized as 'other'
+      } // DISTRIBUTION REQ
 
 
-      if (this.skillsReqValue !== null) {
+      if (this.distributionReqValue !== null) {
         var _iteratorNormalCompletion5 = true;
         var _didIteratorError5 = false;
         var _iteratorError5 = undefined;
 
         try {
-          for (var _iterator5 = this.skillsReqValue[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-            var _item4 = _step5.value;
-            queryUrl += "other=".concat(_item4.value, "&");
+          for (var _iterator5 = this.distributionReqValue[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+            var _item3 = _step5.value;
+            queryUrl += "distr=".concat(_item3.value, "&");
           }
         } catch (err) {
           _didIteratorError5 = true;
@@ -3706,18 +3723,18 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // Special Offerings - categorized as 'other'
+      } // Skills Reqs - categorized as 'other'
 
 
-      if (this.specialOfferingsValue !== null) {
+      if (this.skillsReqValue !== null) {
         var _iteratorNormalCompletion6 = true;
         var _didIteratorError6 = false;
         var _iteratorError6 = undefined;
 
         try {
-          for (var _iterator6 = this.specialOfferingsValue[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-            var _item5 = _step6.value;
-            queryUrl += "other=".concat(_item5.value, "&");
+          for (var _iterator6 = this.skillsReqValue[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+            var _item4 = _step6.value;
+            queryUrl += "other=".concat(_item4.value, "&");
           }
         } catch (err) {
           _didIteratorError6 = true;
@@ -3733,18 +3750,18 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // Course Level
+      } // Special Offerings - categorized as 'other'
 
 
-      if (this.courseLevelValue !== null) {
+      if (this.specialOfferingsValue !== null) {
         var _iteratorNormalCompletion7 = true;
         var _didIteratorError7 = false;
         var _iteratorError7 = undefined;
 
         try {
-          for (var _iterator7 = this.courseLevelValue[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-            var _item6 = _step7.value;
-            queryUrl += "numlvl=".concat(_item6.value, "&");
+          for (var _iterator7 = this.specialOfferingsValue[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+            var _item5 = _step7.value;
+            queryUrl += "other=".concat(_item5.value, "&");
           }
         } catch (err) {
           _didIteratorError7 = true;
@@ -3760,18 +3777,18 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // Meeting Days
+      } // Course Level
 
 
-      if (this.meetingDaysValue !== null) {
+      if (this.courseLevelValue !== null) {
         var _iteratorNormalCompletion8 = true;
         var _didIteratorError8 = false;
         var _iteratorError8 = undefined;
 
         try {
-          for (var _iterator8 = this.meetingDaysValue[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-            var _item7 = _step8.value;
-            queryUrl += "mp_day=".concat(_item7.value, "&");
+          for (var _iterator8 = this.courseLevelValue[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+            var _item6 = _step8.value;
+            queryUrl += "numlvl=".concat(_item6.value, "&");
           }
         } catch (err) {
           _didIteratorError8 = true;
@@ -3787,18 +3804,18 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // Meeting Start & End Times
+      } // Meeting Days
 
 
-      if (this.startTimeValue !== null) {
+      if (this.meetingDaysValue !== null) {
         var _iteratorNormalCompletion9 = true;
         var _didIteratorError9 = false;
         var _iteratorError9 = undefined;
 
         try {
-          for (var _iterator9 = this.startTimeValue[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-            var _item8 = _step9.value;
-            queryUrl += "mp_starttime=".concat(_item8.value, "&");
+          for (var _iterator9 = this.meetingDaysValue[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+            var _item7 = _step9.value;
+            queryUrl += "mp_day=".concat(_item7.value, "&");
           }
         } catch (err) {
           _didIteratorError9 = true;
@@ -3814,17 +3831,18 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      }
+      } // Meeting Start & End Times
 
-      if (this.endTimeValue !== null) {
+
+      if (this.startTimeValue !== null) {
         var _iteratorNormalCompletion10 = true;
         var _didIteratorError10 = false;
         var _iteratorError10 = undefined;
 
         try {
-          for (var _iterator10 = this.endTimeValue[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-            var _item9 = _step10.value;
-            queryUrl += "mp_endtime=".concat(_item9.value, "&");
+          for (var _iterator10 = this.startTimeValue[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+            var _item8 = _step10.value;
+            queryUrl += "mp_starttime=".concat(_item8.value, "&");
           }
         } catch (err) {
           _didIteratorError10 = true;
@@ -3837,6 +3855,32 @@ __webpack_require__.r(__webpack_exports__);
           } finally {
             if (_didIteratorError10) {
               throw _iteratorError10;
+            }
+          }
+        }
+      }
+
+      if (this.endTimeValue !== null) {
+        var _iteratorNormalCompletion11 = true;
+        var _didIteratorError11 = false;
+        var _iteratorError11 = undefined;
+
+        try {
+          for (var _iterator11 = this.endTimeValue[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+            var _item9 = _step11.value;
+            queryUrl += "mp_endtime=".concat(_item9.value, "&");
+          }
+        } catch (err) {
+          _didIteratorError11 = true;
+          _iteratorError11 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion11 && _iterator11["return"] != null) {
+              _iterator11["return"]();
+            }
+          } finally {
+            if (_didIteratorError11) {
+              throw _iteratorError11;
             }
           }
         }
@@ -32613,7 +32657,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
 
 // exports
 
@@ -55178,14 +55222,12 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-tbody",
-                    _vm._l(_vm.searchResultsJSON, function(course, index) {
+                    _vm._l(_vm.searchResultsArray, function(course, index) {
                       return _c(
                         "b-tr",
                         { key: index },
                         [
-                          _c("b-td", [
-                            _vm._v(" " + _vm._s(course["@CatalogNbr"]) + " ")
-                          ])
+                          _c("b-td", [_vm._v(" " + _vm._s(course.Title) + " ")])
                         ],
                         1
                       )
@@ -55205,7 +55247,7 @@ var render = function() {
               staticStyle: { color: "white" },
               attrs: { id: "class-details-col" }
             },
-            [_vm._v("\n      " + _vm._s(_vm.searchResultsJSON[2]) + "\n    ")]
+            [_vm._v("\n      " + _vm._s(_vm.searchResultsJSON) + "\n    ")]
           )
         ],
         1

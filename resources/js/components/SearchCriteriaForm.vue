@@ -292,8 +292,8 @@
             </b-thead>
 
             <b-tbody>
-              <b-tr v-for="(course, index) in searchResultsJSON" v-bind:key="index">
-                <b-td> {{ course["@CatalogNbr"] }} </b-td>
+              <b-tr v-for="(course, index) in searchResultsArray" v-bind:key="index">
+                <b-td> {{ course.Title }} </b-td>
               </b-tr>
             </b-tbody>
 
@@ -301,7 +301,7 @@
         </b-col>
 
         <b-col id="class-details-col" style="color: white;">
-          {{ searchResultsJSON[2] }}
+          {{ searchResultsJSON }}
         </b-col>
       </b-row>
 
@@ -355,6 +355,7 @@
 
         searchResultsJSON: [],
         searchResultsTableFields: [""],
+        searchResultsArray: [],
       }
     },
 
@@ -384,24 +385,47 @@
           this.meetingDaysValue = null;
           
           this.searchResultsJSON = "";
+          this.searchResultsArray = [];
         }
       },
 
 
       searchFunction(event) {
         event.preventDefault();
-        this.searchResultsJSON = ""
+        this.searchResultsJSON = "";
+        this.searchResultsArray = [];
         let currentObject = this;
 
         axios.post('/searchFunction', {
           queryUrl: this.constructQueryUrl(1)
         })
         .then(function (response) {
-          // I parsed through the originally returned JSON and only returned the array of class data inside CGClassAbbr
-          currentObject.searchResultsJSON = (response.data).Classes.CGClassAbbr;
+          // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
+          currentObject.searchResultsJSON = (response.data).Classes.CGClassAbbr[0].CatalogNbr;
+
+          for (let course of (response.data).Classes.CGClassAbbr) {
+            let tempObject = {
+              "Title": `${course.Subject} ${course.CatalogNbr} - ${course.Title}`,
+              "SectionDetails": `Section ${course.ClassSection} (${course.Component})`,
+              "SectionTopic": course.Topic,
+              "Term": course.TermDescr,
+              "Credits": course.Credit,
+              "Req": course.ReqMet,
+              "OtherReq": course.OtherGroupings,
+              "Instructor": []
+            };
+/*
+            for (let instr of course.Instructors.CGInstructor) {
+              (tempObject.Instructor).push(instr.Name);
+            }
+*/
+            (currentObject.searchResultsArray).push(tempObject);
+          }
+
+          console.log(currentObject.searchResultsArray);
         })
         .catch(function (error) {
-          currentObj.searchResultsJSON = error;
+          currentObject.searchResultsJSON = error;
         });
       },
 
