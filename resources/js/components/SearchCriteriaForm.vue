@@ -279,6 +279,8 @@
       <b-row>
         <b-col id="search-results-col" style="color: white;">
           <!-- <b-table striped hover :items="searchResultsJSON"></b-table> -->
+          
+          <!--
           <b-table striped hover >
             
             <b-thead>
@@ -292,16 +294,23 @@
             </b-thead>
 
             <b-tbody>
-              <b-tr v-for="(course, index) in searchResultsArray" v-bind:key="index">
-                <b-td> {{ course.Title }} </b-td>
+              <b-tr v-for="course of searchResultsArray" :key="course.keyNum">
+                <b-td> Term - {{ course.keyNum }} </b-td>
               </b-tr>
             </b-tbody>
 
           </b-table>
+          -->
+
+          <ul>
+            <li v-for="course of searchResultsArray" :key="course.keyNum">
+              {{ course.Title }}
+            </li>
+          </ul>
         </b-col>
 
         <b-col id="class-details-col" style="color: white;">
-          {{ searchResultsJSON }}
+          {{ this.searchResultsJSON }}
         </b-col>
       </b-row>
 
@@ -354,8 +363,9 @@
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
 
         searchResultsJSON: [],
-        searchResultsTableFields: [""],
+        searchResultsTableFields: [],
         searchResultsArray: [],
+
       }
     },
 
@@ -384,15 +394,16 @@
           this.endTimeValue = null;
           this.meetingDaysValue = null;
           
-          this.searchResultsJSON = "";
+          this.searchResultsJSON = [];
           this.searchResultsArray = [];
+
         }
       },
 
 
       searchFunction(event) {
         event.preventDefault();
-        this.searchResultsJSON = "";
+        this.searchResultsJSON = [];
         this.searchResultsArray = [];
         let currentObject = this;
 
@@ -401,7 +412,8 @@
         })
         .then(function (response) {
           // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
-          currentObject.searchResultsJSON = (response.data).Classes.CGClassAbbr[0].CatalogNbr;
+          currentObject.searchResultsJSON = (response.data);
+          let keyNum = 0;
 
           for (let course of (response.data).Classes.CGClassAbbr) {
             let tempObject = {
@@ -412,17 +424,18 @@
               "Credits": course.Credit,
               "Req": course.ReqMet,
               "OtherReq": course.OtherGroupings,
-              "Instructor": []
+              "Instructor": [],
+              "keyNum": keyNum.toString()
             };
-/*
+
+            keyNum += 1;
+/* will fix this later
             for (let instr of course.Instructors.CGInstructor) {
               (tempObject.Instructor).push(instr.Name);
             }
 */
             (currentObject.searchResultsArray).push(tempObject);
           }
-
-          console.log(currentObject.searchResultsArray);
         })
         .catch(function (error) {
           currentObject.searchResultsJSON = error;
@@ -568,7 +581,6 @@
     }
   }
 </script>
-
 
 
 
