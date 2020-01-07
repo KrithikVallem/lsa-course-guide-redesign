@@ -3396,8 +3396,8 @@ __webpack_require__.r(__webpack_exports__);
         queryUrl: this.constructQueryUrl(1)
       }).then(function (response) {
         // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
-        currentObject.searchResultsJSON = response.data;
-        var keyNum = 0;
+        var keyNum = 0; // provides a unique id for each table row so vue can render it properly
+
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
         var _iteratorError = undefined;
@@ -32435,7 +32435,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n  border-radius: 0px;\n}\n\n", ""]);
 
 // exports
 
@@ -54018,7 +54018,7 @@ var render = function() {
     [
       _c(
         "b-row",
-        { staticClass: "pb-5", attrs: { id: "search-criteria-form-row" } },
+        { staticClass: "pb-5 pt-3", attrs: { id: "search-criteria-form-row" } },
         [
           _c(
             "b-col",
@@ -54681,7 +54681,7 @@ var render = function() {
                   "background-color": "#eee",
                   "font-size": "12px",
                   "overflow-y": "scroll",
-                  height: "700px",
+                  height: "80vh",
                   "overflow-x": "hidden"
                 },
                 attrs: {

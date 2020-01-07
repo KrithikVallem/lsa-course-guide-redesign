@@ -4,7 +4,7 @@
 
 <template>
     <b-container fluid>
-      <b-row id="search-criteria-form-row" class="pb-5">
+      <b-row id="search-criteria-form-row" class="pb-5 pt-3">
         <b-col id="search-criteria-form-col">
           <b-card title="LSA Course Guide Redesign" id="search-criteria-form-card">
               <!-- Don't put a form tag around everything - the multiselects won't work correctly inside them -->
@@ -290,7 +290,7 @@
 
            id="searchResultsTable" 
            @row-clicked="showClassData"
-           style="background-color: #eee; font-size: 12px; overflow-y: scroll; height: 700px; overflow-x: hidden;" 
+           style="background-color: #eee; font-size: 12px; overflow-y: scroll; height: 400px; height: 80vh; overflow-x: hidden;" 
            >
           
           <!-- This works with a normal <table> tag,  not <b-table, but its not responsive like the b-table>
@@ -424,8 +424,8 @@
         })
         .then(function (response) {
           // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
-          currentObject.searchResultsJSON = (response.data);
-          let keyNum = 0;
+          
+          let keyNum = 0; // provides a unique id for each table row so vue can render it properly
 
           for (let course of (response.data).Classes.CGClassAbbr) {
             let tempObject = {
@@ -643,10 +643,18 @@
   color: #fff;
 }
 
+/* font size of dropdown */
+.multiselect,
+.multiselect__input,
+.multiselect__single {
+  font-size: 12px;
+}
+
 
 body {
   background-color: #00274c;
 }
+
 
 #searchButton {
   background-color: #00274c;
@@ -657,15 +665,11 @@ body {
   border-color: #cc5454;
 }
 
-/* font size of dropdown */
-.multiselect,
-.multiselect__input,
-.multiselect__single {
-  font-size: 12px;
-}
+
 
 #search-criteria-form-card {
   background-color: #eee;
+  border-radius: 0px;
 }
 
 </style>
