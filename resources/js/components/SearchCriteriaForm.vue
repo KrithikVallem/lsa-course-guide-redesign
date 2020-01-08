@@ -288,9 +288,9 @@
            :items="searchResultsArray" 
            :fields="searchResultsTableFields"
 
-           id="searchResultsTable" 
+           id="search-results-table" 
            @row-clicked="showClassData"
-           style="background-color: #f7f7f7; font-size: 12px; overflow-y: scroll; height: 400px; height: 80vh; overflow-x: hidden;" 
+           
            >
           
           <!-- This works with a normal <table> tag,  not <b-table, but its not responsive like the b-table>
@@ -325,7 +325,7 @@
         </b-col>
 
         <b-col id="class-details-col" style="color: white;" class="col-8">
-          {{ this.searchResultsJSON }}
+          {{ this.classResultsJSON }}
         </b-col>
       </b-row>
 
@@ -377,7 +377,7 @@
         meetingDaysValue: null,
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
 
-        searchResultsJSON: [],
+        classResultsJSON: [],
         searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
         searchResultsArray: [],
 
@@ -415,7 +415,7 @@
 
       searchFunction(event) {
         event.preventDefault();
-        this.searchResultsJSON = [];
+        this.classResultsJSON = [];
         this.searchResultsArray = [];
         let currentObject = this;
 
@@ -450,7 +450,7 @@
           }
         })
         .catch(function (error) {
-          currentObject.searchResultsJSON = error;
+          currentObject.classResultsJSON = error;
         });
       },
 
@@ -588,7 +588,7 @@
 
 
       showClassData(item) {
-        this.searchResultsJSON = item;
+        this.classResultsJSON = item;
       }
 
 
@@ -670,6 +670,17 @@ body {
 #search-criteria-form-card {
   background-color: #f7f7f7;
   border-radius: 0px;
+}
+
+#search-results-table {
+  background-color: #f7f7f7;
+  font-size: 12px;
+  overflow-x: hidden;
+  overflow-y: scroll; 
+  
+  height: 400px; 
+  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */
+
 }
 
 </style>
