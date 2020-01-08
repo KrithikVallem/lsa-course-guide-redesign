@@ -3356,7 +3356,7 @@ __webpack_require__.r(__webpack_exports__);
         option: "Sunday",
         value: "Sun"
       }],
-      searchResultsJSON: [],
+      classResultsJSON: [],
       searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
       searchResultsArray: []
     };
@@ -3389,7 +3389,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     searchFunction: function searchFunction(event) {
       event.preventDefault();
-      this.searchResultsJSON = [];
+      this.classResultsJSON = [];
       this.searchResultsArray = [];
       var currentObject = this;
       axios.post('/searchFunction', {
@@ -3440,7 +3440,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       })["catch"](function (error) {
-        currentObject.searchResultsJSON = error;
+        currentObject.classResultsJSON = error;
       });
     },
     constructQueryUrl: function constructQueryUrl(pageNumberIn) {
@@ -3760,7 +3760,7 @@ __webpack_require__.r(__webpack_exports__);
       return queryUrl;
     },
     showClassData: function showClassData(item) {
-      this.searchResultsJSON = item;
+      this.classResultsJSON = item;
     }
   }
 });
@@ -54702,7 +54702,7 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n          " + _vm._s(this.searchResultsJSON) + "\n        "
+                "\n          " + _vm._s(this.classResultsJSON) + "\n        "
               )
             ]
           )

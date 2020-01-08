@@ -293,35 +293,7 @@
            
            >
           
-          <!-- This works with a normal <table> tag,  not <b-table, but its not responsive like the b-table>
-            <b-thead>
-              <b-tr>
-                <b-th>Title/Section</b-th>
-                <b-th>Term</b-th>
-                <b-th>Credits</b-th>
-                <b-th>Instructor</b-th>
-                <b-th>Req</b-th>
-              </b-tr>
-            </b-thead>
-
-            <b-tbody>
-              <b-tr v-for="course of searchResultsArray" :key="course.keyNum">
-                <b-td> {{ course.Title }} </b-td>
-                <b-td> {{ course.Term }} </b-td>
-                <b-td> {{ course.Credits }} </b-td>
-                <b-td> {{ course.Instructor }} </b-td>
-                <b-td> {{ course.Req }} </b-td>
-              </b-tr>
-            </b-tbody>
-          -->
           </b-table>
-          
-<!--
-          <ul>
-            <li v-for="course of searchResultsArray" :key="course.keyNum">
-              {{ course.Title }}
-            </li>
-          </ul> -->
         </b-col>
 
         <b-col id="class-details-col" style="color: white;" class="col-8">
