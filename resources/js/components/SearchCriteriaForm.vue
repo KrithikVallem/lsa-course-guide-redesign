@@ -290,7 +290,7 @@
 
            id="searchResultsTable" 
            @row-clicked="showClassData"
-           style="background-color: #eee; font-size: 12px; overflow-y: scroll; height: 400px; height: 80vh; overflow-x: hidden;" 
+           style="background-color: #f7f7f7; font-size: 12px; overflow-y: scroll; height: 400px; height: 80vh; overflow-x: hidden;" 
            >
           
           <!-- This works with a normal <table> tag,  not <b-table, but its not responsive like the b-table>
@@ -668,7 +668,7 @@ body {
 
 
 #search-criteria-form-card {
-  background-color: #eee;
+  background-color: #f7f7f7;
   border-radius: 0px;
 }
 
