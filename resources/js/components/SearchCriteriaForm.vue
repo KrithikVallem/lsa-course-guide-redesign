@@ -289,18 +289,24 @@
            :fields="searchResultsTableFields"
 
            id="search-results-table" 
-           @row-clicked="showClassData"
+           @row-clicked="showCourseData"
            
            >
           
           </b-table>
         </b-col>
 
-        <b-col id="class-details-col" class="col-8">
-          <b-card no-body>
-            <b-tabs pills card>
-              <b-tab title="Tab 1" active><b-card-text>Tab contents 1</b-card-text></b-tab>
-              <b-tab title="Tab 2 very long title"><b-card-text> {{this.classResultsJSON}} </b-card-text></b-tab>
+        <b-col id="course-details-col" class="col-8">
+          <div id="selected-course-title" class="col text-center pb-2">
+            {{ this.courseResultsJSON.Title }}
+          </div>
+
+          <b-card no-body id="course-details-card">
+            <b-tabs pills card id="course-details-tab-container">
+              <b-tab title="Details" active><b-card-text>Tab contents 1</b-card-text></b-tab>
+              <b-tab title="Description" active><b-card-text>Tab contents 1</b-card-text></b-tab>
+              <b-tab title="Schedule"><b-card-text> {{this.courseResultsJSON}} </b-card-text></b-tab>
+              <b-tab title="Links"><b-card-text>Tab contents 1</b-card-text></b-tab>
             </b-tabs>
           </b-card>
         </b-col>
@@ -354,7 +360,7 @@
         meetingDaysValue: null,
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
 
-        classResultsJSON: [],
+        courseResultsJSON: [],
         searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
         searchResultsArray: [],
 
@@ -392,7 +398,7 @@
 
       searchFunction(event) {
         event.preventDefault();
-        this.classResultsJSON = [];
+        this.courseResultsJSON = [];
         this.searchResultsArray = [];
         let currentObject = this;
 
@@ -407,7 +413,7 @@
           for (let course of (response.data).Classes.CGClassAbbr) {
             let tempObject = {
               "Title": `${course.Subject} ${course.CatalogNbr} - ${course.Title}`,
-              "Section": (`Section ${course.ClassSection} (${course.Component}) - ${course.Topic}`).replace(" - [object Object]", ""), // removes the error text for classes with no section topic,
+              "Section": (`Section ${course.ClassSection} (${course.Component}) - ${course.Topic}`).replace(" - [object Object]", ""), // removes the error text for classes with no section topic
               "Term": course.TermDescr,
               "Credits": course.Credit,
               "Reqs": course.ReqMet,
@@ -564,8 +570,8 @@
       },
 
 
-      showClassData(item) {
-        this.classResultsJSON = item;
+      showCourseData(item) {
+        this.courseResultsJSON = item;
       }
 
 
@@ -657,7 +663,33 @@ body {
   
   height: 400px; 
   height: 80vh; /* Two heights just in case user's browser doesn't support viewport */
+}
 
+
+#course-details-card {
+  border-radius: 0px;
+  background-color: #eee;
+}
+
+#course-details-tab-container {
+  border-radius: 0px;
+}
+
+
+/* Color of the tabs in the Course Details section */
+.nav-pills > li > a.active {
+  background-color: #00274c !important;
+  color: #fff !important;
+}
+
+.nav-pills > li > a {
+  color: #00274c !important;
+}
+
+
+#selected-course-title {
+  color: #ffcb05;
+  font-weight: bold;
 }
 
 </style>
