@@ -303,15 +303,27 @@
 
           <b-card no-body id="course-details-card">
             <b-tabs pills card id="course-details-tab-container">
-              <b-tab title="Details" active><b-card-text>Tab contents 1</b-card-text></b-tab>
+              <b-tab title="Details" active>
+                <b-card-text>
+                  Tab contents 1
+                </b-card-text>
+              </b-tab>
               
-              <b-tab title="Description" active><b-card-text>Tab contents 1</b-card-text></b-tab>
+              <b-tab title="Description" class="small" active>
+                <b-card-text>
+                  <span v-html="this.courseResultsJSON.ClassDescr"></span>
+                </b-card-text>
+              </b-tab>
               
-              <b-tab title="Schedule"><b-card-text> {{this.courseResultsJSON}} </b-card-text></b-tab>
+              <b-tab title="Schedule">
+                <b-card-text>
+                  {{this.courseResultsJSON}}
+                </b-card-text>
+              </b-tab>
               
               <b-tab title="Textbooks/Other Materials" class="small">
                 <b-card-text>
-                  <p>The partner U-M / Barnes & Noble Education textbook website is the official way for U-M students to view their upcoming textbook or course material needs, whether they choose to buy from Barnes & Noble Education or not. Students also can view a customized list of their specific textbook needs by clicking a "View/Buy Textbooks" link in their course schedule in Wolverine Access.</p>
+                  <p>The partner U-M / Barnes &amp; Noble Education textbook website is the official way for U-M students to view their upcoming textbook or course material needs, whether they choose to buy from Barnes & Noble Education or not. Students also can view a customized list of their specific textbook needs by clicking a "View/Buy Textbooks" link in their course schedule in Wolverine Access.</p>
                   <p><em>Click the button below to view and buy textbooks for {{this.courseResultsJSON.Subject}} {{this.courseResultsJSON.CatalogNum}}.{{this.courseResultsJSON.SectionNum}}</em></p>
                   <b-button class="course-details-link-button" v-bind:href = "'https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&amp;FVGRP=UMI&amp;TERMCOURSES=' + this.courseResultsJSON.TermCode + '|CENTRAL|' + this.courseResultsJSON.Subject + ' ' + this.courseResultsJSON.CatalogNum + ' ' + this.courseResultsJSON.SectionNum" target="_blank">View/Buy Textbooks</b-button>
                 </b-card-text>
@@ -447,6 +459,7 @@
               "Reqs": course.ReqMet,
               "Other": course.OtherGroupings,
               "Instructor": [],
+              "ClassDescr": course.ClassDescr,
               "keyNum": keyNum.toString()
             };
 
@@ -697,6 +710,11 @@ body {
 #course-details-card {
   border-radius: 0px;
   background-color: #eee;
+  overflow-x: hidden;
+  overflow-y: scroll; 
+  
+  height: 360px;
+  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */
 }
 
 #course-details-tab-container {

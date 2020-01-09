@@ -2182,6 +2182,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3425,6 +3437,7 @@ __webpack_require__.r(__webpack_exports__);
               "Reqs": course.ReqMet,
               "Other": course.OtherGroupings,
               "Instructor": [],
+              "ClassDescr": course.ClassDescr,
               "keyNum": keyNum.toString()
             };
             keyNum += 1;
@@ -32446,7 +32459,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: #eee;\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: #eee;\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: #00274c !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: #00274c !important;\n}\n#selected-course-title {\n  color: #ffcb05;\n  font-weight: bold;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: #eee;\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: #eee;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px; /* slightly smaller than table to account for course title caption on top */\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: #00274c !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: #00274c !important;\n}\n#selected-course-title {\n  color: #ffcb05;\n  font-weight: bold;\n}\n\n", ""]);
 
 // exports
 
@@ -54740,14 +54753,33 @@ var render = function() {
                       _c(
                         "b-tab",
                         { attrs: { title: "Details", active: "" } },
-                        [_c("b-card-text", [_vm._v("Tab contents 1")])],
+                        [
+                          _c("b-card-text", [
+                            _vm._v(
+                              "\n              Tab contents 1\n            "
+                            )
+                          ])
+                        ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "b-tab",
-                        { attrs: { title: "Description", active: "" } },
-                        [_c("b-card-text", [_vm._v("Tab contents 1")])],
+                        {
+                          staticClass: "small",
+                          attrs: { title: "Description", active: "" }
+                        },
+                        [
+                          _c("b-card-text", [
+                            _c("span", {
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  this.courseResultsJSON.ClassDescr
+                                )
+                              }
+                            })
+                          ])
+                        ],
                         1
                       ),
                       _vm._v(" "),
@@ -54756,7 +54788,11 @@ var render = function() {
                         { attrs: { title: "Schedule" } },
                         [
                           _c("b-card-text", [
-                            _vm._v(" " + _vm._s(this.courseResultsJSON) + " ")
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(this.courseResultsJSON) +
+                                "\n            "
+                            )
                           ])
                         ],
                         1
@@ -54803,9 +54839,9 @@ var render = function() {
                                       this.courseResultsJSON.TermCode +
                                       "|CENTRAL|" +
                                       this.courseResultsJSON.Subject +
-                                      "%20" +
+                                      " " +
                                       this.courseResultsJSON.CatalogNum +
-                                      "%20" +
+                                      " " +
                                       this.courseResultsJSON.SectionNum,
                                     target: "_blank"
                                   }
