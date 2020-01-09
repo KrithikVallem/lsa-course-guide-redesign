@@ -304,9 +304,33 @@
           <b-card no-body id="course-details-card">
             <b-tabs pills card id="course-details-tab-container">
               <b-tab title="Details" active><b-card-text>Tab contents 1</b-card-text></b-tab>
+              
               <b-tab title="Description" active><b-card-text>Tab contents 1</b-card-text></b-tab>
+              
               <b-tab title="Schedule"><b-card-text> {{this.courseResultsJSON}} </b-card-text></b-tab>
-              <b-tab title="Links"><b-card-text>Tab contents 1</b-card-text></b-tab>
+              
+              <b-tab title="Textbooks/Other Materials" class="small">
+                <b-card-text>
+                  <p>The partner U-M / Barnes & Noble Education textbook website is the official way for U-M students to view their upcoming textbook or course material needs, whether they choose to buy from Barnes & Noble Education or not. Students also can view a customized list of their specific textbook needs by clicking a "View/Buy Textbooks" link in their course schedule in Wolverine Access.</p>
+                  <p><em>Click the button below to view and buy textbooks for {{this.courseResultsJSON.Subject}} {{this.courseResultsJSON.CatalogNum}}.{{this.courseResultsJSON.SectionNum}}</em></p>
+                  <b-button class="course-details-link-button" v-bind:href = "'https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&amp;FVGRP=UMI&amp;TERMCOURSES=' + this.courseResultsJSON.TermCode + '|CENTRAL|' + this.courseResultsJSON.Subject + ' ' + this.courseResultsJSON.CatalogNum + ' ' + this.courseResultsJSON.SectionNum" target="_blank">View/Buy Textbooks</b-button>
+                </b-card-text>
+              </b-tab>
+
+              <b-tab title="Syllabi" class="small">
+                <b-card-text>
+                  <p>Syllabi are available to current LSA students. <strong>IMPORTANT:</strong> These syllabi are provided to give students a general idea about the courses, as offered by LSA departments and programs in <strong>prior academic terms.</strong> The syllabi <strong>do not</strong> necessarily reflect the assignments, sequence of course materials, and/or course expectations that the faculty and departments/programs have for these same courses in the current and/or future terms.</p>
+                  <p><em>Click the button below to view historical syllabi for {{this.courseResultsJSON.Subject}} {{this.courseResultsJSON.CatalogNum}} (UM login required)</em></p>
+                  <b-button class="course-details-link-button" v-bind:href = "'https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=' + this.courseResultsJSON.Subject + '&amp;CatNbr=' + this.courseResultsJSON.CatalogNum" target="_blank">View Historical Syllabi</b-button>
+                </b-card-text>
+              </b-tab>
+
+              <b-tab title="CourseProfile (Atlas)" class="small">
+                <b-card-text>
+                  <p>The Atlas system, developed by the Center for Academic Innovation, provides additional information about: course enrollments; academic terms and instructors; student academic profiles (school/college, majors), and previous, concurrent, and subsequent course enrollments.</p>
+                  <b-button class="course-details-link-button" v-bind:href = "'https://atlas.ai.umich.edu/course/' + this.courseResultsJSON.Subject + ' ' + this.courseResultsJSON.CatalogNum" target="_blank">CourseProfile (Atlas)</b-button>
+                </b-card-text>
+              </b-tab>
             </b-tabs>
           </b-card>
         </b-col>
@@ -413,8 +437,12 @@
           for (let course of (response.data).Classes.CGClassAbbr) {
             let tempObject = {
               "Title": `${course.Subject} ${course.CatalogNbr} - ${course.Title}`,
+              "Subject": course.Subject,
+              "CatalogNum": course.CatalogNbr,
               "Section": (`Section ${course.ClassSection} (${course.Component}) - ${course.Topic}`).replace(" - [object Object]", ""), // removes the error text for classes with no section topic
+              "SectionNum": course.ClassSection,
               "Term": course.TermDescr,
+              "TermCode": course.Term,
               "Credits": course.Credit,
               "Reqs": course.ReqMet,
               "Other": course.OtherGroupings,
