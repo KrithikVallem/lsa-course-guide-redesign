@@ -268,8 +268,8 @@
                 <b-form-row>
                   <!-- class="col text-center" inside the div will center buttons if needed -->
                   <div id="form-buttons-container">
-                    <b-button type="submit" id="searchButton" @click="searchFunction" >Search</b-button>
-                    <b-button type="reset" id="clearButton" @click="clearFunction" >Clear</b-button>
+                    <b-button type="submit" id="searchButton" @click="searchFunction">Search</b-button>
+                    <b-button type="reset" id="clearButton" @click="clearFunction">Clear</b-button>
                   </div>
                 </b-form-row>
           </b-card>
@@ -433,7 +433,7 @@
           }
         })
         .catch(function (error) {
-          currentObject.classResultsJSON = error;
+          alert("There were no classes that met your search criteria.");
         });
       },
 

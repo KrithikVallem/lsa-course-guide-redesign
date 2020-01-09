@@ -3423,7 +3423,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       })["catch"](function (error) {
-        currentObject.classResultsJSON = error;
+        alert("There were no classes that met your search criteria.");
       });
     },
     constructQueryUrl: function constructQueryUrl(pageNumberIn) {
