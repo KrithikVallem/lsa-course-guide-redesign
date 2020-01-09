@@ -296,8 +296,13 @@
           </b-table>
         </b-col>
 
-        <b-col id="class-details-col" style="color: white;" class="col-8">
-          {{ this.classResultsJSON }}
+        <b-col id="class-details-col" class="col-8">
+          <b-card no-body>
+            <b-tabs pills card>
+              <b-tab title="Tab 1" active><b-card-text>Tab contents 1</b-card-text></b-tab>
+              <b-tab title="Tab 2 very long title"><b-card-text> {{this.classResultsJSON}} </b-card-text></b-tab>
+            </b-tabs>
+          </b-card>
         </b-col>
       </b-row>
 
@@ -640,12 +645,12 @@ body {
 
 
 #search-criteria-form-card {
-  background-color: #f7f7f7;
+  background-color: #eee;
   border-radius: 0px;
 }
 
 #search-results-table {
-  background-color: #f7f7f7;
+  background-color: #eee;
   font-size: 12px;
   overflow-x: hidden;
   overflow-y: scroll; 
