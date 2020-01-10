@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::post('searchFunction','PostController@searchFunction');
+
+Route::post('/scheduleFunction','PostController@scheduleFunction');

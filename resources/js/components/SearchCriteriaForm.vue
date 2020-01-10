@@ -318,8 +318,10 @@
               
               <b-tab title="Schedule">
                 <b-card-text>
-                  <!--{{this.courseScheduleJSON(this.courseResultsJSON.TermCode, this.courseResultsJSON.Subject, this.courseResultsJSON.CatalogNum)}}
-                --></b-card-text>
+                  <b-button @click="getScheduleData()">Get Schedule Data</b-button>
+                  <br/>
+                  {{this.scheduleJSON}}
+                </b-card-text>
               </b-tab>
               
               <b-tab title="Textbooks/Other Materials" class="small">
@@ -401,9 +403,9 @@
         searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
         searchResultsArray: [],
 
-        courseScheduleJSON: [],
-        courseScheduleTableFields: [],
-        courseScheduleArray: [],
+        scheduleJSON: [],
+        scheduleTableFields: [],
+        scheduleArray: [],
         errorRetrievingScheduleJSON: false,
 
 
@@ -623,23 +625,29 @@
       },
 
 
-      getCourseScheduleData() {
-        this.courseScheduleJSON = [];
-        this.courseScheduleArray = [];
+      getScheduleData() {
+        const termCodeIn = this.courseResultsJSON.TermCode;
+        const subjectIn = this.courseResultsJSON.Subject;
+        const catalogNumIn = this.courseResultsJSON.CatalogNum;
+
+        this.scheduleJSON = [];
+        this.scheduleArray = [];
         this.errorRetrievingScheduleJSON = false;
         let currentObject = this;
 
-        axios.post('/searchFunction', {
-          termCodeIn: this.courseResultsJSON.TermCode,
-          subjectIn: this.courseResultsJSON.Subject,
-          catalogNumIn: this.courseResultsJSON.CatalogNum
+/*
+        axios.post('/scheduleFunction', {
+          scheduleUrl: `http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=${termCodeIn}&school=lsa&subject=${subjectIn}&catalog_num=${catalogNumIn}`
         })
         .then(function (response) {
-          currentObject.courseScheduleJSON = response.data;
+          currentObject.scheduleJSON = response.data;
+          console.log(response.data);
         })
         .catch(function (error) {
-          currentObject.errorRetrievingScheduleJSON = true;
-        });
+          currentObject.scheduleJSON = error;
+        }); */
+
+        this.scheduleJSON = (`http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=${termCodeIn}&school=lsa&subject=${subjectIn}&catalog_num=${catalogNumIn}`);
       }
 
 
