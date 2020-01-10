@@ -3378,18 +3378,18 @@ __webpack_require__.r(__webpack_exports__);
         option: "Sunday",
         value: "Sun"
       }],
-      courseResultsJSON: [],
       searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
       searchResultsArray: [],
+      courseDataJSON: [],
       scheduleJSON: [],
       scheduleTableFields: [],
-      scheduleArray: [],
-      errorRetrievingScheduleJSON: false
+      scheduleArray: []
     };
   },
   // stuff that happens more or less on page load
   mounted: function mounted() {},
   methods: {
+    /* Clears the form if user clicks the clear button */
     clearFunction: function clearFunction() {
       var confirmResponse = confirm("Do you want to clear your search criteria?");
 
@@ -3413,9 +3413,13 @@ __webpack_require__.r(__webpack_exports__);
         this.meetingDaysValue = null;
       }
     },
+
+    /* Searches for classes meeting the search criteria entered by user when they click the search button
+    ** Calls constructQueryUrl() to make the correct api request url, and sends it to backend to circumvent CORS     
+    ** Once JSON course results data is returned, formats it into an array so that bootstrap-vue can turn it into a neat table */
     searchFunction: function searchFunction(event) {
       event.preventDefault();
-      this.courseResultsJSON = [];
+      this.courseDataJSON = [];
       this.searchResultsArray = [];
       var currentObject = this;
       axios.post('/searchFunction', {
@@ -3471,9 +3475,12 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       })["catch"](function (error) {
-        alert("There were no classes that met your search criteria.");
+        alert("There were no classes that met your search criteria :(");
       });
     },
+
+    /* makes a query url based on the search criteria seleted by the user
+    ** also sanatizes input from the text boxes to a degree in order to prevent injection */
     constructQueryUrl: function constructQueryUrl(pageNumberIn) {
       // url is constructed in the order presented in the docs: http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/help
       var AUDIENCE = "public";
@@ -3790,24 +3797,28 @@ __webpack_require__.r(__webpack_exports__);
 
       return queryUrl;
     },
+
+    /* VERY IMPORTANT - DO NOT DELETE 
+    ** allows the course details box on the right to show data for a specific class 
+    ** when that class is clicked on in the table on the left */
     showCourseData: function showCourseData(item) {
-      this.courseResultsJSON = item;
+      this.courseDataJSON = item;
     },
+
+    /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
     getScheduleData: function getScheduleData() {
-      var termCodeIn = this.courseResultsJSON.TermCode;
-      var subjectIn = this.courseResultsJSON.Subject;
-      var catalogNumIn = this.courseResultsJSON.CatalogNum;
+      var termCodeIn = this.courseDataJSON.TermCode;
+      var subjectIn = this.courseDataJSON.Subject;
+      var catalogNumIn = this.courseDataJSON.CatalogNum;
       this.scheduleJSON = [];
       this.scheduleArray = [];
-      this.errorRetrievingScheduleJSON = false;
       var currentObject = this;
       axios.post('/scheduleFunction', {
         scheduleUrl: "http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=".concat(termCodeIn, "&school=lsa&subject=").concat(subjectIn, "&catalog_num=").concat(catalogNumIn)
       }).then(function (response) {
         currentObject.scheduleJSON = response.data;
-        console.log(response.data);
       })["catch"](function (error) {
-        currentObject.scheduleJSON = error;
+        alert("There was an error retrieving the schedule information for ".concat(subjectIn, " ").concat(catalogNumIn, " :("));
       });
     }
   }
@@ -32483,7 +32494,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: #00274c transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: #00274c;\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: #ffcb05;\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: #32526f;\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: #ffcb05;\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: #cc5454;\n  color: #fff;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: #cc5454;\n  color: #fff;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: #00274c;\n}\n#searchButton {\n  background-color: #00274c;\n  border-color: #00274c;\n}\n#clearButton {\n  background-color: #cc5454;\n  border-color: #cc5454;\n}\n#search-criteria-form-card {\n  background-color: #eee;\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: #eee;\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: #eee;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: #00274c !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: #00274c !important;\n}\n#selected-course-title {\n  color: #ffcb05;\n  font-weight: bold;\n}\n\n", ""]);
+exports.push([module.i, "\n:root {\n  --umichBlue: #00274c;\n  --umichYellow: #ffcb05;\n  --darkRed: #cc5454;\n  --grayBgColor: #eee;\n  --umichBlueHover: #32526f;\n}\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: var(--umichBlue) transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: var(--umichBlue);\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: var(--umichYellow);\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: var(--umichBlueHover);\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: var(--umichYellow);\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: var(--darkRed);\n  color: white;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: var(--darkRed);\n  color: white;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: var(--umichBlue);\n}\n#searchButton {\n  background-color: var(--umichBlue);\n  border-color: var(--umichBlue);\n}\n#clearButton {\n  background-color: var(--darkRed);\n  border-color: var(--darkRed);\n}\n#search-criteria-form-card {\n  background-color: var(--grayBgColor);\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: var(--grayBgColor);\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: var(--grayBgColor);\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: var(--umichBlue) !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: var(--umichBlue) !important;\n}\n#selected-course-title {\n  color: var(--umichYellow);\n  font-weight: bold;\n}\n\n", ""]);
 
 // exports
 
@@ -54754,7 +54765,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n        " +
-                      _vm._s(this.courseResultsJSON.Title) +
+                      _vm._s(this.courseDataJSON.Title) +
                       "\n      "
                   )
                 ]
@@ -54798,7 +54809,7 @@ var render = function() {
                             _c("span", {
                               domProps: {
                                 innerHTML: _vm._s(
-                                  this.courseResultsJSON.ClassDescr
+                                  this.courseDataJSON.ClassDescr
                                 )
                               }
                             })
@@ -54859,13 +54870,11 @@ var render = function() {
                                 _c("em", [
                                   _vm._v(
                                     "Click the button below to view and buy textbooks for " +
-                                      _vm._s(this.courseResultsJSON.Subject) +
+                                      _vm._s(this.courseDataJSON.Subject) +
                                       " " +
-                                      _vm._s(
-                                        this.courseResultsJSON.CatalogNum
-                                      ) +
+                                      _vm._s(this.courseDataJSON.CatalogNum) +
                                       "." +
-                                      _vm._s(this.courseResultsJSON.SectionNum)
+                                      _vm._s(this.courseDataJSON.SectionNum)
                                   )
                                 ])
                               ]),
@@ -54877,13 +54886,13 @@ var render = function() {
                                   attrs: {
                                     href:
                                       "https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&FVGRP=UMI&TERMCOURSES=" +
-                                      this.courseResultsJSON.TermCode +
+                                      this.courseDataJSON.TermCode +
                                       "|CENTRAL|" +
-                                      this.courseResultsJSON.Subject +
+                                      this.courseDataJSON.Subject +
                                       " " +
-                                      this.courseResultsJSON.CatalogNum +
+                                      this.courseDataJSON.CatalogNum +
                                       " " +
-                                      this.courseResultsJSON.SectionNum,
+                                      this.courseDataJSON.SectionNum,
                                     target: "_blank"
                                   }
                                 },
@@ -54923,11 +54932,9 @@ var render = function() {
                                 _c("em", [
                                   _vm._v(
                                     "Click the button below to view historical syllabi for " +
-                                      _vm._s(this.courseResultsJSON.Subject) +
+                                      _vm._s(this.courseDataJSON.Subject) +
                                       " " +
-                                      _vm._s(
-                                        this.courseResultsJSON.CatalogNum
-                                      ) +
+                                      _vm._s(this.courseDataJSON.CatalogNum) +
                                       " (UM login required)"
                                   )
                                 ])
@@ -54940,9 +54947,9 @@ var render = function() {
                                   attrs: {
                                     href:
                                       "https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=" +
-                                      this.courseResultsJSON.Subject +
+                                      this.courseDataJSON.Subject +
                                       "&CatNbr=" +
-                                      this.courseResultsJSON.CatalogNum,
+                                      this.courseDataJSON.CatalogNum,
                                     target: "_blank"
                                   }
                                 },
@@ -54978,9 +54985,9 @@ var render = function() {
                                   attrs: {
                                     href:
                                       "https://atlas.ai.umich.edu/course/" +
-                                      this.courseResultsJSON.Subject +
+                                      this.courseDataJSON.Subject +
                                       " " +
-                                      this.courseResultsJSON.CatalogNum,
+                                      this.courseDataJSON.CatalogNum,
                                     target: "_blank"
                                   }
                                 },

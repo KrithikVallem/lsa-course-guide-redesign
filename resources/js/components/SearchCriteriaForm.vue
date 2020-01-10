@@ -298,7 +298,7 @@
 
         <b-col id="course-details-col" class="col-8">
           <div id="selected-course-title" class="col text-center pb-2">
-            {{ this.courseResultsJSON.Title }}
+            {{ this.courseDataJSON.Title }}
           </div>
 
           <b-card no-body id="course-details-card">
@@ -312,7 +312,7 @@
               <b-tab title="Description" class="small" active>
                 <b-card-text>
                   <!-- The api spits out pure html, so the line below renders the html it recieves properly -->
-                  <span v-html="this.courseResultsJSON.ClassDescr"></span>
+                  <span v-html="this.courseDataJSON.ClassDescr"></span>
                 </b-card-text>
               </b-tab>
               
@@ -327,23 +327,23 @@
               <b-tab title="Textbooks/Other Materials" class="small">
                 <b-card-text>
                   <p>The partner U-M / Barnes &amp; Noble Education textbook website is the official way for U-M students to view their upcoming textbook or course material needs, whether they choose to buy from Barnes &amp; Noble Education or not. Students also can view a customized list of their specific textbook needs by clicking a "View/Buy Textbooks" link in their course schedule in Wolverine Access.</p>
-                  <p><em>Click the button below to view and buy textbooks for {{this.courseResultsJSON.Subject}} {{this.courseResultsJSON.CatalogNum}}.{{this.courseResultsJSON.SectionNum}}</em></p>
-                  <b-button class="course-details-link-button" v-bind:href="'https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&amp;FVGRP=UMI&amp;TERMCOURSES=' + this.courseResultsJSON.TermCode + '|CENTRAL|' + this.courseResultsJSON.Subject + ' ' + this.courseResultsJSON.CatalogNum + ' ' + this.courseResultsJSON.SectionNum" target="_blank">View/Buy Textbooks</b-button>
+                  <p><em>Click the button below to view and buy textbooks for {{this.courseDataJSON.Subject}} {{this.courseDataJSON.CatalogNum}}.{{this.courseDataJSON.SectionNum}}</em></p>
+                  <b-button class="course-details-link-button" v-bind:href="'https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&amp;FVGRP=UMI&amp;TERMCOURSES=' + this.courseDataJSON.TermCode + '|CENTRAL|' + this.courseDataJSON.Subject + ' ' + this.courseDataJSON.CatalogNum + ' ' + this.courseDataJSON.SectionNum" target="_blank">View/Buy Textbooks</b-button>
                 </b-card-text>
               </b-tab>
 
               <b-tab title="Syllabi" class="small">
                 <b-card-text>
                   <p>Syllabi are available to current LSA students. <strong>IMPORTANT:</strong> These syllabi are provided to give students a general idea about the courses, as offered by LSA departments and programs in <strong>prior academic terms.</strong> The syllabi <strong>do not</strong> necessarily reflect the assignments, sequence of course materials, and/or course expectations that the faculty and departments/programs have for these same courses in the current and/or future terms.</p>
-                  <p><em>Click the button below to view historical syllabi for {{this.courseResultsJSON.Subject}} {{this.courseResultsJSON.CatalogNum}} (UM login required)</em></p>
-                  <b-button class="course-details-link-button" v-bind:href="'https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=' + this.courseResultsJSON.Subject + '&amp;CatNbr=' + this.courseResultsJSON.CatalogNum" target="_blank">View Historical Syllabi</b-button>
+                  <p><em>Click the button below to view historical syllabi for {{this.courseDataJSON.Subject}} {{this.courseDataJSON.CatalogNum}} (UM login required)</em></p>
+                  <b-button class="course-details-link-button" v-bind:href="'https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=' + this.courseDataJSON.Subject + '&amp;CatNbr=' + this.courseDataJSON.CatalogNum" target="_blank">View Historical Syllabi</b-button>
                 </b-card-text>
               </b-tab>
 
               <b-tab title="CourseProfile (Atlas)" class="small">
                 <b-card-text>
                   <p>The Atlas system, developed by the Center for Academic Innovation, provides additional information about: course enrollments; academic terms and instructors; student academic profiles (school/college, majors), and previous, concurrent, and subsequent course enrollments.</p>
-                  <b-button class="course-details-link-button" v-bind:href="'https://atlas.ai.umich.edu/course/' + this.courseResultsJSON.Subject + ' ' + this.courseResultsJSON.CatalogNum" target="_blank">CourseProfile (Atlas)</b-button>
+                  <b-button class="course-details-link-button" v-bind:href="'https://atlas.ai.umich.edu/course/' + this.courseDataJSON.Subject + ' ' + this.courseDataJSON.CatalogNum" target="_blank">CourseProfile (Atlas)</b-button>
                 </b-card-text>
               </b-tab>
             </b-tabs>
@@ -399,15 +399,14 @@
         meetingDaysValue: null,
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
 
-        courseResultsJSON: [],
         searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
         searchResultsArray: [],
+
+        courseDataJSON: [],
 
         scheduleJSON: [],
         scheduleTableFields: [],
         scheduleArray: [],
-        errorRetrievingScheduleJSON: false,
-
 
       }
     },
@@ -418,6 +417,8 @@
     },
 
     methods: {
+
+      /* Clears the form if user clicks the clear button */
       clearFunction() {
         const confirmResponse = confirm("Do you want to clear your search criteria?")
 
@@ -440,10 +441,12 @@
         }
       },
 
-
+      /* Searches for classes meeting the search criteria entered by user when they click the search button
+      ** Calls constructQueryUrl() to make the correct api request url, and sends it to backend to circumvent CORS     
+      ** Once JSON course results data is returned, formats it into an array so that bootstrap-vue can turn it into a neat table */
       searchFunction(event) {
         event.preventDefault();
-        this.courseResultsJSON = [];
+        this.courseDataJSON = [];
         this.searchResultsArray = [];
         let currentObject = this;
 
@@ -483,12 +486,13 @@
           }
         })
         .catch(function (error) {
-          alert("There were no classes that met your search criteria.");
+          alert("There were no classes that met your search criteria :(");
         });
       },
 
 
-
+      /* makes a query url based on the search criteria seleted by the user
+      ** also sanatizes input from the text boxes to a degree in order to prevent injection */
       constructQueryUrl(pageNumberIn) {
         // url is constructed in the order presented in the docs: http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/help
 
@@ -620,19 +624,22 @@
       },
 
 
+      /* VERY IMPORTANT - DO NOT DELETE 
+      ** allows the course details box on the right to show data for a specific class 
+      ** when that class is clicked on in the table on the left */
       showCourseData(item) {
-        this.courseResultsJSON = item;
+        this.courseDataJSON = item;
       },
 
-
+      
+      /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
       getScheduleData() {
-        const termCodeIn = this.courseResultsJSON.TermCode;
-        const subjectIn = this.courseResultsJSON.Subject;
-        const catalogNumIn = this.courseResultsJSON.CatalogNum;
+        const termCodeIn = this.courseDataJSON.TermCode;
+        const subjectIn = this.courseDataJSON.Subject;
+        const catalogNumIn = this.courseDataJSON.CatalogNum;
 
         this.scheduleJSON = [];
         this.scheduleArray = [];
-        this.errorRetrievingScheduleJSON = false;
         let currentObject = this;
 
 
@@ -643,7 +650,7 @@
           currentObject.scheduleJSON = response.data;
         })
         .catch(function (error) {
-          currentObject.scheduleJSON = error;
+          alert(`There was an error retrieving the schedule information for ${subjectIn} ${catalogNumIn} :(`);
         });
 
       }
@@ -661,43 +668,50 @@
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style>
+:root {
+  --umichBlue: #00274c;
+  --umichYellow: #ffcb05;
+  --darkRed: #cc5454;
+  --grayBgColor: #eee;
+  --umichBlueHover: #32526f;
+}
+
 /*
 #00274c is Umich Blue
 #ffcb05 is Umich Maize/Yellow
 */
-
 /* changed default vue green to the umich blue on both menu options and tags */
 .multiselect__spinner:before,
 .multiselect__spinner:after {
-  border-color: #00274c transparent transparent;
+  border-color: var(--umichBlue) transparent transparent;
 }
 .multiselect__tag,
 .multiselect__option--highlight,
 .multiselect__option--highlight:after {
-  background: #00274c;
+  background: var(--umichBlue);
 }
 
 /* the 'x' used to delete tags */
 .multiselect__tag-icon:after {
-  color: #ffcb05;
+  color: var(--umichYellow);
 }
 .multiselect__tag-icon:focus,
 .multiselect__tag-icon:hover {
-  background: #32526f;
+  background: var(--umichBlueHover);
 }
 .multiselect__tag-icon:focus:after,
 .multiselect__tag-icon:hover:after {
-  color: #ffcb05;
+  color: var(--umichYellow);
 }
 
 /* red color when hovering over a tag in case user wants to unselect an option */
 .multiselect__option--selected.multiselect__option--highlight {
-  background: #cc5454;
-  color: #fff;
+  background: var(--darkRed);
+  color: white;
 }
 .multiselect__option--selected.multiselect__option--highlight:after {
-  background: #cc5454;
-  color: #fff;
+  background: var(--darkRed);
+  color: white;
 }
 
 /* font size of dropdown */
@@ -709,28 +723,28 @@
 
 
 body {
-  background-color: #00274c;
+  background-color: var(--umichBlue);
 }
 
 
 #searchButton {
-  background-color: #00274c;
-  border-color: #00274c;
+  background-color: var(--umichBlue);
+  border-color: var(--umichBlue);
 }
 #clearButton {
-  background-color: #cc5454;
-  border-color: #cc5454;
+  background-color: var(--darkRed);
+  border-color: var(--darkRed);
 }
 
 
 
 #search-criteria-form-card {
-  background-color: #eee;
+  background-color: var(--grayBgColor);
   border-radius: 0px;
 }
 
 #search-results-table {
-  background-color: #eee;
+  background-color: var(--grayBgColor);
   font-size: 12px;
   overflow-x: hidden;
   overflow-y: scroll; 
@@ -742,7 +756,7 @@ body {
 
 #course-details-card {
   border-radius: 0px;
-  background-color: #eee;
+  background-color: var(--grayBgColor);
   overflow-x: hidden;
   overflow-y: scroll; 
   
@@ -757,17 +771,17 @@ body {
 
 /* Color of the tabs in the Course Details section */
 .nav-pills > li > a.active {
-  background-color: #00274c !important;
+  background-color: var(--umichBlue) !important;
   color: #fff !important;
 }
 
 .nav-pills > li > a {
-  color: #00274c !important;
+  color: var(--umichBlue) !important;
 }
 
 
 #selected-course-title {
-  color: #ffcb05;
+  color: var(--umichYellow);
   font-weight: bold;
 }
 
