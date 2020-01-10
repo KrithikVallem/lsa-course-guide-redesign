@@ -531,14 +531,18 @@
 
 
         if (this.keywordValue !== "") {
-          let keyword = (this.keywordValue).trim().replace(" ", "+");
+          // regexes replace '<' and '>' to prevent html/script injection to a degree
+
+          let keyword = (this.keywordValue).trim().replace(" ", "+").replace(/</g, "&lt;").replace(/>/g, "&gt;");
           queryUrl += `keyword=${keyword}&`;
         }
      
         if (this.instructorValue !== "") {
+          // regexes replace '<' and '>' to prevent html/script injection to a degree
+
           // replacing the spaces with '+' doesn't make the search work, but keeps the url valid
           // I should replace the instructor text box with a multisearch once I get a list of all faculty
-          let instrname = (this.instructorValue).trim().replace(" ", "+");
+          let instrname = (this.instructorValue).trim().replace(" ", "+").replace(/</g, "&lt;").replace(/>/g, "&gt;");
           queryUrl += `instructor=${instrname}&`;
         }
 
@@ -602,8 +606,11 @@
           // user entered class number - eg CHEM 120
           // regex searches for a number in input string
           if (/\d/g.test(this.courseValue)) {
-            // regex removes whitespace, the slice gets the last three characters which should be the class number
-            const tempStr = (this.courseValue).trim().replace(/\s/g, '');
+            // first regex removes whitespace,
+            // second and third regexes replace '<' and '>' to prevent html/script injection to a degree
+            // the slice gets the last three characters which should be the class number
+            // substring gets everything else, which should be the subject
+            const tempStr = (this.courseValue).trim().replace(/\s/g, '').replace(/</g, "&lt;").replace(/>/g, "&gt;");
             
             const CATALOGNBR = tempStr.slice(tempStr.length - 3);
             const SUBJECT = tempStr.substring(0, tempStr.length - 3);
@@ -613,8 +620,9 @@
           
           // user did not enter class number - eg CHEM
           else {
-            // to make an invalid input with spaces into a valid (though useless) query with no spaces
-            const SUBJECT = (this.courseValue).trim().replace(/\s/g, '');
+            // first regex removes whitespace,
+            // second and third regexes replace '<' and '>' to prevent html/script injection to a degree
+            const SUBJECT = (this.courseValue).trim().replace(/\s/g, '').replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
             queryUrl += `subject=${SUBJECT}&`;
           }

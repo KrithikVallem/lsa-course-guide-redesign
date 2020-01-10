@@ -3550,14 +3550,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.keywordValue !== "") {
-        var keyword = this.keywordValue.trim().replace(" ", "+");
+        // regexes replace '<' and '>' to prevent html/script injection to a degree
+        var keyword = this.keywordValue.trim().replace(" ", "+").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         queryUrl += "keyword=".concat(keyword, "&");
       }
 
       if (this.instructorValue !== "") {
+        // regexes replace '<' and '>' to prevent html/script injection to a degree
         // replacing the spaces with '+' doesn't make the search work, but keeps the url valid
         // I should replace the instructor text box with a multisearch once I get a list of all faculty
-        var instrname = this.instructorValue.trim().replace(" ", "+");
+        var instrname = this.instructorValue.trim().replace(" ", "+").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         queryUrl += "instructor=".concat(instrname, "&");
       } // Credit Hours
 
@@ -3781,15 +3783,19 @@ __webpack_require__.r(__webpack_exports__);
         // user entered class number - eg CHEM 120
         // regex searches for a number in input string
         if (/\d/g.test(this.courseValue)) {
-          // regex removes whitespace, the slice gets the last three characters which should be the class number
-          var tempStr = this.courseValue.trim().replace(/\s/g, '');
+          // first regex removes whitespace,
+          // second and third regexes replace '<' and '>' to prevent html/script injection to a degree
+          // the slice gets the last three characters which should be the class number
+          // substring gets everything else, which should be the subject
+          var tempStr = this.courseValue.trim().replace(/\s/g, '').replace(/</g, "&lt;").replace(/>/g, "&gt;");
           var CATALOGNBR = tempStr.slice(tempStr.length - 3);
           var SUBJECT = tempStr.substring(0, tempStr.length - 3);
           queryUrl += "subject=".concat(SUBJECT, "&catalog=").concat(CATALOGNBR, "&");
         } // user did not enter class number - eg CHEM
         else {
-            // to make an invalid input with spaces into a valid (though useless) query with no spaces
-            var _SUBJECT = this.courseValue.trim().replace(/\s/g, '');
+            // first regex removes whitespace,
+            // second and third regexes replace '<' and '>' to prevent html/script injection to a degree
+            var _SUBJECT = this.courseValue.trim().replace(/\s/g, '').replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
             queryUrl += "subject=".concat(_SUBJECT, "&");
           }
