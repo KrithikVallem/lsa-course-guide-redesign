@@ -635,19 +635,17 @@
         this.errorRetrievingScheduleJSON = false;
         let currentObject = this;
 
-/*
+
         axios.post('/scheduleFunction', {
           scheduleUrl: `http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=${termCodeIn}&school=lsa&subject=${subjectIn}&catalog_num=${catalogNumIn}`
         })
         .then(function (response) {
           currentObject.scheduleJSON = response.data;
-          console.log(response.data);
         })
         .catch(function (error) {
           currentObject.scheduleJSON = error;
-        }); */
+        });
 
-        this.scheduleJSON = (`http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=${termCodeIn}&school=lsa&subject=${subjectIn}&catalog_num=${catalogNumIn}`);
       }
 
 
