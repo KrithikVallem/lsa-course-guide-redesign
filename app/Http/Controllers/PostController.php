@@ -23,6 +23,4 @@ class PostController extends Controller
         // then use a return statement to return and simultaneously convert the array back to json
         return response()->json($searchResultsArray);
     }
-    // add an onPageLoad function here also, in case user enters specific url
-    // for this function, just use the posted information directly, no need to make the xml api string
 }
