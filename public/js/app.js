@@ -3810,6 +3810,21 @@ __webpack_require__.r(__webpack_exports__);
     ** when that class is clicked on in the table on the left */
     getCourseData: function getCourseData(item) {
       this.courseDataJSON = item;
+      this.scheduleJSON = []; // clears out the schedule info from the course previously selected by the user
+
+      var termCodeIn = item.TermCode;
+      var subjectIn = item.Subject;
+      var catalogNumIn = item.CatalogNum;
+      this.scheduleJSON = [];
+      this.scheduleArray = [];
+      var currentObject = this;
+      axios.post('/scheduleFunction', {
+        scheduleUrl: "http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=".concat(termCodeIn, "&school=lsa&subject=").concat(subjectIn, "&catalog_num=").concat(catalogNumIn)
+      }).then(function (response) {
+        currentObject.scheduleJSON = response.data;
+      })["catch"](function (error) {
+        alert("There was an error retrieving the schedule information for ".concat(subjectIn, " ").concat(catalogNumIn, " :("));
+      });
     },
 
     /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */

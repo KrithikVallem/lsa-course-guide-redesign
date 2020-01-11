@@ -290,7 +290,7 @@
 
            id="search-results-table" 
            @row-clicked="getCourseData"
-           
+
            >
           
           </b-table>
@@ -640,6 +640,28 @@
       ** when that class is clicked on in the table on the left */
       getCourseData(item) {
         this.courseDataJSON = item;
+        this.scheduleJSON = []; // clears out the schedule info from the course previously selected by the user
+      
+
+      
+        const termCodeIn = item.TermCode;
+        const subjectIn = item.Subject;
+        const catalogNumIn = item.CatalogNum;
+
+        this.scheduleJSON = [];
+        this.scheduleArray = [];
+        let currentObject = this;
+
+
+        axios.post('/scheduleFunction', {
+          scheduleUrl: `http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=${termCodeIn}&school=lsa&subject=${subjectIn}&catalog_num=${catalogNumIn}`
+        })
+        .then(function (response) {
+          currentObject.scheduleJSON = response.data;
+        })
+        .catch(function (error) {
+          alert(`There was an error retrieving the schedule information for ${subjectIn} ${catalogNumIn} :(`);
+        });
       },
 
       
