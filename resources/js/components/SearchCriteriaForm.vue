@@ -314,9 +314,22 @@
                 </b-card-text>
               </b-tab>
               
-              <b-tab title="Schedule">
+              <b-tab title="Schedule" class="small">
                 <b-card-text>
-                  {{this.scheduleJSON}}
+                  <b-table
+                    striped 
+                    stacked 
+                    borderless
+                    bordered  
+                    small
+
+                    :items="scheduleArray" 
+                    :fields="scheduleTableFields"
+
+                    id="schedule-table" 
+                    >  
+
+                  </b-table>
                 </b-card-text>
               </b-tab>
               
@@ -401,7 +414,7 @@
         courseDataJSON: [],
 
         scheduleJSON: [],
-        scheduleTableFields: [],
+        scheduleTableFields: ["Section", "Enroll Stat", "Open Seats", "Meeting Day/Time"],
         scheduleArray: [],
 
       }
@@ -452,6 +465,8 @@
           // clears the previous data if a new search is successful
           currentObject.courseDataJSON = [];
           currentObject.searchResultsArray = [];
+          currentObject.scheduleJSON = [];
+          currentObject.scheduleArray = [];
 
           // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
           
@@ -499,7 +514,7 @@
           }
         })
         .catch(function (error) {
-          alert("There were no classes that met your search criteria :(");
+          alert("There were no classes that met your search criteria :("); // theres a bug that makes this error set off when you only select 1 subject or 1 special offering
         });
       },
 
@@ -664,6 +679,22 @@
           currentObject.scheduleArray = [];
 
           currentObject.scheduleJSON = response.data;
+          
+          let keyNum = 0; // provides a unique id for each table row so vue can render it properly
+
+          for (let section of response.data) {
+            let tempObject = {
+              "Section": `${section.SectionNumber} (${section.SectionType})`,
+              "Enroll Stat": section.EnrollmentStatus,
+              "Open Seats": section.AvailableSeats,
+              "Meeting Day/Time": [],
+              "keyNum": keyNum.toString()
+            };
+
+            keyNum += 1;
+
+            (currentObject.scheduleArray).push(tempObject);
+          }
         })
         .catch(function (error) {
           alert(`There was an error retrieving the schedule information for ${subjectIn} ${catalogNumIn} :(`);

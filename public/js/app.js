@@ -2193,6 +2193,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3378,7 +3391,7 @@ __webpack_require__.r(__webpack_exports__);
       searchResultsArray: [],
       courseDataJSON: [],
       scheduleJSON: [],
-      scheduleTableFields: [],
+      scheduleTableFields: ["Section", "Enroll Stat", "Open Seats", "Meeting Day/Time"],
       scheduleArray: []
     };
   },
@@ -3421,7 +3434,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         // clears the previous data if a new search is successful
         currentObject.courseDataJSON = [];
-        currentObject.searchResultsArray = []; // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
+        currentObject.searchResultsArray = [];
+        currentObject.scheduleJSON = [];
+        currentObject.scheduleArray = []; // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
 
         var keyNum = 0; // provides a unique id for each table row so vue can render it properly
 
@@ -3503,7 +3518,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       })["catch"](function (error) {
-        alert("There were no classes that met your search criteria :(");
+        alert("There were no classes that met your search criteria :("); // theres a bug that makes this error set off when you only select 1 subject or 1 special offering
       });
     },
 
@@ -3807,6 +3822,39 @@ __webpack_require__.r(__webpack_exports__);
         currentObject.scheduleJSON = [];
         currentObject.scheduleArray = [];
         currentObject.scheduleJSON = response.data;
+        var keyNum = 0; // provides a unique id for each table row so vue can render it properly
+
+        var _iteratorNormalCompletion11 = true;
+        var _didIteratorError11 = false;
+        var _iteratorError11 = undefined;
+
+        try {
+          for (var _iterator11 = response.data[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+            var section = _step11.value;
+            var tempObject = {
+              "Section": "".concat(section.SectionNumber, " (").concat(section.SectionType, ")"),
+              "Enroll Stat": section.EnrollmentStatus,
+              "Open Seats": section.AvailableSeats,
+              "Meeting Day/Time": [],
+              "keyNum": keyNum.toString()
+            };
+            keyNum += 1;
+            currentObject.scheduleArray.push(tempObject);
+          }
+        } catch (err) {
+          _didIteratorError11 = true;
+          _iteratorError11 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion11 && _iterator11["return"] != null) {
+              _iterator11["return"]();
+            }
+          } finally {
+            if (_didIteratorError11) {
+              throw _iteratorError11;
+            }
+          }
+        }
       })["catch"](function (error) {
         alert("There was an error retrieving the schedule information for ".concat(subjectIn, " ").concat(catalogNumIn, " :("));
       });
@@ -54808,15 +54856,26 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-tab",
-                        { attrs: { title: "Schedule" } },
+                        { staticClass: "small", attrs: { title: "Schedule" } },
                         [
-                          _c("b-card-text", [
-                            _vm._v(
-                              "\n              " +
-                                _vm._s(this.scheduleJSON) +
-                                "\n            "
-                            )
-                          ])
+                          _c(
+                            "b-card-text",
+                            [
+                              _c("b-table", {
+                                attrs: {
+                                  striped: "",
+                                  stacked: "",
+                                  borderless: "",
+                                  bordered: "",
+                                  small: "",
+                                  items: _vm.scheduleArray,
+                                  fields: _vm.scheduleTableFields,
+                                  id: "schedule-table"
+                                }
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       ),
