@@ -469,18 +469,32 @@
               "Credits": course.Credit,
               "Reqs": course.ReqMet,
               "Other": course.OtherGroupings,
-              "Instructor": [],
+              "Instructor": "",
               "ClassDescr": course.ClassDescr,
               "keyNum": keyNum.toString()
             };
 
-
             keyNum += 1;
-/* will fix this later
-            for (let instr of course.Instructors.CGInstructor) {
-              (tempObject.Instructor).push(instr.Name);
+
+            // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors
+            // So, I have to first check if its an array or not and then get the name value(s) accordingly
+            if (Array.isArray(course.Instructors.CGInstructor)) {
+              for (let instr of course.Instructors.CGInstructor) {
+                // if first instructor in array, then don't add the & before their name
+                if (tempObject.Instructor === "") {
+                  tempObject.Instructor = instr.Name;
+                }
+                // for non-first instructors in array, add a " & " before their names
+                else {
+                  tempObject.Instructor += ` & ${instr.Name}`;
+                }
+              }
             }
-*/
+            else {
+              tempObject.Instructor = course.Instructors.CGInstructor.Name;
+            }
+            
+
             (currentObject.searchResultsArray).push(tempObject);
           }
         })
