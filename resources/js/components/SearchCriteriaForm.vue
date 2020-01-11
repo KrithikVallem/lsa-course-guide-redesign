@@ -289,7 +289,7 @@
            :fields="searchResultsTableFields"
 
            id="search-results-table" 
-           @row-clicked="showCourseData"
+           @row-clicked="getCourseData"
            
            >
           
@@ -446,14 +446,17 @@
       ** Once JSON course results data is returned, formats it into an array so that bootstrap-vue can turn it into a neat table */
       searchFunction(event) {
         event.preventDefault();
-        this.courseDataJSON = [];
-        this.searchResultsArray = [];
         let currentObject = this;
 
         axios.post('/searchFunction', {
           queryUrl: this.constructQueryUrl(1)
         })
         .then(function (response) {
+          
+          // clears the previous data if a new search is successful
+          currentObject.courseDataJSON = [];
+          currentObject.searchResultsArray = [];
+
           // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
           
           let keyNum = 0; // provides a unique id for each table row so vue can render it properly
@@ -635,7 +638,7 @@
       /* VERY IMPORTANT - DO NOT DELETE 
       ** allows the course details box on the right to show data for a specific class 
       ** when that class is clicked on in the table on the left */
-      showCourseData(item) {
+      getCourseData(item) {
         this.courseDataJSON = item;
       },
 
