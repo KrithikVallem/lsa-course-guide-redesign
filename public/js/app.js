@@ -2193,8 +2193,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3726,55 +3724,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.startTimeValue !== null) {
-        var _iteratorNormalCompletion10 = true;
-        var _didIteratorError10 = false;
-        var _iteratorError10 = undefined;
-
-        try {
-          for (var _iterator10 = this.startTimeValue[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-            var _item8 = _step10.value;
-            queryUrl += "mp_starttime=".concat(_item8.value, "&");
-          }
-        } catch (err) {
-          _didIteratorError10 = true;
-          _iteratorError10 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion10 && _iterator10["return"] != null) {
-              _iterator10["return"]();
-            }
-          } finally {
-            if (_didIteratorError10) {
-              throw _iteratorError10;
-            }
-          }
-        }
+        queryUrl += "mp_starttime=".concat(this.startTimeValue.value, "&");
       }
 
       if (this.endTimeValue !== null) {
-        var _iteratorNormalCompletion11 = true;
-        var _didIteratorError11 = false;
-        var _iteratorError11 = undefined;
-
-        try {
-          for (var _iterator11 = this.endTimeValue[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-            var _item9 = _step11.value;
-            queryUrl += "mp_endtime=".concat(_item9.value, "&");
-          }
-        } catch (err) {
-          _didIteratorError11 = true;
-          _iteratorError11 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion11 && _iterator11["return"] != null) {
-              _iterator11["return"]();
-            }
-          } finally {
-            if (_didIteratorError11) {
-              throw _iteratorError11;
-            }
-          }
-        }
+        queryUrl += "mp_endtime=".concat(this.endTimeValue.value, "&");
       } // Course Text Input - eg CHEM or CHEM 120
 
 
@@ -54581,11 +54535,10 @@ var render = function() {
                                   id: "start-time-input",
                                   placeholder: "Start Time: (all)",
                                   options: _vm.startTimeOptions,
-                                  multiple: true,
+                                  multiple: false,
                                   searchable: false,
                                   "close-on-select": true,
                                   "show-labels": false,
-                                  max: 1,
                                   "track-by": "option",
                                   label: "option",
                                   "open-direction": "bottom"
@@ -54624,11 +54577,10 @@ var render = function() {
                                   id: "end-time-input",
                                   placeholder: "End Time: (all)",
                                   options: _vm.endTimeOptions,
-                                  multiple: true,
+                                  multiple: false,
                                   searchable: false,
                                   "close-on-select": true,
                                   "show-labels": false,
-                                  max: 1,
                                   "track-by": "option",
                                   label: "option",
                                   "open-direction": "bottom"

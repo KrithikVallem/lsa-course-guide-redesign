@@ -212,11 +212,10 @@
                         placeholder="Start Time: (all)"
                         v-model="startTimeValue"
                         :options="startTimeOptions"
-                        :multiple="true"
+                        :multiple="false"
                         :searchable="false"
                         :close-on-select="true"
                         :show-labels="false"
-                        :max="1"
                         track-by="option"
                         label="option"
                         open-direction="bottom"
@@ -232,11 +231,10 @@
                         placeholder="End Time: (all)"
                         v-model="endTimeValue"
                         :options="endTimeOptions"
-                        :multiple="true"
+                        :multiple="false"
                         :searchable="false"
                         :close-on-select="true"
                         :show-labels="false"
-                        :max="1"
                         track-by="option"
                         label="option"
                         open-direction="bottom"
@@ -591,15 +589,11 @@
 
         // Meeting Start & End Times
         if (this.startTimeValue !== null) {
-          for (let item of this.startTimeValue) {
-            queryUrl += `mp_starttime=${item.value}&`;
-          }
+          queryUrl += `mp_starttime=${(this.startTimeValue).value}&`;
         }
         
         if (this.endTimeValue !== null) {
-          for (let item of this.endTimeValue) {
-            queryUrl += `mp_endtime=${item.value}&`;
-          }
+          queryUrl += `mp_endtime=${(this.endTimeValue).value}&`;
         }
 
         // Course Text Input - eg CHEM or CHEM 120
