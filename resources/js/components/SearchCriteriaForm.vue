@@ -470,8 +470,6 @@
 
           // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
           
-          let keyNum = 0; // provides a unique id for each table row so vue can render it properly
-
           for (let course of (response.data).Classes.CGClassAbbr) {
             let tempObject = {
               "Title": `${course.Subject} ${course.CatalogNbr} - ${course.Title}`,
@@ -486,10 +484,7 @@
               "Other": course.OtherGroupings,
               "Instructor": "",
               "ClassDescr": course.ClassDescr,
-              "keyNum": keyNum.toString()
             };
-
-            keyNum += 1;
 
             // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors
             // So, I have to first check if its an array or not and then get the name value(s) accordingly
@@ -680,18 +675,13 @@
 
           currentObject.scheduleJSON = response.data;
           
-          let keyNum = 0; // provides a unique id for each table row so vue can render it properly
-
           for (let section of response.data) {
             let tempObject = {
               "Section": `${section.SectionNumber} (${section.SectionType})`,
               "Enroll Stat": section.EnrollmentStatus,
               "Open Seats": section.AvailableSeats,
               "Meeting Day/Time": "",
-              "keyNum": keyNum.toString()
             };
-
-            keyNum += 1;
 
             for (let meeting of section.Meetings) {
               // if first meeting in array, then don't add a comma before it

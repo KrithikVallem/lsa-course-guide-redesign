@@ -3438,8 +3438,6 @@ __webpack_require__.r(__webpack_exports__);
         currentObject.scheduleJSON = [];
         currentObject.scheduleArray = []; // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
 
-        var keyNum = 0; // provides a unique id for each table row so vue can render it properly
-
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
         var _iteratorError = undefined;
@@ -3460,10 +3458,8 @@ __webpack_require__.r(__webpack_exports__);
               "Reqs": course.ReqMet,
               "Other": course.OtherGroupings,
               "Instructor": "",
-              "ClassDescr": course.ClassDescr,
-              "keyNum": keyNum.toString()
-            };
-            keyNum += 1; // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors
+              "ClassDescr": course.ClassDescr
+            }; // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors
             // So, I have to first check if its an array or not and then get the name value(s) accordingly
 
             if (Array.isArray(course.Instructors.CGInstructor)) {
@@ -3822,8 +3818,6 @@ __webpack_require__.r(__webpack_exports__);
         currentObject.scheduleJSON = [];
         currentObject.scheduleArray = [];
         currentObject.scheduleJSON = response.data;
-        var keyNum = 0; // provides a unique id for each table row so vue can render it properly
-
         var _iteratorNormalCompletion11 = true;
         var _didIteratorError11 = false;
         var _iteratorError11 = undefined;
@@ -3835,10 +3829,8 @@ __webpack_require__.r(__webpack_exports__);
               "Section": "".concat(section.SectionNumber, " (").concat(section.SectionType, ")"),
               "Enroll Stat": section.EnrollmentStatus,
               "Open Seats": section.AvailableSeats,
-              "Meeting Day/Time": "",
-              "keyNum": keyNum.toString()
+              "Meeting Day/Time": ""
             };
-            keyNum += 1;
             var _iteratorNormalCompletion12 = true;
             var _didIteratorError12 = false;
             var _iteratorError12 = undefined;
