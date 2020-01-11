@@ -318,8 +318,6 @@
               
               <b-tab title="Schedule">
                 <b-card-text>
-                  <b-button @click="getScheduleData()">Get Schedule Data</b-button>
-                  <br/>
                   {{this.scheduleJSON}}
                 </b-card-text>
               </b-tab>
@@ -635,62 +633,34 @@
       },
 
 
-      /* VERY IMPORTANT - DO NOT DELETE 
-      ** allows the course details box on the right to show data for a specific class 
+      /* Allows the course details box on the right to show data for a specific class 
       ** when that class is clicked on in the table on the left */
       getCourseData(item) {
-        this.courseDataJSON = item;
-        this.scheduleJSON = []; // clears out the schedule info from the course previously selected by the user
-      
+        this.courseDataJSON = item; // this takes care of everything except the schedule data
+        
 
-      
+        // Everything below is related to calling the schedule api and getting data from it
         const termCodeIn = item.TermCode;
         const subjectIn = item.Subject;
         const catalogNumIn = item.CatalogNum;
 
-        this.scheduleJSON = [];
-        this.scheduleArray = [];
         let currentObject = this;
 
-
+        /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
         axios.post('/scheduleFunction', {
           scheduleUrl: `http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=${termCodeIn}&school=lsa&subject=${subjectIn}&catalog_num=${catalogNumIn}`
         })
         .then(function (response) {
+          //clear the previous course's schedule data
+          currentObject.scheduleJSON = [];
+          currentObject.scheduleArray = [];
+
           currentObject.scheduleJSON = response.data;
         })
         .catch(function (error) {
           alert(`There was an error retrieving the schedule information for ${subjectIn} ${catalogNumIn} :(`);
         });
       },
-
-      
-      /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
-      getScheduleData() {
-        const termCodeIn = this.courseDataJSON.TermCode;
-        const subjectIn = this.courseDataJSON.Subject;
-        const catalogNumIn = this.courseDataJSON.CatalogNum;
-
-        this.scheduleJSON = [];
-        this.scheduleArray = [];
-        let currentObject = this;
-
-
-        axios.post('/scheduleFunction', {
-          scheduleUrl: `http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=${termCodeIn}&school=lsa&subject=${subjectIn}&catalog_num=${catalogNumIn}`
-        })
-        .then(function (response) {
-          currentObject.scheduleJSON = response.data;
-        })
-        .catch(function (error) {
-          alert(`There was an error retrieving the schedule information for ${subjectIn} ${catalogNumIn} :(`);
-        });
-
-      }
-
-
-
-
 
     }
   }

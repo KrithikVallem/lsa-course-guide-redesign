@@ -2195,8 +2195,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3805,39 +3803,24 @@ __webpack_require__.r(__webpack_exports__);
       return queryUrl;
     },
 
-    /* VERY IMPORTANT - DO NOT DELETE 
-    ** allows the course details box on the right to show data for a specific class 
+    /* Allows the course details box on the right to show data for a specific class 
     ** when that class is clicked on in the table on the left */
     getCourseData: function getCourseData(item) {
-      this.courseDataJSON = item;
-      this.scheduleJSON = []; // clears out the schedule info from the course previously selected by the user
+      this.courseDataJSON = item; // this takes care of everything except the schedule data
+      // Everything below is related to calling the schedule api and getting data from it
 
       var termCodeIn = item.TermCode;
       var subjectIn = item.Subject;
       var catalogNumIn = item.CatalogNum;
-      this.scheduleJSON = [];
-      this.scheduleArray = [];
       var currentObject = this;
-      axios.post('/scheduleFunction', {
-        scheduleUrl: "http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=".concat(termCodeIn, "&school=lsa&subject=").concat(subjectIn, "&catalog_num=").concat(catalogNumIn)
-      }).then(function (response) {
-        currentObject.scheduleJSON = response.data;
-      })["catch"](function (error) {
-        alert("There was an error retrieving the schedule information for ".concat(subjectIn, " ").concat(catalogNumIn, " :("));
-      });
-    },
+      /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
 
-    /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
-    getScheduleData: function getScheduleData() {
-      var termCodeIn = this.courseDataJSON.TermCode;
-      var subjectIn = this.courseDataJSON.Subject;
-      var catalogNumIn = this.courseDataJSON.CatalogNum;
-      this.scheduleJSON = [];
-      this.scheduleArray = [];
-      var currentObject = this;
       axios.post('/scheduleFunction', {
         scheduleUrl: "http://umich-schedule-api.herokuapp.com/v4/get_sections?term_code=".concat(termCodeIn, "&school=lsa&subject=").concat(subjectIn, "&catalog_num=").concat(catalogNumIn)
       }).then(function (response) {
+        //clear the previous course's schedule data
+        currentObject.scheduleJSON = [];
+        currentObject.scheduleArray = [];
         currentObject.scheduleJSON = response.data;
       })["catch"](function (error) {
         alert("There was an error retrieving the schedule information for ".concat(subjectIn, " ").concat(catalogNumIn, " :("));
@@ -54844,30 +54827,13 @@ var render = function() {
                         "b-tab",
                         { attrs: { title: "Schedule" } },
                         [
-                          _c(
-                            "b-card-text",
-                            [
-                              _c(
-                                "b-button",
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.getScheduleData()
-                                    }
-                                  }
-                                },
-                                [_vm._v("Get Schedule Data")]
-                              ),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(this.scheduleJSON) +
-                                  "\n            "
-                              )
-                            ],
-                            1
-                          )
+                          _c("b-card-text", [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(this.scheduleJSON) +
+                                "\n            "
+                            )
+                          ])
                         ],
                         1
                       ),
