@@ -3835,10 +3835,41 @@ __webpack_require__.r(__webpack_exports__);
               "Section": "".concat(section.SectionNumber, " (").concat(section.SectionType, ")"),
               "Enroll Stat": section.EnrollmentStatus,
               "Open Seats": section.AvailableSeats,
-              "Meeting Day/Time": [],
+              "Meeting Day/Time": "",
               "keyNum": keyNum.toString()
             };
             keyNum += 1;
+            var _iteratorNormalCompletion12 = true;
+            var _didIteratorError12 = false;
+            var _iteratorError12 = undefined;
+
+            try {
+              for (var _iterator12 = section.Meetings[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                var meeting = _step12.value;
+
+                // if first meeting in array, then don't add a comma before it
+                if (meeting.MeetingNumber === 1) {
+                  tempObject["Meeting Day/Time"] = "".concat(meeting.Days, " (").concat(meeting.Times, ")");
+                } // for non-first meetings, add comma before them
+                else {
+                    tempObject["Meeting Day/Time"] += ", ".concat(meeting.Days, " (").concat(meeting.Times, ")");
+                  }
+              }
+            } catch (err) {
+              _didIteratorError12 = true;
+              _iteratorError12 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion12 && _iterator12["return"] != null) {
+                  _iterator12["return"]();
+                }
+              } finally {
+                if (_didIteratorError12) {
+                  throw _iteratorError12;
+                }
+              }
+            }
+
             currentObject.scheduleArray.push(tempObject);
           }
         } catch (err) {
@@ -32532,7 +32563,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n:root {\n  --umichBlue: #00274c;\n  --umichYellow: #ffcb05;\n  --darkRed: #cc5454;\n  --grayBgColor: #eee;\n  --umichBlueHover: #32526f;\n}\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: var(--umichBlue) transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: var(--umichBlue);\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: var(--umichYellow);\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: var(--umichBlueHover);\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: var(--umichYellow);\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: var(--darkRed);\n  color: white;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: var(--darkRed);\n  color: white;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: var(--umichBlue);\n}\n#searchButton {\n  background-color: var(--umichBlue);\n  border-color: var(--umichBlue);\n}\n#clearButton {\n  background-color: var(--darkRed);\n  border-color: var(--darkRed);\n}\n#search-criteria-form-card {\n  background-color: var(--grayBgColor);\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: var(--grayBgColor);\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: var(--grayBgColor);\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: var(--umichBlue) !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: var(--umichBlue) !important;\n}\n#selected-course-title {\n  color: var(--umichYellow);\n  font-weight: bold;\n}\n\n", ""]);
+exports.push([module.i, "\n:root {\n  --umichBlue: #00274c;\n  --umichYellow: #ffcb05;\n  --darkRed: #cc5454;\n  --grayBgColor: #eee;\n  --umichBlueHover: #32526f;\n}\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: var(--umichBlue) transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: var(--umichBlue);\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: var(--umichYellow);\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: var(--umichBlueHover);\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: var(--umichYellow);\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: var(--darkRed);\n  color: white;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: var(--darkRed);\n  color: white;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: var(--umichBlue);\n}\n#searchButton {\n  background-color: var(--umichBlue);\n  border-color: var(--umichBlue);\n}\n#clearButton {\n  background-color: var(--darkRed);\n  border-color: var(--darkRed);\n}\n#search-criteria-form-card {\n  background-color: var(--grayBgColor);\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: var(--grayBgColor);\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: var(--grayBgColor);\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: var(--umichBlue) !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: var(--umichBlue) !important;\n}\n#selected-course-title {\n  color: var(--umichYellow);\n}\n\n", ""]);
 
 // exports
 
@@ -54799,11 +54830,9 @@ var render = function() {
                   attrs: { id: "selected-course-title" }
                 },
                 [
-                  _vm._v(
-                    "\n        " +
-                      _vm._s(this.courseDataJSON.Title) +
-                      "\n      "
-                  )
+                  _c("strong", [_vm._v(_vm._s(this.courseDataJSON.Title))]),
+                  _c("br"),
+                  _vm._v(_vm._s(this.courseDataJSON.Section) + "\n      ")
                 ]
               ),
               _vm._v(" "),

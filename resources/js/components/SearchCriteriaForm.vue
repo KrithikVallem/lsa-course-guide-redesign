@@ -296,7 +296,7 @@
 
         <b-col id="course-details-col" class="col-8">
           <div id="selected-course-title" class="col text-center pb-2">
-            {{ this.courseDataJSON.Title }}
+            <strong>{{this.courseDataJSON.Title}}</strong><br/>{{this.courseDataJSON.Section}}
           </div>
 
           <b-card no-body id="course-details-card">
@@ -687,11 +687,22 @@
               "Section": `${section.SectionNumber} (${section.SectionType})`,
               "Enroll Stat": section.EnrollmentStatus,
               "Open Seats": section.AvailableSeats,
-              "Meeting Day/Time": [],
+              "Meeting Day/Time": "",
               "keyNum": keyNum.toString()
             };
 
             keyNum += 1;
+
+            for (let meeting of section.Meetings) {
+              // if first meeting in array, then don't add a comma before it
+              if (meeting.MeetingNumber === 1) {
+                tempObject["Meeting Day/Time"] = `${meeting.Days} (${meeting.Times})`;
+              }
+              // for non-first meetings, add comma before them
+              else {
+                tempObject["Meeting Day/Time"] += `, ${meeting.Days} (${meeting.Times})`;
+              }
+            }
 
             (currentObject.scheduleArray).push(tempObject);
           }
@@ -824,7 +835,6 @@ body {
 
 #selected-course-title {
   color: var(--umichYellow);
-  font-weight: bold;
 }
 
 </style>
