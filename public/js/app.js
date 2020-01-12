@@ -3881,6 +3881,12 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         alert("There was an error retrieving the schedule information for ".concat(subjectIn, " ").concat(catalogNumIn, " :("));
       });
+    },
+    enrollStatColor: function enrollStatColor(item, type) {
+      if (!item || type !== "row") return;
+      if (item["Enroll Stat"] === "Open") return 'table-success';
+      if (item["Enroll Stat"] === "Wait List") return 'table-warning';
+      if (item["Enroll Stat"] === "Closed") return 'table-danger';
     }
   }
 });
@@ -54886,11 +54892,11 @@ var render = function() {
                                 attrs: {
                                   striped: "",
                                   stacked: "",
-                                  borderless: "",
-                                  bordered: "",
                                   small: "",
+                                  hover: "",
                                   items: _vm.scheduleArray,
                                   fields: _vm.scheduleTableFields,
+                                  "tbody-tr-class": _vm.enrollStatColor,
                                   id: "schedule-table"
                                 }
                               })

@@ -318,16 +318,16 @@
                 <b-card-text>
                   <b-table
                     striped 
-                    stacked 
-                    borderless
-                    bordered  
+                    stacked   
                     small
+                    hover
 
                     :items="scheduleArray" 
                     :fields="scheduleTableFields"
+                    :tbody-tr-class="enrollStatColor"
 
                     id="schedule-table" 
-                    >  
+                  >
 
                   </b-table>
                 </b-card-text>
@@ -701,6 +701,14 @@
           alert(`There was an error retrieving the schedule information for ${subjectIn} ${catalogNumIn} :(`);
         });
       },
+
+
+      enrollStatColor(item, type) {
+        if (!item || type !== "row") return
+        if (item["Enroll Stat"] === "Open") return 'table-success'
+        if (item["Enroll Stat"] === "Wait List") return 'table-warning'
+        if (item["Enroll Stat"] === "Closed") return 'table-danger'
+      }
 
     }
   }
