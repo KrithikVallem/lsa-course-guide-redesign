@@ -2206,6 +2206,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3387,6 +3393,10 @@ __webpack_require__.r(__webpack_exports__);
         option: "Sunday",
         value: "Sun"
       }],
+      currentPageNum: 1,
+      rowsPerPage: 30,
+      // change to get less/more results per page in the table
+      totalPages: 1,
       searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
       searchResultsArray: [],
       courseDataJSON: [],
@@ -3426,17 +3436,21 @@ __webpack_require__.r(__webpack_exports__);
     /* Searches for classes meeting the search criteria entered by user when they click the search button
     ** Calls constructQueryUrl() to make the correct api request url, and sends it to backend to circumvent CORS     
     ** Once JSON course results data is returned, formats it into an array so that bootstrap-vue can turn it into a neat table */
-    searchFunction: function searchFunction() {
-      //event.preventDefault();
+    searchFunction: function searchFunction(pageNumberIn) {
       var currentObject = this;
+      this.currentPageNum = pageNumberIn;
       axios.post('/searchFunction', {
-        queryUrl: this.constructQueryUrl(1)
+        queryUrl: this.constructQueryUrl(pageNumberIn)
       }).then(function (response) {
         // clears the previous data if a new search is successful
         currentObject.courseDataJSON = [];
         currentObject.searchResultsArray = [];
         currentObject.scheduleJSON = [];
-        currentObject.scheduleArray = []; // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
+        currentObject.scheduleArray = []; // PageSummary is a string like "Page 1 of 8, Results 1 - 100 of 746"
+        // this code splits the string into an array of individual words and gets the last one (total number of classes in the search results)
+
+        var totalSearchResults = response.data.PageSummary.trim().split(" ").pop();
+        currentObject.totalPages = Math.ceil(totalSearchResults / currentObject.rowsPerPage); // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
 
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
@@ -3513,8 +3527,8 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      })["catch"](function (error) {
-        alert("There were no classes that met your search criteria :("); // theres a bug that makes this error set off when you only select 1 subject or 1 special offering
+      })["catch"](function (error) {//commenting out until I can identify the bug
+        //alert("There were no classes that met your search criteria :("); // theres a bug that makes this error set off when you only select 1 subject or 1 special offering
       });
     },
 
@@ -3524,7 +3538,7 @@ __webpack_require__.r(__webpack_exports__);
       // url is constructed in the order presented in the docs: http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/help
       var AUDIENCE = "public";
       var PAGENO = pageNumberIn.toString();
-      var ROWSPERPAGE = "30";
+      var ROWSPERPAGE = this.rowsPerPage;
       var queryUrl = "http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr"; // CLASSTYPE
 
       var CLASSTYPE = this.creditTypeValue.value;
@@ -54762,7 +54776,11 @@ var render = function() {
                           "b-button",
                           {
                             attrs: { type: "submit", id: "searchButton" },
-                            on: { click: _vm.searchFunction }
+                            on: {
+                              click: function($event) {
+                                return _vm.searchFunction(1)
+                              }
+                            }
                           },
                           [_vm._v("Search")]
                         ),
@@ -54812,7 +54830,49 @@ var render = function() {
                   id: "search-results-table"
                 },
                 on: { "row-clicked": _vm.getCourseData }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { attrs: { id: "page-buttons-container" } },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      attrs: { id: "nextPageButton" },
+                      on: {
+                        click: function($event) {
+                          return _vm.searchFunction(_vm.currentPageNum - 1)
+                        }
+                      }
+                    },
+                    [_vm._v("<")]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [
+                    _vm._v(
+                      "Page " +
+                        _vm._s(_vm.currentPageNum) +
+                        " of " +
+                        _vm._s(_vm.totalPages)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "b-button",
+                    {
+                      attrs: { id: "lastPageButton" },
+                      on: {
+                        click: function($event) {
+                          return _vm.searchFunction(_vm.currentPageNum + 1)
+                        }
+                      }
+                    },
+                    [_vm._v(">")]
+                  )
+                ],
+                1
+              )
             ],
             1
           ),

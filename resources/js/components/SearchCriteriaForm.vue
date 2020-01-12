@@ -266,7 +266,7 @@
                 <b-form-row>
                   <!-- class="col text-center" inside the div will center buttons if needed -->
                   <div id="form-buttons-container">
-                    <b-button type="submit" id="searchButton" @click="searchFunction">Search</b-button>
+                    <b-button type="submit" id="searchButton" @click="searchFunction(1)">Search</b-button>
                     <b-button type="reset" id="clearButton" @click="clearFunction">Clear</b-button>
                   </div>
                 </b-form-row>
@@ -292,6 +292,12 @@
            >
           
           </b-table>
+
+          <div id="page-buttons-container" class="col text-center">
+            <b-button id="nextPageButton" @click="searchFunction(currentPageNum - 1)">&lt;</b-button>
+            <span>Page {{currentPageNum}} of {{totalPages}}</span>
+            <b-button id="lastPageButton" @click="searchFunction(currentPageNum + 1)">&gt;</b-button>
+          </div>
         </b-col>
 
         <b-col id="course-details-col" class="col-8">
@@ -408,6 +414,10 @@
         meetingDaysValue: null,
         meetingDaysOptions: [{option: "Monday", value: "Mon"}, {option: "Tuesday", value: "Tues"}, {option: "Wednesday", value: "Wed"}, {option: "Thursday", value: "Thurs"}, {option: "Friday", value: "Fri"}, {option: "Saturday", value: "Sat"}, {option: "Sunday", value: "Sun"}],
 
+        currentPageNum: 1,
+        rowsPerPage: 30, // change to get less/more results per page in the table
+        totalPages: 1,
+
         searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
         searchResultsArray: [],
 
@@ -453,11 +463,12 @@
       /* Searches for classes meeting the search criteria entered by user when they click the search button
       ** Calls constructQueryUrl() to make the correct api request url, and sends it to backend to circumvent CORS     
       ** Once JSON course results data is returned, formats it into an array so that bootstrap-vue can turn it into a neat table */
-      searchFunction() {
+      searchFunction(pageNumberIn) {
         let currentObject = this;
+        this.currentPageNum = pageNumberIn;
 
         axios.post('/searchFunction', {
-          queryUrl: this.constructQueryUrl(1)
+          queryUrl: this.constructQueryUrl(pageNumberIn)
         })
         .then(function (response) {
           
@@ -467,8 +478,14 @@
           currentObject.scheduleJSON = [];
           currentObject.scheduleArray = [];
 
+          // PageSummary is a string like "Page 1 of 8, Results 1 - 100 of 746"
+          // this code splits the string into an array of individual words and gets the last one (total number of classes in the search results)
+          const totalSearchResults = ((response.data).PageSummary).trim().split(" ").pop();
+
+          currentObject.totalPages = Math.ceil(totalSearchResults / (currentObject.rowsPerPage));
+
+
           // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
-          
           for (let course of (response.data).Classes.CGClassAbbr) {
             let tempObject = {
               "Title": `${course.Subject} ${course.CatalogNbr} - ${course.Title}`,
@@ -508,7 +525,8 @@
           }
         })
         .catch(function (error) {
-          alert("There were no classes that met your search criteria :("); // theres a bug that makes this error set off when you only select 1 subject or 1 special offering
+          //commenting out until I can identify the bug
+          //alert("There were no classes that met your search criteria :("); // theres a bug that makes this error set off when you only select 1 subject or 1 special offering
         });
       },
 
@@ -520,7 +538,7 @@
 
         const AUDIENCE = "public";
         const PAGENO = pageNumberIn.toString();
-        const ROWSPERPAGE = "30";
+        const ROWSPERPAGE = this.rowsPerPage;
         
         let queryUrl = `http://webapps.lsa.umich.edu/SAA/LSACGSvc/AdvSrch.svc/Classes/PagedListAbbr`;
 
