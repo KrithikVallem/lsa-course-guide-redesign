@@ -453,8 +453,7 @@
       /* Searches for classes meeting the search criteria entered by user when they click the search button
       ** Calls constructQueryUrl() to make the correct api request url, and sends it to backend to circumvent CORS     
       ** Once JSON course results data is returned, formats it into an array so that bootstrap-vue can turn it into a neat table */
-      searchFunction(event) {
-        event.preventDefault();
+      searchFunction() {
         let currentObject = this;
 
         axios.post('/searchFunction', {

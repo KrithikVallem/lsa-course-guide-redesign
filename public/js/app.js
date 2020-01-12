@@ -3426,8 +3426,8 @@ __webpack_require__.r(__webpack_exports__);
     /* Searches for classes meeting the search criteria entered by user when they click the search button
     ** Calls constructQueryUrl() to make the correct api request url, and sends it to backend to circumvent CORS     
     ** Once JSON course results data is returned, formats it into an array so that bootstrap-vue can turn it into a neat table */
-    searchFunction: function searchFunction(event) {
-      event.preventDefault();
+    searchFunction: function searchFunction() {
+      //event.preventDefault();
       var currentObject = this;
       axios.post('/searchFunction', {
         queryUrl: this.constructQueryUrl(1)
