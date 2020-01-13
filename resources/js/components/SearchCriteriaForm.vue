@@ -474,6 +474,9 @@
         if (this.currentPageNum < 1) this.currentPageNum = 1;
         if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages;
 
+        const searchResultsTable = document.getElementById("search-results-table");
+        searchResultsTable.scrollIntoView({ block: "start",  behavior: "smooth" });
+
         axios.post('/searchFunction', {
           queryUrl: this.constructQueryUrl(pageNumberIn)
         })
@@ -488,8 +491,8 @@
           // PageSummary is a string like "Page 1 of 8, Results 1 - 100 of 746"
           // this code splits the string into an array of individual words and gets the last one (total number of classes in the search results)
           const totalSearchResults = ((response.data).PageSummary).trim().split(" ").pop();
-
           currentObject.totalPages = Math.ceil(totalSearchResults / (currentObject.rowsPerPage));
+
 
           // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
           for (let course of (response.data).Classes.CGClassAbbr) {

@@ -3445,6 +3445,11 @@ __webpack_require__.r(__webpack_exports__);
       this.currentPageNum = pageNumberIn;
       if (this.currentPageNum < 1) this.currentPageNum = 1;
       if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages;
+      var searchResultsTable = document.getElementById("search-results-table");
+      searchResultsTable.scrollIntoView({
+        block: "start",
+        behavior: "smooth"
+      });
       axios.post('/searchFunction', {
         queryUrl: this.constructQueryUrl(pageNumberIn)
       }).then(function (response) {
