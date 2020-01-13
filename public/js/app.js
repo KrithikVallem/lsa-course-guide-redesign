@@ -3439,6 +3439,8 @@ __webpack_require__.r(__webpack_exports__);
     searchFunction: function searchFunction(pageNumberIn) {
       var currentObject = this;
       this.currentPageNum = pageNumberIn;
+      if (this.currentPageNum < 1) this.currentPageNum = 1;
+      if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages;
       axios.post('/searchFunction', {
         queryUrl: this.constructQueryUrl(pageNumberIn)
       }).then(function (response) {
@@ -54834,7 +54836,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { attrs: { id: "page-buttons-container" } },
+                {
+                  staticClass: "col text-center",
+                  attrs: { id: "page-buttons-container" }
+                },
                 [
                   _c(
                     "b-button",

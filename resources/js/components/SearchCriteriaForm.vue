@@ -467,6 +467,9 @@
         let currentObject = this;
         this.currentPageNum = pageNumberIn;
 
+        if (this.currentPageNum < 1) this.currentPageNum = 1;
+        if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages;
+
         axios.post('/searchFunction', {
           queryUrl: this.constructQueryUrl(pageNumberIn)
         })
@@ -483,7 +486,6 @@
           const totalSearchResults = ((response.data).PageSummary).trim().split(" ").pop();
 
           currentObject.totalPages = Math.ceil(totalSearchResults / (currentObject.rowsPerPage));
-
 
           // I'm building the array of data I want in the axios response because I couldn't get it to work with Vue's v-for loop
           for (let course of (response.data).Classes.CGClassAbbr) {
