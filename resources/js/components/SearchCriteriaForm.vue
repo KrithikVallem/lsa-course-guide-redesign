@@ -276,6 +276,10 @@
 
       <b-row>
         <b-col id="search-results-col" style="color: white;" class="col-4">
+          <div class="col text-center">
+            <em>Click on a class below!</em>
+          </div>
+
           <b-table
            striped 
            hover 
@@ -432,7 +436,7 @@
 
     // stuff that happens more or less on page load
     mounted () {
-      
+    
     },
 
     methods: {
@@ -673,8 +677,7 @@
       /* Allows the course details box on the right to show data for a specific class 
       ** when that class is clicked on in the table on the left */
       getCourseData(item) {
-        this.courseDataJSON = item; // this takes care of everything except the schedule data
-        
+        this.courseDataJSON = item; // this takes care of everything except the schedule data        
 
         // Everything below is related to calling the schedule api and getting data from it
         const termCodeIn = item.TermCode;

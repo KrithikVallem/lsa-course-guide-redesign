@@ -2212,6 +2212,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3818,7 +3822,7 @@ __webpack_require__.r(__webpack_exports__);
     /* Allows the course details box on the right to show data for a specific class 
     ** when that class is clicked on in the table on the left */
     getCourseData: function getCourseData(item) {
-      this.courseDataJSON = item; // this takes care of everything except the schedule data
+      this.courseDataJSON = item; // this takes care of everything except the schedule data        
       // Everything below is related to calling the schedule api and getting data from it
 
       var termCodeIn = item.TermCode;
@@ -54820,6 +54824,10 @@ var render = function() {
               attrs: { id: "search-results-col" }
             },
             [
+              _c("div", { staticClass: "col text-center" }, [
+                _c("em", [_vm._v("Click on a class below!")])
+              ]),
+              _vm._v(" "),
               _c("b-table", {
                 attrs: {
                   striped: "",
