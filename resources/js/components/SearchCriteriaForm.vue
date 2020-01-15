@@ -729,10 +729,10 @@
 
 
       enrollStatColor(item, type) {
-        if (!item || type !== "row") return
-        if (item["Enroll Stat"] === "Open") return 'table-success'
-        if (item["Enroll Stat"] === "Wait List") return 'table-warning'
-        if (item["Enroll Stat"] === "Closed") return 'table-danger'
+        if (!item || type !== "row") return;
+        if (item["Enroll Stat"] === "Open") return 'table-success';
+        if (item["Enroll Stat"] === "Wait List") return 'table-warning';
+        if (item["Enroll Stat"] === "Closed") return 'table-danger';
       }
 
     }
