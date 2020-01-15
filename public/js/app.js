@@ -3450,6 +3450,7 @@ __webpack_require__.r(__webpack_exports__);
         block: "start",
         behavior: "smooth"
       });
+      searchResultsTable.scrollTop = 0;
       axios.post('/searchFunction', {
         queryUrl: this.constructQueryUrl(pageNumberIn)
       }).then(function (response) {
