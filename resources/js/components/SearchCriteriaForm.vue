@@ -426,6 +426,7 @@
         searchResultsArray: [],
 
         courseDataJSON: [],
+        courseDetailsTableFields: [],
 
         scheduleJSON: [],
         scheduleTableFields: ["Section", "Enroll Stat", "Open Seats", "Meeting Day/Time"],
@@ -475,8 +476,8 @@
         if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages;
 
         const searchResultsTable = document.getElementById("search-results-table");
-        searchResultsTable.scrollIntoView({ block: "start",  behavior: "smooth" });
         searchResultsTable.scrollTop = 0;
+        searchResultsTable.scrollIntoView({ block: "start",  behavior: "smooth" });
 
         axios.post('/searchFunction', {
           queryUrl: this.constructQueryUrl(pageNumberIn)
@@ -509,6 +510,11 @@
               "Other": course.OtherGroupings,
               "Instructor": "",
               "ClassDescr": course.ClassDescr,
+
+              "Credit Exclusions": "",
+              "Other Course Info": "",
+              "BS": "",
+              "Repeatability": "",
             };
 
             // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors

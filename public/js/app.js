@@ -3404,6 +3404,7 @@ __webpack_require__.r(__webpack_exports__);
       searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
       searchResultsArray: [],
       courseDataJSON: [],
+      courseDetailsTableFields: [],
       scheduleJSON: [],
       scheduleTableFields: ["Section", "Enroll Stat", "Open Seats", "Meeting Day/Time"],
       scheduleArray: []
@@ -3446,11 +3447,11 @@ __webpack_require__.r(__webpack_exports__);
       if (this.currentPageNum < 1) this.currentPageNum = 1;
       if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages;
       var searchResultsTable = document.getElementById("search-results-table");
+      searchResultsTable.scrollTop = 0;
       searchResultsTable.scrollIntoView({
         block: "start",
         behavior: "smooth"
       });
-      searchResultsTable.scrollTop = 0;
       axios.post('/searchFunction', {
         queryUrl: this.constructQueryUrl(pageNumberIn)
       }).then(function (response) {
@@ -3484,7 +3485,11 @@ __webpack_require__.r(__webpack_exports__);
               "Reqs": course.ReqMet,
               "Other": course.OtherGroupings,
               "Instructor": "",
-              "ClassDescr": course.ClassDescr
+              "ClassDescr": course.ClassDescr,
+              "Credit Exclusions": "",
+              "Other Course Info": "",
+              "BS": "",
+              "Repeatability": ""
             }; // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors
             // So, I have to first check if its an array or not and then get the name value(s) accordingly
 
