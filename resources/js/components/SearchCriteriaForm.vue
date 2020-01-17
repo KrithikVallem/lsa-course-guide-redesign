@@ -13,7 +13,7 @@
                     <b-form-group id="term-group" label="Term:" label-for="term-input">
                       <multiselect
                         id="term-input"
-                        placeholder="Term: (Winter 2020)"
+                        placeholder="Term: (Current Term)"
                         v-model="termValue"
                         :options="termOptions" 
                         :multiple="true"
@@ -561,10 +561,10 @@
             queryUrl += `term=${item.value}&`;
           }
         }
-        // if user didn't select a term, the term is set to Winter 2020 (2270)
+        // if user didn't select a term, the term is set to the current term based on the computer's system date
         // this complex stuff is needed because the url won't form properly when I set a default term on page load
         else if (this.termValue === null){
-          queryUrl += `term=2270&`;
+          queryUrl += `term=${this.getTermCodeOfSystemDate()}&`;
         }
 
 
@@ -733,7 +733,35 @@
         if (item["Enroll Stat"] === "Open") return 'table-success';
         if (item["Enroll Stat"] === "Wait List") return 'table-warning';
         if (item["Enroll Stat"] === "Closed") return 'table-danger';
-      }
+      },
+
+
+      getTermCodeOfSystemDate() {
+        const d = new Date();
+        const year = d.getFullYear();
+        const monthNum = d.getMonth();
+
+        let codeFor2004Season;
+
+        // Winter
+        if (monthNum <= 3) {
+          codeFor2004Season = 1470;
+        }
+        // Spring
+        else if (monthNum <= 5) {
+          codeFor2004Season = 1480;
+        }
+        // Summer
+        else if (monthNum <= 7) {
+          codeFor2004Season = 1500; // 1490 is the Sp/Su combined term
+        }
+        // Fall
+        else {
+          codeFor2004Season = 1510;
+        }
+        
+        return (codeFor2004Season + (50 * (year - 2004)))
+      },
 
     }
   }
