@@ -17,4 +17,6 @@ Route::get('/', function () {
 
 Route::post('searchFunction','PostController@searchFunction');
 
+Route::post('secondaryCourseDetailsFunction','PostController@secondaryCourseDetailsFunction');
+
 Route::post('scheduleFunction','PostController@scheduleFunction');

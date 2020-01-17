@@ -24,6 +24,19 @@ class PostController extends Controller
         return response()->json($searchResultsArray);
     }
 
+    public function secondaryCourseDetailsFunction(Request $request)
+    {
+        // Use the posted searchQueryUrl to retrieve the xml from the lsa course guide api
+        $secondaryCourseDetailsXML = simplexml_load_file($request->queryUrl);
+
+        // convert the xml to json, and then into a php array so it can be returned
+        $secondaryCourseDetailsJSON = json_encode($secondaryCourseDetailsXML);
+        $secondaryCourseDetailsArray = json_decode($secondaryCourseDetailsJSON);
+        
+        // then use a return statement to return and simultaneously convert the array back to json
+        return response()->json($secondaryCourseDetailsArray);
+    }
+
 
     public function scheduleFunction(Request $request)
     {

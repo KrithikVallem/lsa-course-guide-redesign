@@ -426,7 +426,7 @@
         searchResultsArray: [],
 
         courseDataJSON: [],
-        courseDetailsTableFields: [],
+        courseDetailsTableFields: ["Term", "Credits", "Reqs", "Other", "Credit Exclusions", "Other Course Info", "Cross-Listed Classes", "Waitlist Capacity", "Enforced Prerequisites", "Advisory Prerequisites", "BS", "Lang Req", "Repeatability", "Instructor"],
 
         scheduleJSON: [],
         scheduleTableFields: ["Section", "Enroll Stat", "Open Seats", "Meeting Day/Time"],
@@ -515,6 +515,11 @@
               "Other Course Info": "",
               "BS": "",
               "Repeatability": "",
+              "Waitlist Capacity": "",
+              "Enforced Prerequisites": "",
+              "Advisory Prerequisites": "",
+              "Cross-Listed Classes": "",
+              "Lang Req": "",
             };
 
             // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors
@@ -692,8 +697,34 @@
         const termCodeIn = item.TermCode;
         const subjectIn = item.Subject;
         const catalogNumIn = item.CatalogNum;
+        const sectionNumIn = item.SectionNum;
 
         let currentObject = this;
+
+
+        /* Makes a query url and sends it to the backend to get the secondary course details like Credit Exxlusions, Other Course Info, BS, Repeatability, Waitlist Capacity, Adv Prereqs, etc...
+           that are not in the general search api and must instead be retrieved from an api call for a specific class only */
+        axios.post('/secondaryCourseDetailsFunction', {
+          scheduleUrl: `http://webapps.lsa.umich.edu/SAA/LSACGSvc/LSACGClasses.svc/${termCodeIn}/${subjectIn}/${catalogNumIn}/${sectionNumIn}/All`
+        })
+        .then(function (response) {
+          // theres more - check out the SPANISH 232 page on actual lsa course guide or even better the actual api xml page in a browser - but these are the ones I'm choosing to include for the time being
+          currentObject.courseDataJSON["Credit Exclusions"] = (response.data).CreditExcl;
+          currentObject.courseDataJSON["Other Course Info"] = (response.data).CrsMiscInfo;
+          currentObject.courseDataJSON["BS"] = (response.data).BSReqMetLongDesc;
+          currentObject.courseDataJSON["Repeatability"] = (response.data).Repeat;
+          currentObject.courseDataJSON["Waitlist Capacity"] = (response.data).WaitlistCapacity;
+          currentObject.courseDataJSON["Advisory Prerequisites"] = (response.data).AdvPrereq;
+          currentObject.courseDataJSON["Enforced Prerequisites"] = (response.data).EnfPrereq;
+          currentObject.courseDataJSON["Lang Req"] = (response.data).LangReqMetLongDesc;
+          currentObject.courseDataJSON["Cross-Listed Classes"] = (response.data).CrossListedWith;
+        })
+        .catch(function (error) {
+          alert(`There was an error retrieving the secondary course details for ${subjectIn} ${catalogNumIn} :(`);
+        });
+
+
+
 
         /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
         axios.post('/scheduleFunction', {
