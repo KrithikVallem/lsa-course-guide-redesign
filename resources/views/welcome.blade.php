@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>LSA Course Guide Redesign</title>
         <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="public/lsacg_favicon.ico?" type="image/x-icon"/>
     </head>
     <body>
         <div id="app">
