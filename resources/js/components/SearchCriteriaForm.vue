@@ -367,6 +367,26 @@
               </b-tab>
             </b-tabs>
           </b-card>
+          
+          <b-row id="course-details-link-buttons-container">
+            <b-col sm>
+              <b-button class="course-details-link-button" v-bind:href="'https://www.lsa.umich.edu/cg/cg_detail.aspx?content=' + this.courseDataJSON.TermCode + this.courseDataJSON.Subject + this.courseDataJSON.CatalogNum + this.courseDataJSON.SectionNum" target="_blank">Open in New Tab</b-button>
+            </b-col>
+
+            <b-col sm>
+              <b-button class="course-details-link-button" v-bind:href="'https://atlas.ai.umich.edu/course/' + this.courseDataJSON.Subject + ' ' + this.courseDataJSON.CatalogNum" target="_blank">CourseProfile (Atlas)</b-button>
+            </b-col>
+
+            <!--<div class="w-100"></div>  This would make it a 2x2 square button arrangement, but it doesnt look that good-->
+
+            <b-col sm>
+              <b-button class="course-details-link-button" v-bind:href="'https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&amp;FVGRP=UMI&amp;TERMCOURSES=' + this.courseDataJSON.TermCode + '|CENTRAL|' + this.courseDataJSON.Subject + ' ' + this.courseDataJSON.CatalogNum + ' ' + this.courseDataJSON.SectionNum" target="_blank">View/Buy Textbooks</b-button>
+            </b-col>
+
+            <b-col sm>
+              <b-button class="course-details-link-button" v-bind:href="'https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=' + this.courseDataJSON.Subject + '&amp;CatNbr=' + this.courseDataJSON.CatalogNum" target="_blank">View Old Syllabi</b-button>
+            </b-col>
+          </b-row>
         </b-col>
       </b-row>
 
@@ -478,6 +498,8 @@
         const searchResultsTable = document.getElementById("search-results-table");
         searchResultsTable.scrollTop = 0;
         searchResultsTable.scrollIntoView({ block: "start",  behavior: "smooth" });
+
+        alert("Click on a class in the column on the left to see more information about it!");
 
         axios.post('/searchFunction', {
           queryUrl: this.constructQueryUrl(pageNumberIn)
@@ -709,6 +731,9 @@
         })
         .then(function (response) {
           // theres more - check out the SPANISH 232 page on actual lsa course guide or even better the actual api xml page in a browser - but these are the ones I'm choosing to include for the time being
+          // You can find course location in here also, but i didnt add it yet
+
+          // add Course Note, Location, remove waitlist capacity
           currentObject.courseDataJSON["Credit Exclusions"] = (response.data).CreditExcl;
           currentObject.courseDataJSON["Other Course Info"] = (response.data).CrsMiscInfo;
           currentObject.courseDataJSON["BS"] = (response.data).BSReqMetLongDesc;
@@ -720,7 +745,7 @@
           currentObject.courseDataJSON["Cross-Listed Classes"] = (response.data).CrossListedWith;
         })
         .catch(function (error) {
-          alert(`There was an error retrieving the secondary course details for ${subjectIn} ${catalogNumIn} :(`);
+          //alert(`There was an error retrieving the secondary course details for ${subjectIn} ${catalogNumIn} :(`);
         });
 
 
@@ -907,6 +932,14 @@ body {
 
 #course-details-tab-container {
   border-radius: 0px;
+}
+
+.course-details-link-button {
+  margin-top: 10px;
+}
+
+#course-details-link-buttons-container {
+  text-align: center;
 }
 
 

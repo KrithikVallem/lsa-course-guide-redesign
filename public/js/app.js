@@ -2216,6 +2216,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3404,7 +3424,7 @@ __webpack_require__.r(__webpack_exports__);
       searchResultsTableFields: ["Title", "Section", "Term", "Credits", "Reqs", "Other", "Instructor"],
       searchResultsArray: [],
       courseDataJSON: [],
-      courseDetailsTableFields: [],
+      courseDetailsTableFields: ["Term", "Credits", "Reqs", "Other", "Credit Exclusions", "Other Course Info", "Cross-Listed Classes", "Waitlist Capacity", "Enforced Prerequisites", "Advisory Prerequisites", "BS", "Lang Req", "Repeatability", "Instructor"],
       scheduleJSON: [],
       scheduleTableFields: ["Section", "Enroll Stat", "Open Seats", "Meeting Day/Time"],
       scheduleArray: []
@@ -3452,6 +3472,7 @@ __webpack_require__.r(__webpack_exports__);
         block: "start",
         behavior: "smooth"
       });
+      alert("Click on a class in the column on the left to see more information about it!");
       axios.post('/searchFunction', {
         queryUrl: this.constructQueryUrl(pageNumberIn)
       }).then(function (response) {
@@ -3489,7 +3510,12 @@ __webpack_require__.r(__webpack_exports__);
               "Credit Exclusions": "",
               "Other Course Info": "",
               "BS": "",
-              "Repeatability": ""
+              "Repeatability": "",
+              "Waitlist Capacity": "",
+              "Enforced Prerequisites": "",
+              "Advisory Prerequisites": "",
+              "Cross-Listed Classes": "",
+              "Lang Req": ""
             }; // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors
             // So, I have to first check if its an array or not and then get the name value(s) accordingly
 
@@ -3839,7 +3865,28 @@ __webpack_require__.r(__webpack_exports__);
       var termCodeIn = item.TermCode;
       var subjectIn = item.Subject;
       var catalogNumIn = item.CatalogNum;
+      var sectionNumIn = item.SectionNum;
       var currentObject = this;
+      /* Makes a query url and sends it to the backend to get the secondary course details like Credit Exxlusions, Other Course Info, BS, Repeatability, Waitlist Capacity, Adv Prereqs, etc...
+         that are not in the general search api and must instead be retrieved from an api call for a specific class only */
+
+      axios.post('/secondaryCourseDetailsFunction', {
+        scheduleUrl: "http://webapps.lsa.umich.edu/SAA/LSACGSvc/LSACGClasses.svc/".concat(termCodeIn, "/").concat(subjectIn, "/").concat(catalogNumIn, "/").concat(sectionNumIn, "/All")
+      }).then(function (response) {
+        // theres more - check out the SPANISH 232 page on actual lsa course guide or even better the actual api xml page in a browser - but these are the ones I'm choosing to include for the time being
+        // You can find course location in here also, but i didnt add it yet
+        // add Course Note, Location, remove waitlist capacity
+        currentObject.courseDataJSON["Credit Exclusions"] = response.data.CreditExcl;
+        currentObject.courseDataJSON["Other Course Info"] = response.data.CrsMiscInfo;
+        currentObject.courseDataJSON["BS"] = response.data.BSReqMetLongDesc;
+        currentObject.courseDataJSON["Repeatability"] = response.data.Repeat;
+        currentObject.courseDataJSON["Waitlist Capacity"] = response.data.WaitlistCapacity;
+        currentObject.courseDataJSON["Advisory Prerequisites"] = response.data.AdvPrereq;
+        currentObject.courseDataJSON["Enforced Prerequisites"] = response.data.EnfPrereq;
+        currentObject.courseDataJSON["Lang Req"] = response.data.LangReqMetLongDesc;
+        currentObject.courseDataJSON["Cross-Listed Classes"] = response.data.CrossListedWith;
+      })["catch"](function (error) {//alert(`There was an error retrieving the secondary course details for ${subjectIn} ${catalogNumIn} :(`);
+      });
       /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
 
       axios.post('/scheduleFunction', {
@@ -32613,7 +32660,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n:root {\n  --umichBlue: #00274c;\n  --umichYellow: #ffcb05;\n  --darkRed: #cc5454;\n  --grayBgColor: #eee;\n  --umichBlueHover: #32526f;\n}\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: var(--umichBlue) transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: var(--umichBlue);\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: var(--umichYellow);\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: var(--umichBlueHover);\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: var(--umichYellow);\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: var(--darkRed);\n  color: white;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: var(--darkRed);\n  color: white;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: var(--umichBlue);\n}\n#searchButton {\n  background-color: var(--umichBlue);\n  border-color: var(--umichBlue);\n}\n#clearButton {\n  background-color: var(--darkRed);\n  border-color: var(--darkRed);\n}\n#search-criteria-form-card {\n  background-color: var(--grayBgColor);\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: var(--grayBgColor);\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: var(--grayBgColor);\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: var(--umichBlue) !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: var(--umichBlue) !important;\n}\n#selected-course-title {\n  color: var(--umichYellow);\n}\n\n", ""]);
+exports.push([module.i, "\n:root {\n  --umichBlue: #00274c;\n  --umichYellow: #ffcb05;\n  --darkRed: #cc5454;\n  --grayBgColor: #eee;\n  --umichBlueHover: #32526f;\n}\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: var(--umichBlue) transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: var(--umichBlue);\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: var(--umichYellow);\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: var(--umichBlueHover);\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: var(--umichYellow);\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: var(--darkRed);\n  color: white;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: var(--darkRed);\n  color: white;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: var(--umichBlue);\n}\n#searchButton {\n  background-color: var(--umichBlue);\n  border-color: var(--umichBlue);\n}\n#clearButton {\n  background-color: var(--darkRed);\n  border-color: var(--darkRed);\n}\n#search-criteria-form-card {\n  background-color: var(--grayBgColor);\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: var(--grayBgColor);\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: var(--grayBgColor);\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n.course-details-link-button {\n  margin-top: 10px;\n}\n#course-details-link-buttons-container {\n  text-align: center;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: var(--umichBlue) !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: var(--umichBlue) !important;\n}\n#selected-course-title {\n  color: var(--umichYellow);\n}\n\n", ""]);
 
 // exports
 
@@ -55160,6 +55207,110 @@ var render = function() {
                           )
                         ],
                         1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-row",
+                { attrs: { id: "course-details-link-buttons-container" } },
+                [
+                  _c(
+                    "b-col",
+                    { attrs: { sm: "" } },
+                    [
+                      _c(
+                        "b-button",
+                        {
+                          staticClass: "course-details-link-button",
+                          attrs: {
+                            href:
+                              "https://www.lsa.umich.edu/cg/cg_detail.aspx?content=" +
+                              this.courseDataJSON.TermCode +
+                              this.courseDataJSON.Subject +
+                              this.courseDataJSON.CatalogNum +
+                              this.courseDataJSON.SectionNum,
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v("Open in New Tab")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { attrs: { sm: "" } },
+                    [
+                      _c(
+                        "b-button",
+                        {
+                          staticClass: "course-details-link-button",
+                          attrs: {
+                            href:
+                              "https://atlas.ai.umich.edu/course/" +
+                              this.courseDataJSON.Subject +
+                              " " +
+                              this.courseDataJSON.CatalogNum,
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v("CourseProfile (Atlas)")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { attrs: { sm: "" } },
+                    [
+                      _c(
+                        "b-button",
+                        {
+                          staticClass: "course-details-link-button",
+                          attrs: {
+                            href:
+                              "https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&FVGRP=UMI&TERMCOURSES=" +
+                              this.courseDataJSON.TermCode +
+                              "|CENTRAL|" +
+                              this.courseDataJSON.Subject +
+                              " " +
+                              this.courseDataJSON.CatalogNum +
+                              " " +
+                              this.courseDataJSON.SectionNum,
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v("View/Buy Textbooks")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-col",
+                    { attrs: { sm: "" } },
+                    [
+                      _c(
+                        "b-button",
+                        {
+                          staticClass: "course-details-link-button",
+                          attrs: {
+                            href:
+                              "https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=" +
+                              this.courseDataJSON.Subject +
+                              "&CatNbr=" +
+                              this.courseDataJSON.CatalogNum,
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v("View Old Syllabi")]
                       )
                     ],
                     1
