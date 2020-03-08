@@ -313,7 +313,10 @@
             <b-tabs pills card id="course-details-tab-container">
               <b-tab title="Details" active>
                 <b-card-text>
-                  Tab contents 1
+
+                  <!-- Maybe instead of table, just loop through XML/JSON and print everything out -->
+                  {{this.allCourseDetailsJSON}}
+
                 </b-card-text>
               </b-tab>
               
@@ -340,10 +343,10 @@
 
                     id="schedule-table" 
                   >
-
                   </b-table>
                 </b-card-text>
               </b-tab>
+
             </b-tabs>
           </b-card>
           
@@ -431,6 +434,8 @@
         scheduleTableFields: ["Section", "Enroll Stat", "Open Seats", "Meeting Day/Time"],
         scheduleArray: [],
 
+        allCourseDetailsJSON: [],
+
       }
     },
 
@@ -478,7 +483,8 @@
         searchResultsTable.scrollTop = 0;
         searchResultsTable.scrollIntoView({ block: "start",  behavior: "smooth" });
 
-        alert("Click on a class in the column on the left to see more information about it!");
+        // removed since it triggers on every page flip - I added the large h3 message in the ClassDescr area instead
+        //alert("Click on a class in the column on the left to see more information about it!");
 
         axios.post('/searchFunction', {
           queryUrl: this.constructQueryUrl(pageNumberIn)
@@ -700,19 +706,26 @@
         const catalogNumIn = item.CatalogNum;
         const sectionNumIn = item.SectionNum;
 
+
         let currentObject = this;
 
 
         /* Makes a query url and sends it to the backend to get the secondary course details like Credit Exxlusions, Other Course Info, BS, Repeatability, Waitlist Capacity, Adv Prereqs, etc...
            that are not in the general search api and must instead be retrieved from an api call for a specific class only */
         axios.post('/secondaryCourseDetailsFunction', {
-          scheduleUrl: `http://webapps.lsa.umich.edu/SAA/LSACGSvc/LSACGClasses.svc/${termCodeIn}/${subjectIn}/${catalogNumIn}/${sectionNumIn}/All`
+          queryUrl: `http://webapps.lsa.umich.edu/SAA/LSACGSvc/LSACGClasses.svc/${termCodeIn}/${subjectIn}/${catalogNumIn}/${sectionNumIn}/All`
         })
         .then(function (response) {
           // theres more - check out the SPANISH 232 page on actual lsa course guide or even better the actual api xml page in a browser - but these are the ones I'm choosing to include for the time being
-          // You can find course location in here also, but i didnt add it yet (Facility ID)
+          
+          // You can find course building location in here also (Facility ID)
+          // use this website to untangle facility_id, https://rooms.lsa.umich.edu/classrooms/CHEM1200
+          // I don't think I can get location to work nicely enough to bother for now since you'd have to do some log-in duo shenanigans
+          //currentObject.courseDataJSON["Location"] = (response.data).Facility_ID;
 
           // add Course Note, Location, remove waitlist capacity
+          // theres other places these need to be added as well
+          /*
           currentObject.courseDataJSON["Credit Exclusions"] = (response.data).CreditExcl;
           currentObject.courseDataJSON["Other Course Info"] = (response.data).CrsMiscInfo;
           currentObject.courseDataJSON["BS"] = (response.data).BSReqMetLongDesc;
@@ -722,6 +735,11 @@
           currentObject.courseDataJSON["Enforced Prerequisites"] = (response.data).EnfPrereq;
           currentObject.courseDataJSON["Lang Req"] = (response.data).LangReqMetLongDesc;
           currentObject.courseDataJSON["Cross-Listed Classes"] = (response.data).CrossListedWith;
+          */
+         currentObject.allCourseDetailsJSON = [];
+         alert(response.data);
+         currentObject.allCourseDetailsJSON = response.data;
+
         })
         .catch(function (error) {
           //alert(`There was an error retrieving the secondary course details for ${subjectIn} ${catalogNumIn} :(`);

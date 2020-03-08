@@ -2215,6 +2215,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3406,7 +3409,8 @@ __webpack_require__.r(__webpack_exports__);
       courseDetailsTableFields: ["Term", "Credits", "Reqs", "Other", "Credit Exclusions", "Other Course Info", "Cross-Listed Classes", "Waitlist Capacity", "Enforced Prerequisites", "Advisory Prerequisites", "BS", "Lang Req", "Repeatability", "Instructor"],
       scheduleJSON: [],
       scheduleTableFields: ["Section", "Enroll Stat", "Open Seats", "Meeting Day/Time"],
-      scheduleArray: []
+      scheduleArray: [],
+      allCourseDetailsJSON: []
     };
   },
   // stuff that happens more or less on page load
@@ -3450,8 +3454,9 @@ __webpack_require__.r(__webpack_exports__);
       searchResultsTable.scrollIntoView({
         block: "start",
         behavior: "smooth"
-      });
-      alert("Click on a class in the column on the left to see more information about it!");
+      }); // removed since it triggers on every page flip - I added the large h3 message in the ClassDescr area instead
+      //alert("Click on a class in the column on the left to see more information about it!");
+
       axios.post('/searchFunction', {
         queryUrl: this.constructQueryUrl(pageNumberIn)
       }).then(function (response) {
@@ -3850,20 +3855,30 @@ __webpack_require__.r(__webpack_exports__);
          that are not in the general search api and must instead be retrieved from an api call for a specific class only */
 
       axios.post('/secondaryCourseDetailsFunction', {
-        scheduleUrl: "http://webapps.lsa.umich.edu/SAA/LSACGSvc/LSACGClasses.svc/".concat(termCodeIn, "/").concat(subjectIn, "/").concat(catalogNumIn, "/").concat(sectionNumIn, "/All")
+        queryUrl: "http://webapps.lsa.umich.edu/SAA/LSACGSvc/LSACGClasses.svc/".concat(termCodeIn, "/").concat(subjectIn, "/").concat(catalogNumIn, "/").concat(sectionNumIn, "/All")
       }).then(function (response) {
         // theres more - check out the SPANISH 232 page on actual lsa course guide or even better the actual api xml page in a browser - but these are the ones I'm choosing to include for the time being
-        // You can find course location in here also, but i didnt add it yet (Facility ID)
+        // You can find course building location in here also (Facility ID)
+        // use this website to untangle facility_id, https://rooms.lsa.umich.edu/classrooms/CHEM1200
+        // I don't think I can get location to work nicely enough to bother for now since you'd have to do some log-in duo shenanigans
+        //currentObject.courseDataJSON["Location"] = (response.data).Facility_ID;
         // add Course Note, Location, remove waitlist capacity
-        currentObject.courseDataJSON["Credit Exclusions"] = response.data.CreditExcl;
-        currentObject.courseDataJSON["Other Course Info"] = response.data.CrsMiscInfo;
-        currentObject.courseDataJSON["BS"] = response.data.BSReqMetLongDesc;
-        currentObject.courseDataJSON["Repeatability"] = response.data.Repeat;
-        currentObject.courseDataJSON["Waitlist Capacity"] = response.data.WaitlistCapacity;
-        currentObject.courseDataJSON["Advisory Prerequisites"] = response.data.AdvPrereq;
-        currentObject.courseDataJSON["Enforced Prerequisites"] = response.data.EnfPrereq;
-        currentObject.courseDataJSON["Lang Req"] = response.data.LangReqMetLongDesc;
-        currentObject.courseDataJSON["Cross-Listed Classes"] = response.data.CrossListedWith;
+        // theres other places these need to be added as well
+
+        /*
+        currentObject.courseDataJSON["Credit Exclusions"] = (response.data).CreditExcl;
+        currentObject.courseDataJSON["Other Course Info"] = (response.data).CrsMiscInfo;
+        currentObject.courseDataJSON["BS"] = (response.data).BSReqMetLongDesc;
+        currentObject.courseDataJSON["Repeatability"] = (response.data).Repeat;
+        currentObject.courseDataJSON["Waitlist Capacity"] = (response.data).WaitlistCapacity;
+        currentObject.courseDataJSON["Advisory Prerequisites"] = (response.data).AdvPrereq;
+        currentObject.courseDataJSON["Enforced Prerequisites"] = (response.data).EnfPrereq;
+        currentObject.courseDataJSON["Lang Req"] = (response.data).LangReqMetLongDesc;
+        currentObject.courseDataJSON["Cross-Listed Classes"] = (response.data).CrossListedWith;
+        */
+        currentObject.allCourseDetailsJSON = [];
+        alert(response.data);
+        currentObject.allCourseDetailsJSON = response.data;
       })["catch"](function (error) {//alert(`There was an error retrieving the secondary course details for ${subjectIn} ${catalogNumIn} :(`);
       });
       /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
@@ -54985,7 +55000,9 @@ var render = function() {
                         [
                           _c("b-card-text", [
                             _vm._v(
-                              "\n              Tab contents 1\n            "
+                              "\n              " +
+                                _vm._s(this.allCourseDetailsJSON) +
+                                "\n\n            "
                             )
                           ])
                         ],
