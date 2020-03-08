@@ -313,8 +313,16 @@
             <b-tabs pills card id="course-details-tab-container">
               <b-tab title="Details" active>
                 <b-card-text>
+                  <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
 
-                  <!-- Maybe instead of table, just loop through XML/JSON and print everything out -->
+                  <div v-else v-for="(value, name) in this.allCourseDetailsJSON" v-bind:key = "name">
+                    
+                    <!-- todo: make the blank stuff not show up -->
+                    <span v-if=" name !== 'ClassDescr' "> <!-- only renders if item has value and is not the ClassDescr-->
+                      <strong>{{ name }}:</strong> {{ value }}
+                    </span>
+                  </div>
+
                   {{this.allCourseDetailsJSON}}
 
                 </b-card-text>
@@ -331,7 +339,9 @@
               
               <b-tab title="Schedule" class="small">
                 <b-card-text>
-                  <b-table
+                  <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
+
+                  <b-table v-else
                     striped 
                     stacked   
                     small
@@ -736,8 +746,8 @@
           currentObject.courseDataJSON["Lang Req"] = (response.data).LangReqMetLongDesc;
           currentObject.courseDataJSON["Cross-Listed Classes"] = (response.data).CrossListedWith;
           */
-         currentObject.allCourseDetailsJSON = [];
-         alert(response.data);
+
+         currentObject.allCourseDetailsJSON = []; // clear out previous data, to be safe
          currentObject.allCourseDetailsJSON = response.data;
 
         })
@@ -837,6 +847,7 @@
   --darkRed: #cc5454;
   --grayBgColor: #eee;
   --umichBlueHover: #32526f;
+  --darkRedHover: #d67676;
 }
 
 /*
@@ -899,6 +910,13 @@ body {
   border-color: var(--darkRed);
 }
 
+
+#searchButton:hover {
+  background-color: var(--umichBlueHover);
+}
+#clearButton:hover {
+  background-color: var(--darkRedHover);
+}
 
 
 #search-criteria-form-card {

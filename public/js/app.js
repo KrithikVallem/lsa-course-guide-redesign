@@ -2218,6 +2218,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3876,8 +3886,8 @@ __webpack_require__.r(__webpack_exports__);
         currentObject.courseDataJSON["Lang Req"] = (response.data).LangReqMetLongDesc;
         currentObject.courseDataJSON["Cross-Listed Classes"] = (response.data).CrossListedWith;
         */
-        currentObject.allCourseDetailsJSON = [];
-        alert(response.data);
+        currentObject.allCourseDetailsJSON = []; // clear out previous data, to be safe
+
         currentObject.allCourseDetailsJSON = response.data;
       })["catch"](function (error) {//alert(`There was an error retrieving the secondary course details for ${subjectIn} ${catalogNumIn} :(`);
       });
@@ -32654,7 +32664,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n:root {\n  --umichBlue: #00274c;\n  --umichYellow: #ffcb05;\n  --darkRed: #cc5454;\n  --grayBgColor: #eee;\n  --umichBlueHover: #32526f;\n}\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: var(--umichBlue) transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: var(--umichBlue);\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: var(--umichYellow);\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: var(--umichBlueHover);\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: var(--umichYellow);\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: var(--darkRed);\n  color: white;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: var(--darkRed);\n  color: white;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: var(--umichBlue);\n}\n#searchButton {\n  background-color: var(--umichBlue);\n  border-color: var(--umichBlue);\n}\n#clearButton {\n  background-color: var(--darkRed);\n  border-color: var(--darkRed);\n}\n#search-criteria-form-card {\n  background-color: var(--grayBgColor);\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: var(--grayBgColor);\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: var(--grayBgColor);\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n.course-details-link-button {\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n#course-details-link-buttons-container {\n  text-align: center;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: var(--umichBlue) !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: var(--umichBlue) !important;\n}\n#selected-course-title {\n  color: var(--umichYellow);\n}\n#page-buttons-container {\n  margin-bottom: 10px;\n}\n\n", ""]);
+exports.push([module.i, "\n:root {\n  --umichBlue: #00274c;\n  --umichYellow: #ffcb05;\n  --darkRed: #cc5454;\n  --grayBgColor: #eee;\n  --umichBlueHover: #32526f;\n  --darkRedHover: #d67676;\n}\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: var(--umichBlue) transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: var(--umichBlue);\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: var(--umichYellow);\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: var(--umichBlueHover);\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: var(--umichYellow);\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: var(--darkRed);\n  color: white;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: var(--darkRed);\n  color: white;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: var(--umichBlue);\n}\n#searchButton {\n  background-color: var(--umichBlue);\n  border-color: var(--umichBlue);\n}\n#clearButton {\n  background-color: var(--darkRed);\n  border-color: var(--darkRed);\n}\n#searchButton:hover {\n  background-color: var(--umichBlueHover);\n}\n#clearButton:hover {\n  background-color: var(--darkRedHover);\n}\n#search-criteria-form-card {\n  background-color: var(--grayBgColor);\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: var(--grayBgColor);\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: var(--grayBgColor);\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n.course-details-link-button {\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n#course-details-link-buttons-container {\n  text-align: center;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: var(--umichBlue) !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: var(--umichBlue) !important;\n}\n#selected-course-title {\n  color: var(--umichYellow);\n}\n#page-buttons-container {\n  margin-bottom: 10px;\n}\n\n", ""]);
 
 // exports
 
@@ -54998,13 +55008,46 @@ var render = function() {
                         "b-tab",
                         { attrs: { title: "Details", active: "" } },
                         [
-                          _c("b-card-text", [
-                            _vm._v(
-                              "\n              " +
-                                _vm._s(this.allCourseDetailsJSON) +
-                                "\n\n            "
-                            )
-                          ])
+                          _c(
+                            "b-card-text",
+                            [
+                              !this.courseDataJSON.ClassDescr
+                                ? _c("span", [
+                                    _c("h3", [
+                                      _c("strong", [
+                                        _vm._v(
+                                          "Click on a class in the column on the left to see more information about it!"
+                                        )
+                                      ])
+                                    ])
+                                  ])
+                                : _vm._l(this.allCourseDetailsJSON, function(
+                                    value,
+                                    name
+                                  ) {
+                                    return _c("div", { key: name }, [
+                                      name !== "ClassDescr"
+                                        ? _c("span", [
+                                            _c("strong", [
+                                              _vm._v(_vm._s(name) + ":")
+                                            ]),
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(value) +
+                                                "\n                "
+                                            )
+                                          ])
+                                        : _vm._e()
+                                    ])
+                                  }),
+                              _vm._v(
+                                "\n\n              " +
+                                  _vm._s(this.allCourseDetailsJSON) +
+                                  "\n\n            "
+                              )
+                            ],
+                            2
+                          )
                         ],
                         1
                       ),
@@ -55046,18 +55089,28 @@ var render = function() {
                           _c(
                             "b-card-text",
                             [
-                              _c("b-table", {
-                                attrs: {
-                                  striped: "",
-                                  stacked: "",
-                                  small: "",
-                                  hover: "",
-                                  items: _vm.scheduleArray,
-                                  fields: _vm.scheduleTableFields,
-                                  "tbody-tr-class": _vm.enrollStatColor,
-                                  id: "schedule-table"
-                                }
-                              })
+                              !this.courseDataJSON.ClassDescr
+                                ? _c("span", [
+                                    _c("h3", [
+                                      _c("strong", [
+                                        _vm._v(
+                                          "Click on a class in the column on the left to see more information about it!"
+                                        )
+                                      ])
+                                    ])
+                                  ])
+                                : _c("b-table", {
+                                    attrs: {
+                                      striped: "",
+                                      stacked: "",
+                                      small: "",
+                                      hover: "",
+                                      items: _vm.scheduleArray,
+                                      fields: _vm.scheduleTableFields,
+                                      "tbody-tr-class": _vm.enrollStatColor,
+                                      id: "schedule-table"
+                                    }
+                                  })
                             ],
                             1
                           )
