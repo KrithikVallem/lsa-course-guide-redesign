@@ -319,8 +319,10 @@
               
               <b-tab title="Description" class="small" active>
                 <b-card-text>
+                  <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
+
                   <!-- The api spits out pure html, so the line below renders the html it recieves properly -->
-                  <span v-html="this.courseDataJSON.ClassDescr"></span>
+                  <span v-else v-html="this.courseDataJSON.ClassDescr"></span>
                 </b-card-text>
               </b-tab>
               
@@ -345,7 +347,7 @@
             </b-tabs>
           </b-card>
           
-          <b-row id="course-details-link-buttons-container">
+          <b-row v-if="this.courseDataJSON.ClassDescr" id="course-details-link-buttons-container">
             <b-col sm>
               <b-button class="course-details-link-button" v-bind:href="'https://www.lsa.umich.edu/cg/cg_detail.aspx?content=' + this.courseDataJSON.TermCode + this.courseDataJSON.Subject + this.courseDataJSON.CatalogNum + this.courseDataJSON.SectionNum" target="_blank">Open in New Tab</b-button>
             </b-col>
@@ -708,7 +710,7 @@
         })
         .then(function (response) {
           // theres more - check out the SPANISH 232 page on actual lsa course guide or even better the actual api xml page in a browser - but these are the ones I'm choosing to include for the time being
-          // You can find course location in here also, but i didnt add it yet
+          // You can find course location in here also, but i didnt add it yet (Facility ID)
 
           // add Course Note, Location, remove waitlist capacity
           currentObject.courseDataJSON["Credit Exclusions"] = (response.data).CreditExcl;

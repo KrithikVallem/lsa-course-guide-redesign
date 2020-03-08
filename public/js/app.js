@@ -2213,6 +2213,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3851,7 +3853,7 @@ __webpack_require__.r(__webpack_exports__);
         scheduleUrl: "http://webapps.lsa.umich.edu/SAA/LSACGSvc/LSACGClasses.svc/".concat(termCodeIn, "/").concat(subjectIn, "/").concat(catalogNumIn, "/").concat(sectionNumIn, "/All")
       }).then(function (response) {
         // theres more - check out the SPANISH 232 page on actual lsa course guide or even better the actual api xml page in a browser - but these are the ones I'm choosing to include for the time being
-        // You can find course location in here also, but i didnt add it yet
+        // You can find course location in here also, but i didnt add it yet (Facility ID)
         // add Course Note, Location, remove waitlist capacity
         currentObject.courseDataJSON["Credit Exclusions"] = response.data.CreditExcl;
         currentObject.courseDataJSON["Other Course Info"] = response.data.CrsMiscInfo;
@@ -54998,13 +55000,23 @@ var render = function() {
                         },
                         [
                           _c("b-card-text", [
-                            _c("span", {
-                              domProps: {
-                                innerHTML: _vm._s(
-                                  this.courseDataJSON.ClassDescr
-                                )
-                              }
-                            })
+                            !this.courseDataJSON.ClassDescr
+                              ? _c("span", [
+                                  _c("h3", [
+                                    _c("strong", [
+                                      _vm._v(
+                                        "Click on a class in the column on the left to see more information about it!"
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              : _c("span", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      this.courseDataJSON.ClassDescr
+                                    )
+                                  }
+                                })
                           ])
                         ],
                         1
@@ -55042,110 +55054,112 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "b-row",
-                { attrs: { id: "course-details-link-buttons-container" } },
-                [
-                  _c(
-                    "b-col",
-                    { attrs: { sm: "" } },
+              this.courseDataJSON.ClassDescr
+                ? _c(
+                    "b-row",
+                    { attrs: { id: "course-details-link-buttons-container" } },
                     [
                       _c(
-                        "b-button",
-                        {
-                          staticClass: "course-details-link-button",
-                          attrs: {
-                            href:
-                              "https://www.lsa.umich.edu/cg/cg_detail.aspx?content=" +
-                              this.courseDataJSON.TermCode +
-                              this.courseDataJSON.Subject +
-                              this.courseDataJSON.CatalogNum +
-                              this.courseDataJSON.SectionNum,
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v("Open in New Tab")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { attrs: { sm: "" } },
-                    [
+                        "b-col",
+                        { attrs: { sm: "" } },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              staticClass: "course-details-link-button",
+                              attrs: {
+                                href:
+                                  "https://www.lsa.umich.edu/cg/cg_detail.aspx?content=" +
+                                  this.courseDataJSON.TermCode +
+                                  this.courseDataJSON.Subject +
+                                  this.courseDataJSON.CatalogNum +
+                                  this.courseDataJSON.SectionNum,
+                                target: "_blank"
+                              }
+                            },
+                            [_vm._v("Open in New Tab")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "b-button",
-                        {
-                          staticClass: "course-details-link-button",
-                          staticStyle: { color: "#ffcb05" },
-                          attrs: {
-                            href:
-                              "https://atlas.ai.umich.edu/course/" +
-                              this.courseDataJSON.Subject +
-                              " " +
-                              this.courseDataJSON.CatalogNum,
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v("CourseProfile (Atlas)")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { attrs: { sm: "" } },
-                    [
+                        "b-col",
+                        { attrs: { sm: "" } },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              staticClass: "course-details-link-button",
+                              staticStyle: { color: "#ffcb05" },
+                              attrs: {
+                                href:
+                                  "https://atlas.ai.umich.edu/course/" +
+                                  this.courseDataJSON.Subject +
+                                  " " +
+                                  this.courseDataJSON.CatalogNum,
+                                target: "_blank"
+                              }
+                            },
+                            [_vm._v("CourseProfile (Atlas)")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "b-button",
-                        {
-                          staticClass: "course-details-link-button",
-                          attrs: {
-                            href:
-                              "https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&FVGRP=UMI&TERMCOURSES=" +
-                              this.courseDataJSON.TermCode +
-                              "|CENTRAL|" +
-                              this.courseDataJSON.Subject +
-                              " " +
-                              this.courseDataJSON.CatalogNum +
-                              " " +
-                              this.courseDataJSON.SectionNum,
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v("View/Buy Textbooks")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-col",
-                    { attrs: { sm: "" } },
-                    [
+                        "b-col",
+                        { attrs: { sm: "" } },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              staticClass: "course-details-link-button",
+                              attrs: {
+                                href:
+                                  "https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&FVGRP=UMI&TERMCOURSES=" +
+                                  this.courseDataJSON.TermCode +
+                                  "|CENTRAL|" +
+                                  this.courseDataJSON.Subject +
+                                  " " +
+                                  this.courseDataJSON.CatalogNum +
+                                  " " +
+                                  this.courseDataJSON.SectionNum,
+                                target: "_blank"
+                              }
+                            },
+                            [_vm._v("View/Buy Textbooks")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "b-button",
-                        {
-                          staticClass: "course-details-link-button",
-                          attrs: {
-                            href:
-                              "https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=" +
-                              this.courseDataJSON.Subject +
-                              "&CatNbr=" +
-                              this.courseDataJSON.CatalogNum,
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v("View Old Syllabi")]
+                        "b-col",
+                        { attrs: { sm: "" } },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              staticClass: "course-details-link-button",
+                              attrs: {
+                                href:
+                                  "https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=" +
+                                  this.courseDataJSON.Subject +
+                                  "&CatNbr=" +
+                                  this.courseDataJSON.CatalogNum,
+                                target: "_blank"
+                              }
+                            },
+                            [_vm._v("View Old Syllabi")]
+                          )
+                        ],
+                        1
                       )
                     ],
                     1
                   )
-                ],
-                1
-              )
+                : _vm._e()
             ],
             1
           )
