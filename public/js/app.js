@@ -2213,29 +2213,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -32660,7 +32637,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n:root {\n  --umichBlue: #00274c;\n  --umichYellow: #ffcb05;\n  --darkRed: #cc5454;\n  --grayBgColor: #eee;\n  --umichBlueHover: #32526f;\n}\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: var(--umichBlue) transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: var(--umichBlue);\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: var(--umichYellow);\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: var(--umichBlueHover);\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: var(--umichYellow);\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: var(--darkRed);\n  color: white;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: var(--darkRed);\n  color: white;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: var(--umichBlue);\n}\n#searchButton {\n  background-color: var(--umichBlue);\n  border-color: var(--umichBlue);\n}\n#clearButton {\n  background-color: var(--darkRed);\n  border-color: var(--darkRed);\n}\n#search-criteria-form-card {\n  background-color: var(--grayBgColor);\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: var(--grayBgColor);\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: var(--grayBgColor);\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n.course-details-link-button {\n  margin-top: 10px;\n}\n#course-details-link-buttons-container {\n  text-align: center;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: var(--umichBlue) !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: var(--umichBlue) !important;\n}\n#selected-course-title {\n  color: var(--umichYellow);\n}\n\n", ""]);
+exports.push([module.i, "\n:root {\n  --umichBlue: #00274c;\n  --umichYellow: #ffcb05;\n  --darkRed: #cc5454;\n  --grayBgColor: #eee;\n  --umichBlueHover: #32526f;\n}\n\n/*\n#00274c is Umich Blue\n#ffcb05 is Umich Maize/Yellow\n*/\n/* changed default vue green to the umich blue on both menu options and tags */\n.multiselect__spinner:before,\n.multiselect__spinner:after {\n  border-color: var(--umichBlue) transparent transparent;\n}\n.multiselect__tag,\n.multiselect__option--highlight,\n.multiselect__option--highlight:after {\n  background: var(--umichBlue);\n}\n\n/* the 'x' used to delete tags */\n.multiselect__tag-icon:after {\n  color: var(--umichYellow);\n}\n.multiselect__tag-icon:focus,\n.multiselect__tag-icon:hover {\n  background: var(--umichBlueHover);\n}\n.multiselect__tag-icon:focus:after,\n.multiselect__tag-icon:hover:after {\n  color: var(--umichYellow);\n}\n\n/* red color when hovering over a tag in case user wants to unselect an option */\n.multiselect__option--selected.multiselect__option--highlight {\n  background: var(--darkRed);\n  color: white;\n}\n.multiselect__option--selected.multiselect__option--highlight:after {\n  background: var(--darkRed);\n  color: white;\n}\n\n/* font size of dropdown */\n.multiselect,\n.multiselect__input,\n.multiselect__single {\n  font-size: 12px;\n}\nbody {\n  background-color: var(--umichBlue);\n}\n#searchButton {\n  background-color: var(--umichBlue);\n  border-color: var(--umichBlue);\n}\n#clearButton {\n  background-color: var(--darkRed);\n  border-color: var(--darkRed);\n}\n#search-criteria-form-card {\n  background-color: var(--grayBgColor);\n  border-radius: 0px;\n}\n#search-results-table {\n  background-color: var(--grayBgColor);\n  font-size: 12px;\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 400px; \n  height: 80vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-card {\n  border-radius: 0px;\n  background-color: var(--grayBgColor);\n  overflow-x: hidden;\n  overflow-y: scroll; \n  \n  height: 360px;\n  height: 70vh; /* Two heights just in case user's browser doesn't support viewport */\n}\n#course-details-tab-container {\n  border-radius: 0px;\n}\n.course-details-link-button {\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n#course-details-link-buttons-container {\n  text-align: center;\n}\n\n\n/* Color of the tabs in the Course Details section */\n.nav-pills > li > a.active {\n  background-color: var(--umichBlue) !important;\n  color: #fff !important;\n}\n.nav-pills > li > a {\n  color: var(--umichBlue) !important;\n}\n#selected-course-title {\n  color: var(--umichYellow);\n}\n#page-buttons-container {\n  margin-bottom: 10px;\n}\n\n", ""]);
 
 // exports
 
@@ -55057,156 +55034,6 @@ var render = function() {
                           )
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-tab",
-                        {
-                          staticClass: "small",
-                          attrs: { title: "Textbooks/Other Materials" }
-                        },
-                        [
-                          _c(
-                            "b-card-text",
-                            [
-                              _c("p", [
-                                _vm._v(
-                                  'The partner U-M / Barnes & Noble Education textbook website is the official way for U-M students to view their upcoming textbook or course material needs, whether they choose to buy from Barnes & Noble Education or not. Students also can view a customized list of their specific textbook needs by clicking a "View/Buy Textbooks" link in their course schedule in Wolverine Access.'
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("p", [
-                                _c("em", [
-                                  _vm._v(
-                                    "Click the button below to view and buy textbooks for " +
-                                      _vm._s(this.courseDataJSON.Subject) +
-                                      " " +
-                                      _vm._s(this.courseDataJSON.CatalogNum) +
-                                      "." +
-                                      _vm._s(this.courseDataJSON.SectionNum)
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "b-button",
-                                {
-                                  staticClass: "course-details-link-button",
-                                  attrs: {
-                                    href:
-                                      "https://bookstore.mbsdirect.net/vbm/vb_buy2.php?ACTION=registrar&FVGRP=UMI&TERMCOURSES=" +
-                                      this.courseDataJSON.TermCode +
-                                      "|CENTRAL|" +
-                                      this.courseDataJSON.Subject +
-                                      " " +
-                                      this.courseDataJSON.CatalogNum +
-                                      " " +
-                                      this.courseDataJSON.SectionNum,
-                                    target: "_blank"
-                                  }
-                                },
-                                [_vm._v("View/Buy Textbooks")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-tab",
-                        { staticClass: "small", attrs: { title: "Syllabi" } },
-                        [
-                          _c(
-                            "b-card-text",
-                            [
-                              _c("p", [
-                                _vm._v(
-                                  "Syllabi are available to current LSA students. "
-                                ),
-                                _c("strong", [_vm._v("IMPORTANT:")]),
-                                _vm._v(
-                                  " These syllabi are provided to give students a general idea about the courses, as offered by LSA departments and programs in "
-                                ),
-                                _c("strong", [_vm._v("prior academic terms.")]),
-                                _vm._v(" The syllabi "),
-                                _c("strong", [_vm._v("do not")]),
-                                _vm._v(
-                                  " necessarily reflect the assignments, sequence of course materials, and/or course expectations that the faculty and departments/programs have for these same courses in the current and/or future terms."
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("p", [
-                                _c("em", [
-                                  _vm._v(
-                                    "Click the button below to view historical syllabi for " +
-                                      _vm._s(this.courseDataJSON.Subject) +
-                                      " " +
-                                      _vm._s(this.courseDataJSON.CatalogNum) +
-                                      " (UM login required)"
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "b-button",
-                                {
-                                  staticClass: "course-details-link-button",
-                                  attrs: {
-                                    href:
-                                      "https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=" +
-                                      this.courseDataJSON.Subject +
-                                      "&CatNbr=" +
-                                      this.courseDataJSON.CatalogNum,
-                                    target: "_blank"
-                                  }
-                                },
-                                [_vm._v("View Historical Syllabi")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-tab",
-                        {
-                          staticClass: "small",
-                          attrs: { title: "CourseProfile (Atlas)" }
-                        },
-                        [
-                          _c(
-                            "b-card-text",
-                            [
-                              _c("p", [
-                                _vm._v(
-                                  "The Atlas system, developed by the Center for Academic Innovation, provides additional information about: course enrollments; academic terms and instructors; student academic profiles (school/college, majors), and previous, concurrent, and subsequent course enrollments."
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "b-button",
-                                {
-                                  staticClass: "course-details-link-button",
-                                  attrs: {
-                                    href:
-                                      "https://atlas.ai.umich.edu/course/" +
-                                      this.courseDataJSON.Subject +
-                                      " " +
-                                      this.courseDataJSON.CatalogNum,
-                                    target: "_blank"
-                                  }
-                                },
-                                [_vm._v("CourseProfile (Atlas)")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
                       )
                     ],
                     1
@@ -55251,6 +55078,7 @@ var render = function() {
                         "b-button",
                         {
                           staticClass: "course-details-link-button",
+                          staticStyle: { color: "#ffcb05" },
                           attrs: {
                             href:
                               "https://atlas.ai.umich.edu/course/" +
