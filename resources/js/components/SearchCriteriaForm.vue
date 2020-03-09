@@ -316,18 +316,14 @@
                   <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
   
                   <!-- Replaced the stuff below with an HTML string making function because I couldn't figure out how to get rid of the empty fields in the json object -->
-                  <span v-else v-html="makeCourseDetailsHTMLString(this.allCourseDetailsJSON)"></span>
+                  <table v-else v-html="makeCourseDetailsHTMLString(this.allCourseDetailsJSON)" style='border-collapse: separate; border-spacing: 10px;'></table>
 
                   <!-- todo: make the blank stuff not show up
                   <div v-else v-for="(value, name) in this.allCourseDetailsJSON" v-bind:key = "name">
-                    
-                    
                     <span v-if=" name !== 'ClassDescr' ">
                       <strong>{{ name }}:</strong> {{ value }}
                     </span>
                   </div> -->
-
-                  {{this.allCourseDetailsJSON}}
 
                 </b-card-text>
               </b-tab>
@@ -854,7 +850,7 @@
             continue;
           }
 
-          HTMLstringArray.push(`<br/><strong>${property}:</strong> ${jsonIn[property]}`);
+          HTMLstringArray.push(`<tr><td><strong>${property}:</strong></td> <td>${jsonIn[property]}</td></tr>`);
 
           for (let i = 0; i < HTMLstringArray.length; i++) {
             if (HTMLstringArray[i].includes("[object Object]")) {
@@ -862,7 +858,6 @@
             }
           }
         }
-        console.log(HTMLstringArray);
 
         return HTMLstringArray.join("");
       },

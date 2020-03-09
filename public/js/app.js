@@ -2236,10 +2236,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4011,7 +4007,7 @@ __webpack_require__.r(__webpack_exports__);
           continue;
         }
 
-        HTMLstringArray.push("<br/><strong>".concat(property, ":</strong> ").concat(jsonIn[property]));
+        HTMLstringArray.push("<tr><td><strong>".concat(property, ":</strong></td> <td>").concat(jsonIn[property], "</td></tr>"));
 
         for (var i = 0; i < HTMLstringArray.length; i++) {
           if (HTMLstringArray[i].includes("[object Object]")) {
@@ -4020,7 +4016,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      console.log(HTMLstringArray);
       return HTMLstringArray.join("");
     }
   }
@@ -55051,7 +55046,11 @@ var render = function() {
                                     ])
                                   ])
                                 ])
-                              : _c("span", {
+                              : _c("table", {
+                                  staticStyle: {
+                                    "border-collapse": "separate",
+                                    "border-spacing": "10px"
+                                  },
                                   domProps: {
                                     innerHTML: _vm._s(
                                       _vm.makeCourseDetailsHTMLString(
@@ -55059,13 +55058,7 @@ var render = function() {
                                       )
                                     )
                                   }
-                                }),
-                            _vm._v(" "),
-                            _vm._v(
-                              "\n\n              " +
-                                _vm._s(this.allCourseDetailsJSON) +
-                                "\n\n            "
-                            )
+                                })
                           ])
                         ],
                         1
