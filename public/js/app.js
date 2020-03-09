@@ -55151,7 +55151,7 @@ var render = function() {
                                     staticStyle: {
                                       border: "0px none",
                                       "margin-left": "-20px",
-                                      height: "812px",
+                                      height: "960px",
                                       "margin-top": "-250px",
                                       "margin-bottom": "-20px",
                                       width: "615px"
