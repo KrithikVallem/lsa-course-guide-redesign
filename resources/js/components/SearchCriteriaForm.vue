@@ -880,6 +880,19 @@
             meetingHTML += `</td></tr>`;
 
 
+            //Meeting Time
+            const startTime = (jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_Start).slice(11, 16);
+            const endTime = (jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End).slice(11, 16);
+
+            meetingHTML += `<tr><td><strong>Meeting Time: </strong></td> <td> ${startTime} to ${endTime} </td></tr>`;
+
+
+            //Meeting Dates Range
+            const startDate = (jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt).slice(0, 10);
+            const endDate = (jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt).slice(0, 10);
+
+            meetingHTML += `<tr><td><strong>Meeting Dates: </strong></td> <td> ${startDate} to ${endDate} </td></tr>`;
+
             
             HTMLstringArray.unshift(meetingHTML);
           }

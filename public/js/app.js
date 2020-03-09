@@ -4010,9 +4010,11 @@ __webpack_require__.r(__webpack_exports__);
         } else if (property === "Instructors") {
           HTMLstringArray.unshift("<tr><td><strong>Instructors: </strong></td> <td>".concat(jsonIn.InstructorNames, "</td></tr>"));
         } else if (property === "MeetingPatterns") {
-          var meetingHTML = "";
-          meetingHTML += "<tr><td><strong>Meeting Place: </strong></td> <td>".concat(jsonIn.MeetingPatterns.CGMeetingPattern.Facility_ID, "</td></tr>");
-          meetingHTML += "<tr><td><strong>Meeting Dates: </strong></td> <td>";
+          var meetingHTML = ""; //Meeting Place
+
+          meetingHTML += "<tr><td><strong>Meeting Place: </strong></td> <td>".concat(jsonIn.MeetingPatterns.CGMeetingPattern.Facility_ID, "</td></tr>"); //Meeting Days
+
+          meetingHTML += "<tr><td><strong>Meeting Days: </strong></td> <td>";
 
           if (jsonIn.MeetingPatterns.CGMeetingPattern.Mon == 'Y') {
             meetingHTML += "Mon, ";
@@ -4044,7 +4046,15 @@ __webpack_require__.r(__webpack_exports__);
 
           meetingHTML = meetingHTML.slice(0, -2); // removes the space and comma after last meeting date
 
-          meetingHTML += "</td></tr>";
+          meetingHTML += "</td></tr>"; //Meeting Time
+
+          var startTime = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_Start.slice(11, 16);
+          var endTime = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End.slice(11, 16);
+          meetingHTML += "<tr><td><strong>Meeting Time: </strong></td> <td> ".concat(startTime, " to ").concat(endTime, " </td></tr>"); //Meeting Dates Range
+
+          var startDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt.slice(0, 10);
+          var endDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt.slice(0, 10);
+          meetingHTML += "<tr><td><strong>Meeting Dates: </strong></td> <td> ".concat(startDate, " to ").concat(endDate, " </td></tr>");
           HTMLstringArray.unshift(meetingHTML);
         } else {
           HTMLstringArray.push("<tr><td><strong>".concat(property, ":</strong></td> <td>").concat(jsonIn[property], "</td></tr>"));
