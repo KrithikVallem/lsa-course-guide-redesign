@@ -2236,6 +2236,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3998,6 +4002,26 @@ __webpack_require__.r(__webpack_exports__);
             }
 
       return codeFor2004Season + 50 * (year - 2004);
+    },
+    makeCourseDetailsHTMLString: function makeCourseDetailsHTMLString(jsonIn) {
+      var HTMLstringArray = [];
+
+      for (var property in jsonIn) {
+        if (property === "ClassDescr") {
+          continue;
+        }
+
+        HTMLstringArray.push("<br/><strong>".concat(property, ":</strong> ").concat(jsonIn[property]));
+
+        for (var i = 0; i < HTMLstringArray.length; i++) {
+          if (HTMLstringArray[i].includes("[object Object]")) {
+            HTMLstringArray[i] = "";
+          }
+        }
+      }
+
+      console.log(HTMLstringArray);
+      return HTMLstringArray.join("");
     }
   }
 });
@@ -55016,46 +55040,33 @@ var render = function() {
                         "b-tab",
                         { attrs: { title: "Details", active: "" } },
                         [
-                          _c(
-                            "b-card-text",
-                            [
-                              !this.courseDataJSON.ClassDescr
-                                ? _c("span", [
-                                    _c("h3", [
-                                      _c("strong", [
-                                        _vm._v(
-                                          "Click on a class in the column on the left to see more information about it!"
-                                        )
-                                      ])
+                          _c("b-card-text", [
+                            !this.courseDataJSON.ClassDescr
+                              ? _c("span", [
+                                  _c("h3", [
+                                    _c("strong", [
+                                      _vm._v(
+                                        "Click on a class in the column on the left to see more information about it!"
+                                      )
                                     ])
                                   ])
-                                : _vm._l(this.allCourseDetailsJSON, function(
-                                    value,
-                                    name
-                                  ) {
-                                    return _c("div", { key: name }, [
-                                      name !== "ClassDescr"
-                                        ? _c("span", [
-                                            _c("strong", [
-                                              _vm._v(_vm._s(name) + ":")
-                                            ]),
-                                            _vm._v(
-                                              " " +
-                                                _vm._s(value) +
-                                                "\n                "
-                                            )
-                                          ])
-                                        : _vm._e()
-                                    ])
-                                  }),
-                              _vm._v(
-                                "\n\n              " +
-                                  _vm._s(this.allCourseDetailsJSON) +
-                                  "\n\n            "
-                              )
-                            ],
-                            2
-                          )
+                                ])
+                              : _c("span", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.makeCourseDetailsHTMLString(
+                                        this.allCourseDetailsJSON
+                                      )
+                                    )
+                                  }
+                                }),
+                            _vm._v(" "),
+                            _vm._v(
+                              "\n\n              " +
+                                _vm._s(this.allCourseDetailsJSON) +
+                                "\n\n            "
+                            )
+                          ])
                         ],
                         1
                       ),
@@ -55130,7 +55141,7 @@ var render = function() {
                         "b-tab",
                         {
                           staticClass: "small",
-                          attrs: { title: "GradeGuide", active: "" }
+                          attrs: { title: "GradeGuide" }
                         },
                         [
                           _c(

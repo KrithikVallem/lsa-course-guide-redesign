@@ -314,14 +314,18 @@
               <b-tab title="Details" active>
                 <b-card-text>
                   <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
+  
+                  <!-- Replaced the stuff below with an HTML string making function because I couldn't figure out how to get rid of the empty fields in the json object -->
+                  <span v-else v-html="makeCourseDetailsHTMLString(this.allCourseDetailsJSON)"></span>
 
+                  <!-- todo: make the blank stuff not show up
                   <div v-else v-for="(value, name) in this.allCourseDetailsJSON" v-bind:key = "name">
                     
-                    <!-- todo: make the blank stuff not show up -->
-                    <span v-if=" name !== 'ClassDescr' "> <!-- only renders if item has value and is not the ClassDescr-->
+                    
+                    <span v-if=" name !== 'ClassDescr' ">
                       <strong>{{ name }}:</strong> {{ value }}
                     </span>
-                  </div>
+                  </div> -->
 
                   {{this.allCourseDetailsJSON}}
 
@@ -357,7 +361,7 @@
                 </b-card-text>
               </b-tab>
 
-              <b-tab title="GradeGuide" class="small" active>
+              <b-tab title="GradeGuide" class="small">
                 <b-card-text style="overflow: hidden;">
                   <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
 
@@ -838,6 +842,29 @@
         }
         
         return (codeFor2004Season + (50 * (year - 2004)))
+      },
+
+
+      makeCourseDetailsHTMLString(jsonIn) {
+        let HTMLstringArray = [];
+
+        for (let property in jsonIn) {
+          
+          if (property === "ClassDescr") {
+            continue;
+          }
+
+          HTMLstringArray.push(`<br/><strong>${property}:</strong> ${jsonIn[property]}`);
+
+          for (let i = 0; i < HTMLstringArray.length; i++) {
+            if (HTMLstringArray[i].includes("[object Object]")) {
+              HTMLstringArray[i] = "";
+            }
+          }
+        }
+        console.log(HTMLstringArray);
+
+        return HTMLstringArray.join("");
       },
 
     }
