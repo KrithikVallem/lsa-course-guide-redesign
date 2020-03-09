@@ -871,15 +871,6 @@
           */
          return dateTimeIn;
         }
-
-        //Date like 2020-01-08, which is 01/08/20
-        else {
-          /*
-          const dateArray = dateTimeIn.split("-");
-          return (dateArray[1] + "/" + dateArray[2] + "/" + dateArray[0].slice(2,4));
-          */
-         return dateTimeIn;
-        }
       },
 
 
@@ -928,12 +919,15 @@
             meetingHTML += `<tr><td><strong>Meeting Time: </strong></td> <td> ${startTime} to ${endTime} </td></tr>`;
 
 
-            //Meeting Dates Range
-            const startDate = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt).slice(0, 10)).toString();
-            const endDate = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt).slice(0, 10)).toString();
+            //Meeting Dates Range: Date like 2020-01-08, which is 01/08/20
+            let startDate = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt).slice(0, 10)).toString();
+            let endDate = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt).slice(0, 10)).toString();
 
-            //const startDate2 = formatDatesAndTimes(startDate);
-            //const endDate2 = formatDatesAndTimes(endDate);
+            const startDateArray = startDate.split("-");
+            startDate = (startDateArray[1] + "/" + startDateArray[2] + "/" + startDateArray[0].slice(2,4));
+
+            const endDateArray = endDate.split("-");
+            endDate = (endDateArray[1] + "/" + endDateArray[2] + "/" + endDateArray[0].slice(2,4));
 
             // I think the actual function is fine (see my codepen), but vue is having some sort of problem with it
             // Maybe get rid of function and do formatting here directly

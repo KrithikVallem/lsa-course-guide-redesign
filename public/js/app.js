@@ -4089,6 +4089,12 @@ __webpack_require__.r(__webpack_exports__);
           var endDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt.slice(0, 10).toString(); //const startDate2 = formatDatesAndTimes(startDate);
           //const endDate2 = formatDatesAndTimes(endDate);
 
+          var startDateArray = startDate.split("-");
+          startDate = startDateArray[1] + "/" + startDateArray[2] + "/" + startDateArray[0].slice(2, 4);
+          var endDateArray = endDate.split("-");
+          endDate = endDateArray[1] + "/" + endDateArray[2] + "/" + endDateArray[0].slice(2, 4); // I think the actual function is fine (see my codepen), but vue is having some sort of problem with it
+          // Maybe get rid of function and do formatting here directly
+
           meetingHTML += "<tr><td><strong>Meeting Dates: </strong></td> <td> ".concat(startDate, " to ").concat(endDate, " </td></tr>");
           HTMLstringArray.unshift(meetingHTML);
         } else {
