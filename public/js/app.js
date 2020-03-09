@@ -4001,6 +4001,37 @@ __webpack_require__.r(__webpack_exports__);
 
       return codeFor2004Season + 50 * (year - 2004);
     },
+    formatDatesAndTimes: function formatDatesAndTimes(dateTimeIn) {
+      // Time like 16:00, which is 4:00PM
+      if (dateTimeIn.includes(":")) {
+        /*
+        const timeArray = dateTimeIn.split(":");
+        let hour = parseInt(timeArray[0]);
+        const minutes = timeArray[1];
+         if (hour === 0) {
+          return ("12:" + minutes + "AM");
+        }
+        else if (hour === 12) {
+          return ("12:" + minutes + "PM");
+        }
+        else if (hour > 12) { // other PM times
+          hour -= 12;
+          return (hour + ":" + minutes + "PM");
+        }
+        else { // other AM times
+          return (hour + ":" + minutes + "AM");
+        }
+         */
+        return dateTimeIn;
+      } //Date like 2020-01-08, which is 01/08/20
+      else {
+          /*
+          const dateArray = dateTimeIn.split("-");
+          return (dateArray[1] + "/" + dateArray[2] + "/" + dateArray[0].slice(2,4));
+          */
+          return dateTimeIn;
+        }
+    },
     makeCourseDetailsHTMLString: function makeCourseDetailsHTMLString(jsonIn) {
       var HTMLstringArray = [];
 
@@ -4048,12 +4079,16 @@ __webpack_require__.r(__webpack_exports__);
 
           meetingHTML += "</td></tr>"; //Meeting Time
 
-          var startTime = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_Start.slice(11, 16);
-          var endTime = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End.slice(11, 16);
+          var startTime = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_Start.slice(11, 16).toString();
+          var endTime = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End.slice(11, 16).toString(); //const startTime2 = formatDatesAndTimes(startTime);
+          //const endTime2 = formatDatesAndTimes(endTime);
+
           meetingHTML += "<tr><td><strong>Meeting Time: </strong></td> <td> ".concat(startTime, " to ").concat(endTime, " </td></tr>"); //Meeting Dates Range
 
-          var startDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt.slice(0, 10);
-          var endDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt.slice(0, 10);
+          var startDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt.slice(0, 10).toString();
+          var endDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt.slice(0, 10).toString(); //const startDate2 = formatDatesAndTimes(startDate);
+          //const endDate2 = formatDatesAndTimes(endDate);
+
           meetingHTML += "<tr><td><strong>Meeting Dates: </strong></td> <td> ".concat(startDate, " to ").concat(endDate, " </td></tr>");
           HTMLstringArray.unshift(meetingHTML);
         } else {

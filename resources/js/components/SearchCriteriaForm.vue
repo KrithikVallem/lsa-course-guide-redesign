@@ -845,6 +845,44 @@
       },
 
 
+      formatDatesAndTimes(dateTimeIn) {
+
+        // Time like 16:00, which is 4:00PM
+        if (dateTimeIn.includes(":")) {
+          /*
+          const timeArray = dateTimeIn.split(":");
+          let hour = parseInt(timeArray[0]);
+          const minutes = timeArray[1];
+
+          if (hour === 0) {
+            return ("12:" + minutes + "AM");
+          }
+          else if (hour === 12) {
+            return ("12:" + minutes + "PM");
+          }
+          else if (hour > 12) { // other PM times
+            hour -= 12;
+            return (hour + ":" + minutes + "PM");
+          }
+          else { // other AM times
+            return (hour + ":" + minutes + "AM");
+          }
+
+          */
+         return dateTimeIn;
+        }
+
+        //Date like 2020-01-08, which is 01/08/20
+        else {
+          /*
+          const dateArray = dateTimeIn.split("-");
+          return (dateArray[1] + "/" + dateArray[2] + "/" + dateArray[0].slice(2,4));
+          */
+         return dateTimeIn;
+        }
+      },
+
+
       makeCourseDetailsHTMLString(jsonIn) {
         let HTMLstringArray = [];
 
@@ -881,15 +919,24 @@
 
 
             //Meeting Time
-            const startTime = (jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_Start).slice(11, 16);
-            const endTime = (jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End).slice(11, 16);
+            const startTime = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_Start).slice(11, 16)).toString();
+            const endTime = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End).slice(11, 16)).toString();
+
+            //const startTime2 = formatDatesAndTimes(startTime);
+            //const endTime2 = formatDatesAndTimes(endTime);
 
             meetingHTML += `<tr><td><strong>Meeting Time: </strong></td> <td> ${startTime} to ${endTime} </td></tr>`;
 
 
             //Meeting Dates Range
-            const startDate = (jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt).slice(0, 10);
-            const endDate = (jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt).slice(0, 10);
+            const startDate = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt).slice(0, 10)).toString();
+            const endDate = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt).slice(0, 10)).toString();
+
+            //const startDate2 = formatDatesAndTimes(startDate);
+            //const endDate2 = formatDatesAndTimes(endDate);
+
+            // I think the actual function is fine (see my codepen), but vue is having some sort of problem with it
+            // Maybe get rid of function and do formatting here directly
 
             meetingHTML += `<tr><td><strong>Meeting Dates: </strong></td> <td> ${startDate} to ${endDate} </td></tr>`;
 
@@ -910,6 +957,9 @@
 
         return HTMLstringArray.join("");
       },
+
+
+      
 
     }
   }
