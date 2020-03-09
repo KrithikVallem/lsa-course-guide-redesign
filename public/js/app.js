@@ -3868,6 +3868,7 @@ __webpack_require__.r(__webpack_exports__);
       var subjectIn = item.Subject;
       var catalogNumIn = item.CatalogNum;
       var sectionNumIn = item.SectionNum;
+      var instructorNamesIn = item.Instructor;
       var currentObject = this;
       /* Makes a query url and sends it to the backend to get the secondary course details like Credit Exxlusions, Other Course Info, BS, Repeatability, Waitlist Capacity, Adv Prereqs, etc...
          that are not in the general search api and must instead be retrieved from an api call for a specific class only */
@@ -3897,6 +3898,7 @@ __webpack_require__.r(__webpack_exports__);
         currentObject.allCourseDetailsJSON = []; // clear out previous data, to be safe
 
         currentObject.allCourseDetailsJSON = response.data;
+        currentObject.allCourseDetailsJSON.InstructorNames = instructorNamesIn;
       })["catch"](function (error) {//alert(`There was an error retrieving the secondary course details for ${subjectIn} ${catalogNumIn} :(`);
       });
       /* Makes a query url and sends it to the backend to get the scheduling info for the currently selected class from the scheduling api */
@@ -4005,13 +4007,34 @@ __webpack_require__.r(__webpack_exports__);
       for (var property in jsonIn) {
         if (property === "ClassDescr") {
           continue;
-        }
+        } else if (property === "Instructors") {
+          var instructorsArray = [];
+          /*
+          // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors
+          // So, I have to first check if its an array or not and then get the name value(s) accordingly
+          if (Array.isArray(jsonIn["Instructors"])) {
+            console.log("check 1");
+             for (let instr of jsonIn[property]) {
+              console.log("check 2");
+               instructorsArray.push(instr.CGInstructor.Name);
+            }
+          }
+          else {
+            console.log("check 3");
+             instructorsArray.push((jsonIn[property]).CGInstructor.Name);
+          }
+          */
 
-        HTMLstringArray.push("<tr><td><strong>".concat(property, ":</strong></td> <td>").concat(jsonIn[property], "</td></tr>"));
+          HTMLstringArray.unshift("<tr><td><strong>Instructors: </strong></td> <td>".concat(jsonIn.InstructorNames, "</td></tr>"));
+        } else if (property === "MeetingPatterns") {
+          continue; // todo
+        } else {
+          HTMLstringArray.push("<tr><td><strong>".concat(property, ":</strong></td> <td>").concat(jsonIn[property], "</td></tr>"));
 
-        for (var i = 0; i < HTMLstringArray.length; i++) {
-          if (HTMLstringArray[i].includes("[object Object]")) {
-            HTMLstringArray[i] = "";
+          for (var i = 0; i < HTMLstringArray.length; i++) {
+            if (HTMLstringArray[i].includes("[object Object]")) {
+              HTMLstringArray[i] = "";
+            }
           }
         }
       }
@@ -55054,7 +55077,8 @@ var render = function() {
                                   domProps: {
                                     innerHTML: _vm._s(
                                       _vm.makeCourseDetailsHTMLString(
-                                        this.allCourseDetailsJSON
+                                        this.allCourseDetailsJSON,
+                                        this.courseDataJSON.I
                                       )
                                     )
                                   }

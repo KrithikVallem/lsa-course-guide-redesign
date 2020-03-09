@@ -316,9 +316,9 @@
                   <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
   
                   <!-- Replaced the stuff below with an HTML string making function because I couldn't figure out how to get rid of the empty fields in the json object -->
-                  <table v-else v-html="makeCourseDetailsHTMLString(this.allCourseDetailsJSON)" style='border-collapse: separate; border-spacing: 10px;'></table>
+                  <table v-else v-html="makeCourseDetailsHTMLString(this.allCourseDetailsJSON, this.courseDataJSON.I)" style='border-collapse: separate; border-spacing: 10px;'></table>
 
-                  <!-- todo: make the blank stuff not show up
+                  <!--how can I make the blank stuff not show up ??
                   <div v-else v-for="(value, name) in this.allCourseDetailsJSON" v-bind:key = "name">
                     <span v-if=" name !== 'ClassDescr' ">
                       <strong>{{ name }}:</strong> {{ value }}
@@ -724,6 +724,8 @@
         const catalogNumIn = item.CatalogNum;
         const sectionNumIn = item.SectionNum;
 
+        const instructorNamesIn = item.Instructor;
+
 
         let currentObject = this;
 
@@ -757,6 +759,8 @@
 
          currentObject.allCourseDetailsJSON = []; // clear out previous data, to be safe
          currentObject.allCourseDetailsJSON = response.data;
+
+         currentObject.allCourseDetailsJSON.InstructorNames = instructorNamesIn;
 
         })
         .catch(function (error) {
@@ -850,11 +854,21 @@
             continue;
           }
 
-          HTMLstringArray.push(`<tr><td><strong>${property}:</strong></td> <td>${jsonIn[property]}</td></tr>`);
+          else if (property === "Instructors") {
+              HTMLstringArray.unshift(`<tr><td><strong>Instructors: </strong></td> <td>${jsonIn.InstructorNames}</td></tr>`);
+          }
 
-          for (let i = 0; i < HTMLstringArray.length; i++) {
-            if (HTMLstringArray[i].includes("[object Object]")) {
-              HTMLstringArray[i] = "";
+          else if (property === "MeetingPatterns") {
+            continue; // todo
+          }
+
+          else {
+            HTMLstringArray.push(`<tr><td><strong>${property}:</strong></td> <td>${jsonIn[property]}</td></tr>`);
+
+            for (let i = 0; i < HTMLstringArray.length; i++) {
+              if (HTMLstringArray[i].includes("[object Object]")) {
+                HTMLstringArray[i] = "";
+              }
             }
           }
         }
