@@ -22,8 +22,6 @@ I apologize in advance if these directions do not work on your computer. If you 
 
 ## Built With
 
-BUILT WITH IMAGES GO HERE - TODO
-
 * [Vue.js](https://vuejs.org/) - The main JavaScript framework used
 * [Laravel](https://laravel.com/) - Used to access the apis and get around [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 * [Vue-multiselect](https://vue-multiselect.js.org/) - Used to make the multiselect dropdowns
@@ -32,7 +30,7 @@ BUILT WITH IMAGES GO HERE - TODO
 
 ## Authors
 
- * [KrithikVallem](https://github.com/KrithikVallem)
+ * [Krithik Vallem](https://github.com/KrithikVallem)
 
 ## Acknowledgments
 
