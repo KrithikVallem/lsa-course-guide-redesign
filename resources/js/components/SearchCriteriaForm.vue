@@ -859,7 +859,29 @@
           }
 
           else if (property === "MeetingPatterns") {
-            continue; // todo
+            
+            let meetingHTML = "";
+
+            //Meeting Place
+            meetingHTML += `<tr><td><strong>Meeting Place: </strong></td> <td>${jsonIn.MeetingPatterns.CGMeetingPattern.Facility_ID}</td></tr>`;
+            
+            //Meeting Days
+            meetingHTML += `<tr><td><strong>Meeting Days: </strong></td> <td>`;
+            
+            if (jsonIn.MeetingPatterns.CGMeetingPattern.Mon == 'Y') {meetingHTML += `Mon, `;}
+            if (jsonIn.MeetingPatterns.CGMeetingPattern.Tues == 'Y') {meetingHTML += `Tues, `;}
+            if (jsonIn.MeetingPatterns.CGMeetingPattern.Wed == 'Y') {meetingHTML += `Wed, `;}
+            if (jsonIn.MeetingPatterns.CGMeetingPattern.Thurs == 'Y') {meetingHTML += `Thurs, `;}
+            if (jsonIn.MeetingPatterns.CGMeetingPattern.Fri == 'Y') {meetingHTML += `Fri, `;}
+            if (jsonIn.MeetingPatterns.CGMeetingPattern.Sat == 'Y') {meetingHTML += `Sat, `;}
+            if (jsonIn.MeetingPatterns.CGMeetingPattern.Sun == 'Y') {meetingHTML += `Sun, `;}
+
+            meetingHTML = meetingHTML.slice(0, -2); // removes the space and comma after last meeting date
+            meetingHTML += `</td></tr>`;
+
+
+            
+            HTMLstringArray.unshift(meetingHTML);
           }
 
           else {

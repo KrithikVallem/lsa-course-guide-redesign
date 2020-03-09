@@ -4008,26 +4008,44 @@ __webpack_require__.r(__webpack_exports__);
         if (property === "ClassDescr") {
           continue;
         } else if (property === "Instructors") {
-          var instructorsArray = [];
-          /*
-          // CGInstructor is a normal object where theres only 1 instructor, but is an array of objects when theres multiple instructors
-          // So, I have to first check if its an array or not and then get the name value(s) accordingly
-          if (Array.isArray(jsonIn["Instructors"])) {
-            console.log("check 1");
-             for (let instr of jsonIn[property]) {
-              console.log("check 2");
-               instructorsArray.push(instr.CGInstructor.Name);
-            }
-          }
-          else {
-            console.log("check 3");
-             instructorsArray.push((jsonIn[property]).CGInstructor.Name);
-          }
-          */
-
           HTMLstringArray.unshift("<tr><td><strong>Instructors: </strong></td> <td>".concat(jsonIn.InstructorNames, "</td></tr>"));
         } else if (property === "MeetingPatterns") {
-          continue; // todo
+          var meetingHTML = "";
+          meetingHTML += "<tr><td><strong>Meeting Place: </strong></td> <td>".concat(jsonIn.MeetingPatterns.CGMeetingPattern.Facility_ID, "</td></tr>");
+          meetingHTML += "<tr><td><strong>Meeting Dates: </strong></td> <td>";
+
+          if (jsonIn.MeetingPatterns.CGMeetingPattern.Mon == 'Y') {
+            meetingHTML += "Mon, ";
+          }
+
+          if (jsonIn.MeetingPatterns.CGMeetingPattern.Tues == 'Y') {
+            meetingHTML += "Tues, ";
+          }
+
+          if (jsonIn.MeetingPatterns.CGMeetingPattern.Wed == 'Y') {
+            meetingHTML += "Wed, ";
+          }
+
+          if (jsonIn.MeetingPatterns.CGMeetingPattern.Thurs == 'Y') {
+            meetingHTML += "Thurs, ";
+          }
+
+          if (jsonIn.MeetingPatterns.CGMeetingPattern.Fri == 'Y') {
+            meetingHTML += "Fri, ";
+          }
+
+          if (jsonIn.MeetingPatterns.CGMeetingPattern.Sat == 'Y') {
+            meetingHTML += "Sat, ";
+          }
+
+          if (jsonIn.MeetingPatterns.CGMeetingPattern.Sun == 'Y') {
+            meetingHTML += "Sun, ";
+          }
+
+          meetingHTML = meetingHTML.slice(0, -2); // removes the space and comma after last meeting date
+
+          meetingHTML += "</td></tr>";
+          HTMLstringArray.unshift(meetingHTML);
         } else {
           HTMLstringArray.push("<tr><td><strong>".concat(property, ":</strong></td> <td>").concat(jsonIn[property], "</td></tr>"));
 
