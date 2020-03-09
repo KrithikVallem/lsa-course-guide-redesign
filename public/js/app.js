@@ -2248,7 +2248,7 @@ __webpack_require__.r(__webpack_exports__);
         option: "Fall 2020"
       },
 
-      /* TODO: change this every now and then */
+      /* TODO: change this every now and then, and add more options to the stuff below */
       termOptions: [{
         value: "2350",
         option: "Summer 2021"

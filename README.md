@@ -1,10 +1,10 @@
 # LSA Course Guide Redesign
 
-GIF GOES HERE
+GIF GOES HERE - TODO
 
 This project is my attempt to recreate the [LSA Course Guide](https://www.lsa.umich.edu/cg/) as a single-page application that requires no page refreshes for actions such as searching for classes or clicking on a class to see more information about it. Additionally, I added in some extra features that I wished were in the official course guide, such as being able to view course grade distributions directly in the class info, without having to open them in a new tab.
 
-IMAGE OF GRADEGUIDE XFRAME GOES HERE
+IMAGE OF GRADEGUIDE XFRAME GOES HERE - TODO
 
 ### Installing
 
@@ -22,6 +22,8 @@ I apologize in advance if these directions do not work on your computer. If you 
 
 ## Built With
 
+BUILT WITH IMAGES GO HERE - TODO
+
 * [Vue.js](https://vuejs.org/) - The main JavaScript framework used
 * [Laravel](https://laravel.com/) - Used to access the apis and get around [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 * [Vue-multiselect](https://vue-multiselect.js.org/) - Used to make the multiselect dropdowns
@@ -30,7 +32,7 @@ I apologize in advance if these directions do not work on your computer. If you 
 
 ## Authors
 
- * **Krithik Vallem** - [KrithikVallem](https://github.com/KrithikVallem)
+ * [KrithikVallem](https://github.com/KrithikVallem)
 
 ## Acknowledgments
 
