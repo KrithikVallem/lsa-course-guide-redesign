@@ -357,6 +357,14 @@
                 </b-card-text>
               </b-tab>
 
+              <b-tab title="GradeGuide" class="small" active>
+                <b-card-text style="overflow: hidden;">
+                  <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
+
+                  <iframe v-else scrolling='no' v-bind:src="`https://gradeguide.com/course/${this.courseDataJSON.Subject}/${this.courseDataJSON.CatalogNum}/`" style='border: 0px none; margin-left: -20px; height: 812px; margin-top: -250px; margin-bottom: -20px; width: 615px;'></iframe>
+                </b-card-text>
+              </b-tab>
+
             </b-tabs>
           </b-card>
           
@@ -376,7 +384,7 @@
             </b-col>
 
             <b-col sm>
-              <b-button class="course-details-link-button" v-bind:href="'https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=' + this.courseDataJSON.Subject + '&amp;CatNbr=' + this.courseDataJSON.CatalogNum" target="_blank">View Old Syllabi</b-button>
+              <b-button class="course-details-link-button" v-bind:href="'https://webapps.lsa.umich.edu/syllabi/cg_syllabus_results.aspx?Subject=' + this.courseDataJSON.Subject + '&amp;CatNbr=' + this.courseDataJSON.CatalogNum" target="_blank">View Previous Syllabi</b-button>
             </b-col>
           </b-row>
         </b-col>

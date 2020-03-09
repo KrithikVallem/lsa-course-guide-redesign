@@ -2228,6 +2228,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -55116,6 +55124,52 @@ var render = function() {
                           )
                         ],
                         1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-tab",
+                        {
+                          staticClass: "small",
+                          attrs: { title: "GradeGuide", active: "" }
+                        },
+                        [
+                          _c(
+                            "b-card-text",
+                            { staticStyle: { overflow: "hidden" } },
+                            [
+                              !this.courseDataJSON.ClassDescr
+                                ? _c("span", [
+                                    _c("h3", [
+                                      _c("strong", [
+                                        _vm._v(
+                                          "Click on a class in the column on the left to see more information about it!"
+                                        )
+                                      ])
+                                    ])
+                                  ])
+                                : _c("iframe", {
+                                    staticStyle: {
+                                      border: "0px none",
+                                      "margin-left": "-20px",
+                                      height: "812px",
+                                      "margin-top": "-250px",
+                                      "margin-bottom": "-20px",
+                                      width: "615px"
+                                    },
+                                    attrs: {
+                                      scrolling: "no",
+                                      src:
+                                        "https://gradeguide.com/course/" +
+                                        this.courseDataJSON.Subject +
+                                        "/" +
+                                        this.courseDataJSON.CatalogNum +
+                                        "/"
+                                    }
+                                  })
+                            ]
+                          )
+                        ],
+                        1
                       )
                     ],
                     1
@@ -55221,7 +55275,7 @@ var render = function() {
                                 target: "_blank"
                               }
                             },
-                            [_vm._v("View Old Syllabi")]
+                            [_vm._v("View Previous Syllabi")]
                           )
                         ],
                         1
