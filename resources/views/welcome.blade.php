@@ -6,8 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>LSA Course Guide Redesign</title>
+        <link rel="icon" href="{{ URL::asset('https://drive.google.com/file/d/1p7FPsedNLev8ZichPLZH27dAIu5tXLqm/view?usp=sharing') }}" type="image/x-icon"/>
         <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
-        <link rel="shortcut icon" href="public/lsacg_favicon.ico?" type="image/x-icon"/>
     </head>
     <body>
         <div id="app">
