@@ -2244,7 +2244,24 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       termValue: null,
+
+      /* If I set a default value for this, the search won't work */
       termOptions: [{
+        value: "2350",
+        option: "Summer 2021"
+      }, {
+        value: "2340",
+        option: "Sp/Su 2021"
+      }, {
+        value: "2330",
+        option: "Spring 2021"
+      }, {
+        value: "2320",
+        option: "Winter 2021"
+      }, {
+        value: "2310",
+        option: "Fall 2020"
+      }, {
         value: "2300",
         option: "Summer 2020"
       }, {
@@ -3463,6 +3480,11 @@ __webpack_require__.r(__webpack_exports__);
     ** Calls constructQueryUrl() to make the correct api request url, and sends it to backend to circumvent CORS     
     ** Once JSON course results data is returned, formats it into an array so that bootstrap-vue can turn it into a neat table */
     searchFunction: function searchFunction(pageNumberIn) {
+      if (this.termValue === null) {
+        alert("Please Select a Term!");
+        return;
+      }
+
       var currentObject = this;
       this.currentPageNum = pageNumberIn;
       if (this.currentPageNum < 1) this.currentPageNum = 1;
@@ -3589,15 +3611,32 @@ __webpack_require__.r(__webpack_exports__);
       var CLASSTYPE = this.creditTypeValue.value;
       queryUrl += "/".concat(CLASSTYPE, "/").concat(AUDIENCE, "/").concat(PAGENO, "/").concat(ROWSPERPAGE, "/search?"); // TERM
 
+      queryUrl += "term=".concat(this.termValue.value, "&"); // the commented out stuff is for when Term selection was a multiselect
+
+      /*
       if (this.termValue !== null) {
+        for (let item of this.termValue) { 
+          queryUrl += `term=${item.value}&`;
+        }
+      }
+      // if user didn't select a term, the term is set to the current term based on the computer's system date
+      // this complex stuff is needed because the url won't form properly when I set a default term on page load
+      else if (this.termValue === null){
+        //I'm no longer using this
+        queryUrl += `term=${this.getTermCodeOfSystemDate()}&`;
+      }
+      */
+      // SUBJECT
+
+      if (this.subjectValue !== null) {
         var _iteratorNormalCompletion3 = true;
         var _didIteratorError3 = false;
         var _iteratorError3 = undefined;
 
         try {
-          for (var _iterator3 = this.termValue[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          for (var _iterator3 = this.subjectValue[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
             var item = _step3.value;
-            queryUrl += "term=".concat(item.value, "&");
+            queryUrl += "subject=".concat(item.value, "&");
           }
         } catch (err) {
           _didIteratorError3 = true;
@@ -3610,37 +3649,6 @@ __webpack_require__.r(__webpack_exports__);
           } finally {
             if (_didIteratorError3) {
               throw _iteratorError3;
-            }
-          }
-        }
-      } // if user didn't select a term, the term is set to the current term based on the computer's system date
-      // this complex stuff is needed because the url won't form properly when I set a default term on page load
-      else if (this.termValue === null) {
-          queryUrl += "term=".concat(this.getTermCodeOfSystemDate(), "&");
-        } // SUBJECT
-
-
-      if (this.subjectValue !== null) {
-        var _iteratorNormalCompletion4 = true;
-        var _didIteratorError4 = false;
-        var _iteratorError4 = undefined;
-
-        try {
-          for (var _iterator4 = this.subjectValue[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-            var _item = _step4.value;
-            queryUrl += "subject=".concat(_item.value, "&");
-          }
-        } catch (err) {
-          _didIteratorError4 = true;
-          _iteratorError4 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
-              _iterator4["return"]();
-            }
-          } finally {
-            if (_didIteratorError4) {
-              throw _iteratorError4;
             }
           }
         }
@@ -3663,14 +3671,41 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.creditHoursValue !== null) {
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
+
+        try {
+          for (var _iterator4 = this.creditHoursValue[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var _item = _step4.value;
+            queryUrl += "credit=".concat(_item.value, "&");
+          }
+        } catch (err) {
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+              _iterator4["return"]();
+            }
+          } finally {
+            if (_didIteratorError4) {
+              throw _iteratorError4;
+            }
+          }
+        }
+      } // DISTRIBUTION REQ
+
+
+      if (this.distributionReqValue !== null) {
         var _iteratorNormalCompletion5 = true;
         var _didIteratorError5 = false;
         var _iteratorError5 = undefined;
 
         try {
-          for (var _iterator5 = this.creditHoursValue[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+          for (var _iterator5 = this.distributionReqValue[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
             var _item2 = _step5.value;
-            queryUrl += "credit=".concat(_item2.value, "&");
+            queryUrl += "distr=".concat(_item2.value, "&");
           }
         } catch (err) {
           _didIteratorError5 = true;
@@ -3686,18 +3721,18 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // DISTRIBUTION REQ
+      } // Skills Reqs - categorized as 'other'
 
 
-      if (this.distributionReqValue !== null) {
+      if (this.skillsReqValue !== null) {
         var _iteratorNormalCompletion6 = true;
         var _didIteratorError6 = false;
         var _iteratorError6 = undefined;
 
         try {
-          for (var _iterator6 = this.distributionReqValue[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+          for (var _iterator6 = this.skillsReqValue[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
             var _item3 = _step6.value;
-            queryUrl += "distr=".concat(_item3.value, "&");
+            queryUrl += "other=".concat(_item3.value, "&");
           }
         } catch (err) {
           _didIteratorError6 = true;
@@ -3713,16 +3748,16 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // Skills Reqs - categorized as 'other'
+      } // Special Offerings - categorized as 'other'
 
 
-      if (this.skillsReqValue !== null) {
+      if (this.specialOfferingsValue !== null) {
         var _iteratorNormalCompletion7 = true;
         var _didIteratorError7 = false;
         var _iteratorError7 = undefined;
 
         try {
-          for (var _iterator7 = this.skillsReqValue[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+          for (var _iterator7 = this.specialOfferingsValue[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
             var _item4 = _step7.value;
             queryUrl += "other=".concat(_item4.value, "&");
           }
@@ -3740,18 +3775,18 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // Special Offerings - categorized as 'other'
+      } // Course Level
 
 
-      if (this.specialOfferingsValue !== null) {
+      if (this.courseLevelValue !== null) {
         var _iteratorNormalCompletion8 = true;
         var _didIteratorError8 = false;
         var _iteratorError8 = undefined;
 
         try {
-          for (var _iterator8 = this.specialOfferingsValue[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+          for (var _iterator8 = this.courseLevelValue[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
             var _item5 = _step8.value;
-            queryUrl += "other=".concat(_item5.value, "&");
+            queryUrl += "numlvl=".concat(_item5.value, "&");
           }
         } catch (err) {
           _didIteratorError8 = true;
@@ -3767,18 +3802,18 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // Course Level
+      } // Meeting Days
 
 
-      if (this.courseLevelValue !== null) {
+      if (this.meetingDaysValue !== null) {
         var _iteratorNormalCompletion9 = true;
         var _didIteratorError9 = false;
         var _iteratorError9 = undefined;
 
         try {
-          for (var _iterator9 = this.courseLevelValue[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+          for (var _iterator9 = this.meetingDaysValue[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
             var _item6 = _step9.value;
-            queryUrl += "numlvl=".concat(_item6.value, "&");
+            queryUrl += "mp_day=".concat(_item6.value, "&");
           }
         } catch (err) {
           _didIteratorError9 = true;
@@ -3791,33 +3826,6 @@ __webpack_require__.r(__webpack_exports__);
           } finally {
             if (_didIteratorError9) {
               throw _iteratorError9;
-            }
-          }
-        }
-      } // Meeting Days
-
-
-      if (this.meetingDaysValue !== null) {
-        var _iteratorNormalCompletion10 = true;
-        var _didIteratorError10 = false;
-        var _iteratorError10 = undefined;
-
-        try {
-          for (var _iterator10 = this.meetingDaysValue[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-            var _item7 = _step10.value;
-            queryUrl += "mp_day=".concat(_item7.value, "&");
-          }
-        } catch (err) {
-          _didIteratorError10 = true;
-          _iteratorError10 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion10 && _iterator10["return"] != null) {
-              _iterator10["return"]();
-            }
-          } finally {
-            if (_didIteratorError10) {
-              throw _iteratorError10;
             }
           }
         }
@@ -3910,26 +3918,26 @@ __webpack_require__.r(__webpack_exports__);
         currentObject.scheduleJSON = [];
         currentObject.scheduleArray = [];
         currentObject.scheduleJSON = response.data;
-        var _iteratorNormalCompletion11 = true;
-        var _didIteratorError11 = false;
-        var _iteratorError11 = undefined;
+        var _iteratorNormalCompletion10 = true;
+        var _didIteratorError10 = false;
+        var _iteratorError10 = undefined;
 
         try {
-          for (var _iterator11 = response.data[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-            var section = _step11.value;
+          for (var _iterator10 = response.data[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+            var section = _step10.value;
             var tempObject = {
               "Section": "".concat(section.SectionNumber, " (").concat(section.SectionType, ")"),
               "Enroll Stat": section.EnrollmentStatus,
               "Open Seats": section.AvailableSeats,
               "Meeting Day/Time": ""
             };
-            var _iteratorNormalCompletion12 = true;
-            var _didIteratorError12 = false;
-            var _iteratorError12 = undefined;
+            var _iteratorNormalCompletion11 = true;
+            var _didIteratorError11 = false;
+            var _iteratorError11 = undefined;
 
             try {
-              for (var _iterator12 = section.Meetings[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                var meeting = _step12.value;
+              for (var _iterator11 = section.Meetings[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                var meeting = _step11.value;
 
                 // if first meeting in array, then don't add a comma before it
                 if (meeting.MeetingNumber === 1) {
@@ -3940,16 +3948,16 @@ __webpack_require__.r(__webpack_exports__);
                   }
               }
             } catch (err) {
-              _didIteratorError12 = true;
-              _iteratorError12 = err;
+              _didIteratorError11 = true;
+              _iteratorError11 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion12 && _iterator12["return"] != null) {
-                  _iterator12["return"]();
+                if (!_iteratorNormalCompletion11 && _iterator11["return"] != null) {
+                  _iterator11["return"]();
                 }
               } finally {
-                if (_didIteratorError12) {
-                  throw _iteratorError12;
+                if (_didIteratorError11) {
+                  throw _iteratorError11;
                 }
               }
             }
@@ -3957,16 +3965,16 @@ __webpack_require__.r(__webpack_exports__);
             currentObject.scheduleArray.push(tempObject);
           }
         } catch (err) {
-          _didIteratorError11 = true;
-          _iteratorError11 = err;
+          _didIteratorError10 = true;
+          _iteratorError10 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion11 && _iterator11["return"] != null) {
-              _iterator11["return"]();
+            if (!_iteratorNormalCompletion10 && _iterator10["return"] != null) {
+              _iterator10["return"]();
             }
           } finally {
-            if (_didIteratorError11) {
-              throw _iteratorError11;
+            if (_didIteratorError10) {
+              throw _iteratorError10;
             }
           }
         }
@@ -3980,6 +3988,7 @@ __webpack_require__.r(__webpack_exports__);
       if (item["Enroll Stat"] === "Wait List") return 'table-warning';
       if (item["Enroll Stat"] === "Closed") return 'table-danger';
     },
+    // This function is no longer being used
     getTermCodeOfSystemDate: function getTermCodeOfSystemDate() {
       var d = new Date();
       var year = d.getFullYear();
@@ -54402,12 +54411,12 @@ var render = function() {
                               _c("multiselect", {
                                 attrs: {
                                   id: "term-input",
-                                  placeholder: "Term: (Current Term)",
+                                  placeholder: "No Term Selected",
                                   options: _vm.termOptions,
-                                  multiple: true,
+                                  multiple: false,
                                   searchable: false,
                                   "close-on-select": false,
-                                  "allow-empty": true,
+                                  "allow-empty": false,
                                   "show-labels": false,
                                   "track-by": "option",
                                   label: "option",

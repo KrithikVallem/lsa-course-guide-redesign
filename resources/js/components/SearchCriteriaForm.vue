@@ -13,13 +13,13 @@
                     <b-form-group id="term-group" label="Term:" label-for="term-input">
                       <multiselect
                         id="term-input"
-                        placeholder="Term: (Current Term)"
+                        placeholder="No Term Selected"
                         v-model="termValue"
                         :options="termOptions" 
-                        :multiple="true"
+                        :multiple="false"
                         :searchable="false"
                         :close-on-select="false"
-                        :allow-empty="true"
+                        :allow-empty="false"
                         :show-labels="false"
                         track-by="option"
                         label="option"
@@ -400,8 +400,8 @@
     components: { Multiselect },
     data () {
       return {
-        termValue: null,
-        termOptions: [{value: "2300", option: "Summer 2020"}, {value: "2290", option: "Sp/Su 2020"}, {value: "2280", option: "Spring 2020"}, {value: "2270", option: "Winter 2020"}, {value: "2260", option: "Fall 2019"}, {value: "2250", option: "Summer 2019"}, {value: "2240", option: "Sp/Su 2019"}, {value: "2230", option: "Spring 2019"}, {value: "2220", option: "Winter 2019"}, {value: "2210", option: "Fall 2018"}, {value: "2200", option: "Summer 2018"}, {value: "2190", option: "Sp/Su 2018"}, {value: "2180", option: "Spring 2018"}, {value: "2170", option: "Winter 2018"}, {value: "2160", option: "Fall 2017"}, {value: "2150", option: "Summer 2017"}, {value: "2140", option: "Sp/Su 2017"}, {value: "2130", option: "Spring 2017"}, {value: "2120", option: "Winter 2017"}, {value: "2110", option: "Fall 2016"}, {value: "2100", option: "Summer 2016"}, {value: "2090", option: "Sp/Su 2016"}, {value: "2080", option: "Spring 2016"}, {value: "2070", option: "Winter 2016"}, {value: "2060", option: "Fall 2015"}, {value: "2050", option: "Summer 2015"}, {value: "2040", option: "Sp/Su 2015"}, {value: "2030", option: "Spring 2015"}, {value: "2020", option: "Winter 2015"}, {value: "2010", option: "Fall 2014"}, {value: "2000", option: "Summer 2014"}, {value: "1990", option: "Sp/Su 2014"}, {value: "1980", option: "Spring 2014"}, {value: "1970", option: "Winter 2014"}, {value: "1960", option: "Fall 2013"}, {value: "1950", option: "Summer 2013"}, {value: "1940", option: "Sp/Su 2013"}, {value: "1930", option: "Spring 2013"}, {value: "1920", option: "Winter 2013"}, {value: "1910", option: "Fall 2012"}, {value: "1900", option: "Summer 2012"}, {value: "1890", option: "Sp/Su 2012"}, {value: "1880", option: "Spring 2012"}, {value: "1870", option: "Winter 2012"}, {value: "1860", option: "Fall 2011"}, {value: "1850", option: "Summer 2011"}, {value: "1840", option: "Sp/Su 2011"}, {value: "1830", option: "Spring 2011"}, {value: "1820", option: "Winter 2011"}, {value: "1810", option: "Fall 2010"}, {value: "1800", option: "Summer 2010"}, {value: "1790", option: "Sp/Su 2010"}, {value: "1780", option: "Spring 2010"}, {value: "1770", option: "Winter 2010"}, {value: "1760", option: "Fall 2009"}, {value: "1750", option: "Summer 2009"}, {value: "1740", option: "Sp/Su 2009"}, {value: "1730", option: "Spring 2009"}, {value: "1720", option: "Winter 2009"}, {value: "1710", option: "Fall 2008"}, {value: "1700", option: "Summer 2008"}, {value: "1690", option: "Sp/Su 2008"}, {value: "1680", option: "Spring 2008"}, {value: "1670", option: "Winter 2008"}, {value: "1660", option: "Fall 2007"}, {value: "1650", option: "Summer 2007"}, {value: "1640", option: "Sp/Su 2007"}, {value: "1630", option: "Spring 2007"}, {value: "1620", option: "Winter 2007"}, {value: "1610", option: "Fall 2006"}, {value: "1600", option: "Summer 2006"}, {value: "1590", option: "Sp/Su 2006"}, {value: "1580", option: "Spring 2006"}, {value: "1570", option: "Winter 2006"}, {value: "1560", option: "Fall 2005"}, {value: "1550", option: "Summer 2005"}, {value: "1540", option: "Sp/Su 2005"}, {value: "1530", option: "Spring 2005"}, {value: "1520", option: "Winter 2005"}, {value: "1510", option: "Fall 2004"}, {value: "1500", option: "Summer 2004"}, {value: "1490", option: "Sp/Su 2004"}, {value: "1480", option: "Spring 2004"}],
+        termValue: null, /* If I set a default value for this, the search won't work */
+        termOptions: [{value: "2350", option: "Summer 2021"}, {value: "2340", option: "Sp/Su 2021"}, {value: "2330", option: "Spring 2021"}, {value: "2320", option: "Winter 2021"}, {value: "2310", option: "Fall 2020"}, {value: "2300", option: "Summer 2020"}, {value: "2290", option: "Sp/Su 2020"}, {value: "2280", option: "Spring 2020"}, {value: "2270", option: "Winter 2020"}, {value: "2260", option: "Fall 2019"}, {value: "2250", option: "Summer 2019"}, {value: "2240", option: "Sp/Su 2019"}, {value: "2230", option: "Spring 2019"}, {value: "2220", option: "Winter 2019"}, {value: "2210", option: "Fall 2018"}, {value: "2200", option: "Summer 2018"}, {value: "2190", option: "Sp/Su 2018"}, {value: "2180", option: "Spring 2018"}, {value: "2170", option: "Winter 2018"}, {value: "2160", option: "Fall 2017"}, {value: "2150", option: "Summer 2017"}, {value: "2140", option: "Sp/Su 2017"}, {value: "2130", option: "Spring 2017"}, {value: "2120", option: "Winter 2017"}, {value: "2110", option: "Fall 2016"}, {value: "2100", option: "Summer 2016"}, {value: "2090", option: "Sp/Su 2016"}, {value: "2080", option: "Spring 2016"}, {value: "2070", option: "Winter 2016"}, {value: "2060", option: "Fall 2015"}, {value: "2050", option: "Summer 2015"}, {value: "2040", option: "Sp/Su 2015"}, {value: "2030", option: "Spring 2015"}, {value: "2020", option: "Winter 2015"}, {value: "2010", option: "Fall 2014"}, {value: "2000", option: "Summer 2014"}, {value: "1990", option: "Sp/Su 2014"}, {value: "1980", option: "Spring 2014"}, {value: "1970", option: "Winter 2014"}, {value: "1960", option: "Fall 2013"}, {value: "1950", option: "Summer 2013"}, {value: "1940", option: "Sp/Su 2013"}, {value: "1930", option: "Spring 2013"}, {value: "1920", option: "Winter 2013"}, {value: "1910", option: "Fall 2012"}, {value: "1900", option: "Summer 2012"}, {value: "1890", option: "Sp/Su 2012"}, {value: "1880", option: "Spring 2012"}, {value: "1870", option: "Winter 2012"}, {value: "1860", option: "Fall 2011"}, {value: "1850", option: "Summer 2011"}, {value: "1840", option: "Sp/Su 2011"}, {value: "1830", option: "Spring 2011"}, {value: "1820", option: "Winter 2011"}, {value: "1810", option: "Fall 2010"}, {value: "1800", option: "Summer 2010"}, {value: "1790", option: "Sp/Su 2010"}, {value: "1780", option: "Spring 2010"}, {value: "1770", option: "Winter 2010"}, {value: "1760", option: "Fall 2009"}, {value: "1750", option: "Summer 2009"}, {value: "1740", option: "Sp/Su 2009"}, {value: "1730", option: "Spring 2009"}, {value: "1720", option: "Winter 2009"}, {value: "1710", option: "Fall 2008"}, {value: "1700", option: "Summer 2008"}, {value: "1690", option: "Sp/Su 2008"}, {value: "1680", option: "Spring 2008"}, {value: "1670", option: "Winter 2008"}, {value: "1660", option: "Fall 2007"}, {value: "1650", option: "Summer 2007"}, {value: "1640", option: "Sp/Su 2007"}, {value: "1630", option: "Spring 2007"}, {value: "1620", option: "Winter 2007"}, {value: "1610", option: "Fall 2006"}, {value: "1600", option: "Summer 2006"}, {value: "1590", option: "Sp/Su 2006"}, {value: "1580", option: "Spring 2006"}, {value: "1570", option: "Winter 2006"}, {value: "1560", option: "Fall 2005"}, {value: "1550", option: "Summer 2005"}, {value: "1540", option: "Sp/Su 2005"}, {value: "1530", option: "Spring 2005"}, {value: "1520", option: "Winter 2005"}, {value: "1510", option: "Fall 2004"}, {value: "1500", option: "Summer 2004"}, {value: "1490", option: "Sp/Su 2004"}, {value: "1480", option: "Spring 2004"}],
         
         creditTypeValue: {option: "Undergraduate", value: "ug"},
         creditTypeOptions: [{option: "Undergraduate", value: "ug"}, {option: "Graduate", value: "gr"}],
@@ -491,6 +491,11 @@
       ** Calls constructQueryUrl() to make the correct api request url, and sends it to backend to circumvent CORS     
       ** Once JSON course results data is returned, formats it into an array so that bootstrap-vue can turn it into a neat table */
       searchFunction(pageNumberIn) {
+        if (this.termValue === null) {
+          alert("Please Select a Term!");
+          return;
+        }
+
         let currentObject = this;
         this.currentPageNum = pageNumberIn;
 
@@ -592,16 +597,22 @@
         queryUrl += `/${CLASSTYPE}/${AUDIENCE}/${PAGENO}/${ROWSPERPAGE}/search?`;
 
         // TERM
+        queryUrl += `term=${(this.termValue).value}&`;
+
+        // the commented out stuff is for when Term selection was a multiselect
+        /*
         if (this.termValue !== null) {
-          for (let item of this.termValue) {
+          for (let item of this.termValue) { 
             queryUrl += `term=${item.value}&`;
           }
         }
         // if user didn't select a term, the term is set to the current term based on the computer's system date
         // this complex stuff is needed because the url won't form properly when I set a default term on page load
         else if (this.termValue === null){
+          //I'm no longer using this
           queryUrl += `term=${this.getTermCodeOfSystemDate()}&`;
         }
+        */
 
 
         // SUBJECT
@@ -816,7 +827,7 @@
         if (item["Enroll Stat"] === "Closed") return 'table-danger';
       },
 
-
+      // This function is no longer being used
       getTermCodeOfSystemDate() {
         const d = new Date();
         const year = d.getFullYear();
