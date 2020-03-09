@@ -845,45 +845,17 @@
       },
 
 
-      formatDatesAndTimes(dateTimeIn) {
-
-        // Time like 16:00, which is 4:00PM
-        if (dateTimeIn.includes(":")) {
-          /*
-          const timeArray = dateTimeIn.split(":");
-          let hour = parseInt(timeArray[0]);
-          const minutes = timeArray[1];
-
-          if (hour === 0) {
-            return ("12:" + minutes + "AM");
-          }
-          else if (hour === 12) {
-            return ("12:" + minutes + "PM");
-          }
-          else if (hour > 12) { // other PM times
-            hour -= 12;
-            return (hour + ":" + minutes + "PM");
-          }
-          else { // other AM times
-            return (hour + ":" + minutes + "AM");
-          }
-
-          */
-         return dateTimeIn;
-        }
-      },
-
-
       makeCourseDetailsHTMLString(jsonIn) {
         let HTMLstringArray = [];
 
         for (let property in jsonIn) {
           
-          if (property === "ClassDescr") {
+          if (property === "ClassDescr") { // don't print the class description, theres a separate tab for it
             continue;
           }
 
           else if (property === "Instructors") {
+              // unshift is push to front
               HTMLstringArray.unshift(`<tr><td><strong>Instructors: </strong></td> <td>${jsonIn.InstructorNames}</td></tr>`);
           }
 
@@ -909,12 +881,29 @@
             meetingHTML += `</td></tr>`;
 
 
-            //Meeting Time
-            const startTime = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_Start).slice(11, 16)).toString();
-            const endTime = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End).slice(11, 16)).toString();
+            //Meeting Time: Time like 16:00, which is 4:00PM
+            let startTime = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_Start).slice(11, 16)).toString();
+            let endTime = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End).slice(11, 16)).toString();
 
-            //const startTime2 = formatDatesAndTimes(startTime);
-            //const endTime2 = formatDatesAndTimes(endTime);
+            const startTimeArray = startTime.split(":");
+            let hour = parseInt(startTimeArray[0]);
+            let minutes = startTimeArray[1];
+
+            //format start time
+            if (hour === 0) {startTime = ("12:" + minutes + "AM");}
+            else if (hour === 12) {startTime = ("12:" + minutes + "PM");}
+            else if (hour > 12) {startTime = ((hour - 12) + ":" + minutes + "PM");} // other PM times
+            else {startTime = (hour + ":" + minutes + "AM");} // other AM times
+
+            const endTimeArray = endTime.split(":");
+            hour = parseInt(endTimeArray[0]);
+            minutes = endTimeArray[1];
+
+            //format end time
+            if (hour === 0) {endTime = ("12:" + minutes + "AM");}
+            else if (hour === 12) {endTime = ("12:" + minutes + "PM");}
+            else if (hour > 12) {endTime = ((hour - 12) + ":" + minutes + "PM");} // other PM times
+            else {endTime = (hour + ":" + minutes + "AM");} // other AM times
 
             meetingHTML += `<tr><td><strong>Meeting Time: </strong></td> <td> ${startTime} to ${endTime} </td></tr>`;
 
@@ -923,22 +912,21 @@
             let startDate = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt).slice(0, 10)).toString();
             let endDate = ((jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt).slice(0, 10)).toString();
 
+            //format start date
             const startDateArray = startDate.split("-");
             startDate = (startDateArray[1] + "/" + startDateArray[2] + "/" + startDateArray[0].slice(2,4));
 
+            //format end date
             const endDateArray = endDate.split("-");
             endDate = (endDateArray[1] + "/" + endDateArray[2] + "/" + endDateArray[0].slice(2,4));
 
-            // I think the actual function is fine (see my codepen), but vue is having some sort of problem with it
-            // Maybe get rid of function and do formatting here directly
-
             meetingHTML += `<tr><td><strong>Meeting Dates: </strong></td> <td> ${startDate} to ${endDate} </td></tr>`;
 
-            
+            // unshift = push to front
             HTMLstringArray.unshift(meetingHTML);
           }
 
-          else {
+          else { // every other property
             HTMLstringArray.push(`<tr><td><strong>${property}:</strong></td> <td>${jsonIn[property]}</td></tr>`);
 
             for (let i = 0; i < HTMLstringArray.length; i++) {
@@ -951,10 +939,6 @@
 
         return HTMLstringArray.join("");
       },
-
-
-      
-
     }
   }
 </script>

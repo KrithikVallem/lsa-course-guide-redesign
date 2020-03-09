@@ -4001,44 +4001,15 @@ __webpack_require__.r(__webpack_exports__);
 
       return codeFor2004Season + 50 * (year - 2004);
     },
-    formatDatesAndTimes: function formatDatesAndTimes(dateTimeIn) {
-      // Time like 16:00, which is 4:00PM
-      if (dateTimeIn.includes(":")) {
-        /*
-        const timeArray = dateTimeIn.split(":");
-        let hour = parseInt(timeArray[0]);
-        const minutes = timeArray[1];
-         if (hour === 0) {
-          return ("12:" + minutes + "AM");
-        }
-        else if (hour === 12) {
-          return ("12:" + minutes + "PM");
-        }
-        else if (hour > 12) { // other PM times
-          hour -= 12;
-          return (hour + ":" + minutes + "PM");
-        }
-        else { // other AM times
-          return (hour + ":" + minutes + "AM");
-        }
-         */
-        return dateTimeIn;
-      } //Date like 2020-01-08, which is 01/08/20
-      else {
-          /*
-          const dateArray = dateTimeIn.split("-");
-          return (dateArray[1] + "/" + dateArray[2] + "/" + dateArray[0].slice(2,4));
-          */
-          return dateTimeIn;
-        }
-    },
     makeCourseDetailsHTMLString: function makeCourseDetailsHTMLString(jsonIn) {
       var HTMLstringArray = [];
 
       for (var property in jsonIn) {
         if (property === "ClassDescr") {
+          // don't print the class description, theres a separate tab for it
           continue;
         } else if (property === "Instructors") {
+          // unshift is push to front
           HTMLstringArray.unshift("<tr><td><strong>Instructors: </strong></td> <td>".concat(jsonIn.InstructorNames, "</td></tr>"));
         } else if (property === "MeetingPatterns") {
           var meetingHTML = ""; //Meeting Place
@@ -4077,27 +4048,57 @@ __webpack_require__.r(__webpack_exports__);
 
           meetingHTML = meetingHTML.slice(0, -2); // removes the space and comma after last meeting date
 
-          meetingHTML += "</td></tr>"; //Meeting Time
+          meetingHTML += "</td></tr>"; //Meeting Time: Time like 16:00, which is 4:00PM
 
           var startTime = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_Start.slice(11, 16).toString();
-          var endTime = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End.slice(11, 16).toString(); //const startTime2 = formatDatesAndTimes(startTime);
-          //const endTime2 = formatDatesAndTimes(endTime);
+          var endTime = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Time_End.slice(11, 16).toString();
+          var startTimeArray = startTime.split(":");
+          var hour = parseInt(startTimeArray[0]);
+          var minutes = startTimeArray[1]; //format start time
 
-          meetingHTML += "<tr><td><strong>Meeting Time: </strong></td> <td> ".concat(startTime, " to ").concat(endTime, " </td></tr>"); //Meeting Dates Range
+          if (hour === 0) {
+            startTime = "12:" + minutes + "AM";
+          } else if (hour === 12) {
+            startTime = "12:" + minutes + "PM";
+          } else if (hour > 12) {
+            startTime = hour - 12 + ":" + minutes + "PM";
+          } // other PM times
+          else {
+              startTime = hour + ":" + minutes + "AM";
+            } // other AM times
+
+
+          var endTimeArray = endTime.split(":");
+          hour = parseInt(endTimeArray[0]);
+          minutes = endTimeArray[1]; //format end time
+
+          if (hour === 0) {
+            endTime = "12:" + minutes + "AM";
+          } else if (hour === 12) {
+            endTime = "12:" + minutes + "PM";
+          } else if (hour > 12) {
+            endTime = hour - 12 + ":" + minutes + "PM";
+          } // other PM times
+          else {
+              endTime = hour + ":" + minutes + "AM";
+            } // other AM times
+
+
+          meetingHTML += "<tr><td><strong>Meeting Time: </strong></td> <td> ".concat(startTime, " to ").concat(endTime, " </td></tr>"); //Meeting Dates Range: Date like 2020-01-08, which is 01/08/20
 
           var startDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_Start_Dt.slice(0, 10).toString();
-          var endDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt.slice(0, 10).toString(); //const startDate2 = formatDatesAndTimes(startDate);
-          //const endDate2 = formatDatesAndTimes(endDate);
+          var endDate = jsonIn.MeetingPatterns.CGMeetingPattern.Meeting_End_Dt.slice(0, 10).toString(); //format start date
 
           var startDateArray = startDate.split("-");
-          startDate = startDateArray[1] + "/" + startDateArray[2] + "/" + startDateArray[0].slice(2, 4);
-          var endDateArray = endDate.split("-");
-          endDate = endDateArray[1] + "/" + endDateArray[2] + "/" + endDateArray[0].slice(2, 4); // I think the actual function is fine (see my codepen), but vue is having some sort of problem with it
-          // Maybe get rid of function and do formatting here directly
+          startDate = startDateArray[1] + "/" + startDateArray[2] + "/" + startDateArray[0].slice(2, 4); //format end date
 
-          meetingHTML += "<tr><td><strong>Meeting Dates: </strong></td> <td> ".concat(startDate, " to ").concat(endDate, " </td></tr>");
+          var endDateArray = endDate.split("-");
+          endDate = endDateArray[1] + "/" + endDateArray[2] + "/" + endDateArray[0].slice(2, 4);
+          meetingHTML += "<tr><td><strong>Meeting Dates: </strong></td> <td> ".concat(startDate, " to ").concat(endDate, " </td></tr>"); // unshift = push to front
+
           HTMLstringArray.unshift(meetingHTML);
         } else {
+          // every other property
           HTMLstringArray.push("<tr><td><strong>".concat(property, ":</strong></td> <td>").concat(jsonIn[property], "</td></tr>"));
 
           for (var i = 0; i < HTMLstringArray.length; i++) {
