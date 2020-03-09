@@ -2243,9 +2243,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      termValue: null,
+      termValue: {
+        value: "2310",
+        option: "Fall 2020"
+      },
 
-      /* If I set a default value for this, the search won't work */
+      /* TODO: change this every now and then */
       termOptions: [{
         value: "2350",
         option: "Summer 2021"
@@ -3456,11 +3459,8 @@ __webpack_require__.r(__webpack_exports__);
       var confirmResponse = confirm("Do you want to clear your search criteria?");
 
       if (confirmResponse === true) {
-        this.termValue = null;
-        this.creditTypeValue = {
-          option: "Undergraduate",
-          value: "ug"
-        };
+        //this.termValue = null; // I'll just not reset the term after each search since I don't think its that important to reset
+        //this.creditTypeValue = {option: "Undergraduate", value: "ug"}; // I'll just not reset this credit type (undergrad vs grad) after each search since I don't think its that important to reset
         this.courseValue = "";
         this.instructorValue = "";
         this.keywordValue = "";
@@ -54415,7 +54415,7 @@ var render = function() {
                                   options: _vm.termOptions,
                                   multiple: false,
                                   searchable: false,
-                                  "close-on-select": false,
+                                  "close-on-select": true,
                                   "allow-empty": false,
                                   "show-labels": false,
                                   "track-by": "option",
