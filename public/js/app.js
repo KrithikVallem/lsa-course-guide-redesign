@@ -2236,6 +2236,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -55148,20 +55152,26 @@ var render = function() {
                                     ])
                                   ])
                                 ])
-                              : _c("table", {
-                                  staticStyle: {
-                                    "border-collapse": "separate",
-                                    "border-spacing": "10px"
-                                  },
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.makeCourseDetailsHTMLString(
-                                        this.allCourseDetailsJSON,
-                                        this.courseDataJSON.I
-                                      )
-                                    )
-                                  }
-                                })
+                              : _c(
+                                  "div",
+                                  { staticStyle: { "overflow-x": "auto" } },
+                                  [
+                                    _c("table", {
+                                      staticStyle: {
+                                        "border-collapse": "separate",
+                                        "border-spacing": "10px"
+                                      },
+                                      domProps: {
+                                        innerHTML: _vm._s(
+                                          _vm.makeCourseDetailsHTMLString(
+                                            this.allCourseDetailsJSON,
+                                            this.courseDataJSON.I
+                                          )
+                                        )
+                                      }
+                                    })
+                                  ]
+                                )
                           ])
                         ],
                         1
@@ -55254,25 +55264,31 @@ var render = function() {
                                       ])
                                     ])
                                   ])
-                                : _c("iframe", {
-                                    staticStyle: {
-                                      border: "0px none",
-                                      "margin-left": "-20px",
-                                      height: "960px",
-                                      "margin-top": "-250px",
-                                      "margin-bottom": "-20px",
-                                      width: "615px"
-                                    },
-                                    attrs: {
-                                      scrolling: "no",
-                                      src:
-                                        "https://gradeguide.com/course/" +
-                                        this.courseDataJSON.Subject +
-                                        "/" +
-                                        this.courseDataJSON.CatalogNum +
-                                        "/"
-                                    }
-                                  })
+                                : _c(
+                                    "div",
+                                    { staticStyle: { "overflow-x": "auto" } },
+                                    [
+                                      _c("iframe", {
+                                        staticStyle: {
+                                          border: "0px none",
+                                          "margin-left": "-20px",
+                                          height: "960px",
+                                          "margin-top": "-250px",
+                                          "margin-bottom": "-20px",
+                                          width: "615px"
+                                        },
+                                        attrs: {
+                                          scrolling: "no",
+                                          src:
+                                            "https://gradeguide.com/course/" +
+                                            this.courseDataJSON.Subject +
+                                            "/" +
+                                            this.courseDataJSON.CatalogNum +
+                                            "/"
+                                        }
+                                      })
+                                    ]
+                                  )
                             ]
                           )
                         ],

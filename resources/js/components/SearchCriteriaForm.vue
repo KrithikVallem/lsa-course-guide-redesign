@@ -315,8 +315,10 @@
                 <b-card-text>
                   <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
   
-                  <!-- Replaced the stuff below with an HTML string making function because I couldn't figure out how to get rid of the empty fields in the json object -->
-                  <table v-else v-html="makeCourseDetailsHTMLString(this.allCourseDetailsJSON, this.courseDataJSON.I)" style='border-collapse: separate; border-spacing: 10px;'></table>
+                  <div v-else style="overflow-x:auto;">
+                    <!-- Replaced the stuff below with an HTML string making function because I couldn't figure out how to get rid of the empty fields in the json object -->
+                    <table v-html="makeCourseDetailsHTMLString(this.allCourseDetailsJSON, this.courseDataJSON.I)" style='border-collapse: separate; border-spacing: 10px;'></table>
+                  </div>
 
                   <!--how can I make the blank stuff not show up ??
                   <div v-else v-for="(value, name) in this.allCourseDetailsJSON" v-bind:key = "name">
@@ -361,7 +363,9 @@
                 <b-card-text style="overflow: hidden;">
                   <span v-if="!this.courseDataJSON.ClassDescr"> <h3><strong>Click on a class in the column on the left to see more information about it!</strong></h3> </span>
 
-                  <iframe v-else scrolling='no' v-bind:src="`https://gradeguide.com/course/${this.courseDataJSON.Subject}/${this.courseDataJSON.CatalogNum}/`" style='border: 0px none; margin-left: -20px; height: 960px; margin-top: -250px; margin-bottom: -20px; width: 615px;'></iframe>
+                  <div v-else style="overflow-x:auto;">
+                    <iframe scrolling='no' v-bind:src="`https://gradeguide.com/course/${this.courseDataJSON.Subject}/${this.courseDataJSON.CatalogNum}/`" style='border: 0px none; margin-left: -20px; height: 960px; margin-top: -250px; margin-bottom: -20px; width: 615px;'></iframe>
+                  </div>
                 </b-card-text>
               </b-tab>
 
