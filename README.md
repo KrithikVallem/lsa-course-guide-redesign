@@ -8,16 +8,17 @@ IMAGE OF GRADEGUIDE XFRAME GOES HERE - TODO
 
 ### Installing
 
-I apologize in advance if these directions do not work on your computer. If you notice any mistakes, feel free to submit a pull request.
+I apologize in advance if these directions do not work on your computer. If you notice any mistakes, feel free to let me know.
 
 ```
 1. Install PHP
 2. Install Laravel & Laravel Valet
 3. Clone this Repository
-4. Use "npm run dev" to launch the app after making changes
-5. Close out any incognito tabs you have open currently
-6. Open http://course-guide.test in a new incognito window, to avoid caching
-7. Repeat steps 4-6 every time you make changes to the code
+4. Use "npm install" to install dependencies
+5. Use "npm run dev" to launch the app after making changes
+6. Close out any incognito tabs you have open currently
+7. Open http://course-guide.test in a new incognito window, since caching prevents changes from showing up in a normal window
+8. Repeat steps 4-6 every time you make changes to the code
 ```
 
 ## Built With
