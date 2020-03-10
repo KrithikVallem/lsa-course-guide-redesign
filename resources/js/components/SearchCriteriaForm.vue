@@ -298,9 +298,9 @@
           </b-table>
 
           <div id="page-buttons-container" class="col text-center">
-            <b-button id="nextPageButton" @click="searchFunction(currentPageNum - 1)">&lt;</b-button>
+            <b-button id="previousPageButton" @click="searchFunction(currentPageNum - 1)">&lt;</b-button>
             <span>Page {{currentPageNum}} of {{totalPages}}</span>
-            <b-button id="lastPageButton" @click="searchFunction(currentPageNum + 1)">&gt;</b-button>
+            <b-button id="nextPageButton" @click="searchFunction(currentPageNum + 1)">&gt;</b-button>
           </div>
         </b-col>
 
