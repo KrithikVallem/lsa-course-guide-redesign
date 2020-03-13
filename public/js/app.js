@@ -2240,6 +2240,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3498,9 +3502,9 @@ __webpack_require__.r(__webpack_exports__);
       this.currentPageNum = pageNumberIn;
       if (this.currentPageNum < 1) this.currentPageNum = 1;
       if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages;
-      var searchResultsTable = document.getElementById("search-results-table");
-      searchResultsTable.scrollTop = 0;
-      searchResultsTable.scrollIntoView({
+      var searchResultsCol = document.getElementById("search-results-col");
+      searchResultsCol.scrollTop = 0;
+      searchResultsCol.scrollIntoView({
         block: "start",
         behavior: "smooth"
       });
@@ -55025,9 +55029,18 @@ var render = function() {
               attrs: { id: "search-results-col" }
             },
             [
-              _c("div", { staticClass: "col text-center" }, [
-                _c("em", [_vm._v("Click on a class below!")])
-              ]),
+              !Array.isArray(this.searchResultsArray) ||
+              !this.searchResultsArray.length
+                ? _c("div", { staticClass: "col text-center" }, [
+                    _c("em", { staticStyle: { color: "Tomato" } }, [
+                      _vm._v(
+                        "There were no classes that met your search criteria :("
+                      )
+                    ])
+                  ])
+                : _c("div", { staticClass: "col text-center" }, [
+                    _c("em", [_vm._v("Click on a class below!")])
+                  ]),
               _vm._v(" "),
               _c("b-table", {
                 attrs: {

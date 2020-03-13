@@ -276,7 +276,11 @@
 
       <b-row>
         <b-col id="search-results-col" style="color: white;" class="col-4">
-          <div class="col text-center">
+          <div class="col text-center" v-if="!Array.isArray(this.searchResultsArray) || !((this.searchResultsArray).length)">
+            <em style="color: Tomato;">There were no classes that met your search criteria :(</em>
+          </div>
+
+          <div class="col text-center" v-else>
             <em>Click on a class below!</em>
           </div>
 
@@ -513,9 +517,9 @@
         if (this.currentPageNum < 1) this.currentPageNum = 1;
         if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages;
 
-        const searchResultsTable = document.getElementById("search-results-table");
-        searchResultsTable.scrollTop = 0;
-        searchResultsTable.scrollIntoView({ block: "start",  behavior: "smooth" });
+        const searchResultsCol = document.getElementById("search-results-col");
+        searchResultsCol.scrollTop = 0;
+        searchResultsCol.scrollIntoView({ block: "start",  behavior: "smooth" });
 
         this.totalPages = 1; // in case of the search returning no results, this sets the pg num text to "Page 1 of 1"
 
