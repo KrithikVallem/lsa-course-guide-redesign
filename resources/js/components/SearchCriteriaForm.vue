@@ -502,8 +502,14 @@
         }
 
         let currentObject = this;
-        this.currentPageNum = pageNumberIn;
 
+        // Clears out the previous data, also lets you know if your search didn't result in any results due to the blank results table
+        this.courseDataJSON = [];
+        this.searchResultsArray = [];
+        this.scheduleJSON = [];
+        this.scheduleArray = [];
+
+        this.currentPageNum = pageNumberIn;
         if (this.currentPageNum < 1) this.currentPageNum = 1;
         if (this.currentPageNum > this.totalPages) this.currentPageNum = this.totalPages;
 
@@ -511,19 +517,12 @@
         searchResultsTable.scrollTop = 0;
         searchResultsTable.scrollIntoView({ block: "start",  behavior: "smooth" });
 
-        // removed since it triggers on every page flip - I added the large h3 message in the ClassDescr area instead
-        //alert("Click on a class in the column on the left to see more information about it!");
+        this.totalPages = 1; // in case of the search returning no results, this sets the pg num text to "Page 1 of 1"
 
         axios.post('/searchFunction', {
-          queryUrl: this.constructQueryUrl(pageNumberIn)
+          queryUrl: this.constructQueryUrl(this.currentPageNum)
         })
         .then(function (response) {
-          
-          // clears the previous data if a new search is successful
-          currentObject.courseDataJSON = [];
-          currentObject.searchResultsArray = [];
-          currentObject.scheduleJSON = [];
-          currentObject.scheduleArray = [];
 
           // PageSummary is a string like "Page 1 of 8, Results 1 - 100 of 746"
           // this code splits the string into an array of individual words and gets the last one (total number of classes in the search results)
@@ -751,27 +750,11 @@
         axios.post('/secondaryCourseDetailsFunction', {
           queryUrl: `http://webapps.lsa.umich.edu/SAA/LSACGSvc/LSACGClasses.svc/${termCodeIn}/${subjectIn}/${catalogNumIn}/${sectionNumIn}/All`
         })
-        .then(function (response) {
-          // theres more - check out the SPANISH 232 page on actual lsa course guide or even better the actual api xml page in a browser - but these are the ones I'm choosing to include for the time being
-          
+        .then(function (response) {          
           // You can find course building location in here also (Facility ID)
           // use this website to untangle facility_id, https://rooms.lsa.umich.edu/classrooms/CHEM1200
           // I don't think I can get location to work nicely enough to bother for now since you'd have to do some log-in duo shenanigans
           //currentObject.courseDataJSON["Location"] = (response.data).Facility_ID;
-
-          // add Course Note, Location, remove waitlist capacity
-          // theres other places these need to be added as well
-          /*
-          currentObject.courseDataJSON["Credit Exclusions"] = (response.data).CreditExcl;
-          currentObject.courseDataJSON["Other Course Info"] = (response.data).CrsMiscInfo;
-          currentObject.courseDataJSON["BS"] = (response.data).BSReqMetLongDesc;
-          currentObject.courseDataJSON["Repeatability"] = (response.data).Repeat;
-          currentObject.courseDataJSON["Waitlist Capacity"] = (response.data).WaitlistCapacity;
-          currentObject.courseDataJSON["Advisory Prerequisites"] = (response.data).AdvPrereq;
-          currentObject.courseDataJSON["Enforced Prerequisites"] = (response.data).EnfPrereq;
-          currentObject.courseDataJSON["Lang Req"] = (response.data).LangReqMetLongDesc;
-          currentObject.courseDataJSON["Cross-Listed Classes"] = (response.data).CrossListedWith;
-          */
 
          currentObject.allCourseDetailsJSON = []; // clear out previous data, to be safe
          currentObject.allCourseDetailsJSON = response.data;
